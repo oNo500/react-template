@@ -21,7 +21,7 @@ const createEnv = () => {
     }
     return acc;
   }, {});
-
+  console.log("envVars", envVars);
   const parsedEnv = EnvSchema.safeParse(envVars);
 
   if (!parsedEnv.success) {
