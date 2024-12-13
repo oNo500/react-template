@@ -1,7 +1,7 @@
 import { paths } from "@/config/paths";
 import { Link } from "react-router-dom";
 
-export const NotFoundRoute = () => {
+ const NotFoundRoute = () => {
   return (
     <div className="mt-52 flex flex-col items-center font-semibold">
       <h1>404 - Not Found</h1>
@@ -12,3 +12,4 @@ export const NotFoundRoute = () => {
     </div>
   );
 };
+export default NotFoundRoute;

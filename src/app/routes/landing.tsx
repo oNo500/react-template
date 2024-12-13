@@ -3,7 +3,7 @@ import { paths } from "@/config/paths";
 import { useUser } from "@/lib/auth";
 import { useNavigate } from "react-router-dom";
 
-export const LandingRoute = () => {
+const LandingRoute = () => {
   const navigate = useNavigate();
   const user = useUser();
   const handleStart = () => {
@@ -21,3 +21,4 @@ export const LandingRoute = () => {
     </>
   );
 };
+export default LandingRoute;

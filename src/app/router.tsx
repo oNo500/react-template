@@ -2,28 +2,36 @@ import { paths } from "@/config/paths";
 import { QueryClient, useQueryClient } from "@tanstack/react-query";
 import { useMemo } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { AppRootErrorBoundary } from "./routes/root";
+
+const convert = (queryClient: QueryClient) => (m: any) => {
+  const { clientLoader, clientAction, default: Component, ...rest } = m;
+  console.log("clientLoader", clientLoader, clientAction);
+  return {
+    ...rest,
+    loader: clientLoader?.(queryClient),
+    action: clientAction?.(queryClient),
+    Component,
+  };
+};
 
 export const CreateAppRouter = (queryClient: QueryClient) =>
   createBrowserRouter([
     {
       path: paths.home.path,
-      lazy: async () => {
-        const { LandingRoute } = await import("./routes/landing");
-        return {
-          Component: LandingRoute,
-        };
-      },
+      lazy: () => import("./routes/landing").then(convert(queryClient)),
+    },
+    {
+      path: paths.auth.login.getHref(),
+      lazy: () => import("./routes/auth/login").then(convert(queryClient)),
+    },
+    {
+      path: paths.auth.register.getHref(),
+      lazy: () => import("./routes/auth/register").then(convert(queryClient)),
     },
     {
       path: "*",
-      lazy: async () => {
-        const { NotFoundRoute } = await import("./routes/not-found");
-        return {
-          Component: NotFoundRoute,
-        };
-      },
-      ErrorBoundary: AppRootErrorBoundary,
+      lazy: () => import("./routes/not-found").then(convert(queryClient)),
+      // ErrorBoundary: AppRootErrorBoundary,
     },
   ]);
 
