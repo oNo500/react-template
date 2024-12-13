@@ -59,8 +59,9 @@ export const { useUser, useLogin, useLogout, useRegister, AuthLoader } =
 
 export const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const user = useUser();
+  console.log('user', user)
   const location = useLocation();
-  if (!user) {
+  if (!user.data) {
     return (
       <Navigate
         to={paths.auth.login.getHref(location.pathname)}
