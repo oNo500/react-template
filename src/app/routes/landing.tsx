@@ -7,7 +7,7 @@ export const LandingRoute = () => {
   const navigate = useNavigate();
   const user = useUser();
   const handleStart = () => {
-    if (user) {
+    if (user.data) {
       navigate(paths.app.dashboard.getHref());
     } else {
       navigate(paths.auth.login.getHref());
@@ -16,7 +16,7 @@ export const LandingRoute = () => {
 
   return (
     <>
-      <Head description="Landing Page" />
+      <Head description="Landing Page" title="Landing" />
       <button onClick={handleStart}>Start</button>
     </>
   );

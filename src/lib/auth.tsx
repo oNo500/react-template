@@ -5,6 +5,9 @@ import { configureAuth } from "react-query-auth";
 import { Navigate, useLocation } from "react-router-dom";
 import { paths } from "@/config/paths";
 
+/**
+ * Login fields
+ */
 export const loginInputSchema = z.object({
   name: z.string().min(1, "Required"),
   password: z.string().min(5, "Required"),
@@ -12,6 +15,9 @@ export const loginInputSchema = z.object({
 
 export type LoginInput = z.infer<typeof loginInputSchema>;
 
+/**
+ * Register fields
+ */
 export const registerInputSchema = z.object({
   name: z.string().min(1, "Required"),
   password: z.string().min(5, "Required"),
@@ -21,7 +27,7 @@ export type RegisterInput = z.infer<typeof registerInputSchema>;
 
 const getuser = async (): Promise<User> => {
   const response = await api.get("/auth/user");
-  return response.data as any;
+  return response as any;
 };
 const logout = (): Promise<void> => {
   return api.post("/auth/logout");
