@@ -7,8 +7,8 @@ function authRequestInterceptor(config: InternalAxiosRequestConfig) {
   if (config.headers) {
     config.headers.Accept = "application/json";
   }
-
-  config.withCredentials = true;
+  // TODO: 如果需要 cookie 
+  // config.withCredentials = true;
   return config;
 }
 
@@ -24,13 +24,14 @@ api.interceptors.response.use(
   },
   (error) => {
     const message = error.response?.data?.message || error.message;
+    console.error(message);
     // TODO: 提示
     // useNotifications.getState().addNotification({
     //   type: "error",
     //   title: "Error",
     //   message,
     // });
-
+    // TODO: 服务器响应错误处理
     if (error.response?.status === 401) {
       const searchParams = new URLSearchParams();
       const redirectTo =
