@@ -1,4 +1,5 @@
 import { Head } from "@/components/seo";
+import { Button } from "@/components/ui/button";
 import { paths } from "@/config/paths";
 import { useUser } from "@/lib/auth";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +18,7 @@ const LandingRoute = () => {
   return (
     <>
       <Head description="Landing Page" title="Landing" />
-      <button onClick={handleStart}>Start</button>
+      <Button onClick={handleStart}>Start</Button>
     </>
   );
 };
