@@ -4,6 +4,8 @@ import { ErrorBoundary } from "react-error-boundary";
 import { HelmetProvider } from "react-helmet-async";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { queryConfig } from "@/lib/react-query";
+import { Notifications } from "@/components/ui/notifications";
+
 
 const MainErrorFallback = () => {
   return (
@@ -42,6 +44,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
             </QueryClientProvider>
           </HelmetProvider>
         </ErrorBoundary>
+        <Notifications />
       </Suspense>
     </>
   );

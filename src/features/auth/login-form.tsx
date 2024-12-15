@@ -23,9 +23,9 @@ export const LoginForm = ({ onSuccess }: LoginFormProps) => {
           <>
             <Input
               type="text"
-              label="User Name"
-              error={formState.errors["name"]}
-              registration={register("name")}
+              label="Username"
+              error={formState.errors["username"]}
+              registration={register("username")}
             />
             <Input
               type="password"

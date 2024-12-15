@@ -2,6 +2,7 @@ import Axios, { InternalAxiosRequestConfig } from "axios";
 
 import { env } from "@/config/env";
 import { paths } from "@/config/paths";
+import { useNotifications } from "@/components/ui/notifications";
 
 function authRequestInterceptor(config: InternalAxiosRequestConfig) {
   if (config.headers) {
@@ -30,11 +31,12 @@ api.interceptors.response.use(
     const message = error.response?.data?.message || error.message;
     console.error(message);
     // TODO: 提示
-    // useNotifications.getState().addNotification({
-    //   type: "error",
-    //   title: "Error",
-    //   message,
-    // });
+    useNotifications.getState().addNotification({
+      type: "error",
+      title: "Error",
+      message,
+    });
+
     // TODO: 服务器响应错误处理
     if (error.response?.status === 401) {
       const searchParams = new URLSearchParams();

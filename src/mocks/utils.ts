@@ -51,16 +51,16 @@ export const sanitizeUser = <O extends object>(user: O) =>
   omit<O>(user, ["password", "iat"]);
 
 export function authenticate({
-  email,
+  username,
   password,
 }: {
-  email: string;
+  username: string;
   password: string;
 }) {
   const user = db.user.findFirst({
     where: {
-      email: {
-        equals: email,
+      username: {
+        equals: username,
       },
     },
   });
@@ -98,6 +98,7 @@ export function requireAuth(cookies: Record<string, string>) {
 
     return { user: sanitizeUser(user) };
   } catch (err: any) {
+    console.log("err", err);
     return { error: "Unauthorized", user: null };
   }
 }
