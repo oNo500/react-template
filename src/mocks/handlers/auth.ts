@@ -149,12 +149,12 @@ export const authHandlers = [
     );
   }),
 
-  http.get(`${env.API_URL}/auth/me`, async ({ cookies }) => {
+  http.get(`${env.API_URL}/auth/user`, async ({ cookies, ...rest }) => {
     await networkDelay();
-
+    console.log("cookies", rest);
     try {
-      const { user } = requireAuth(cookies);
-      return HttpResponse.json({ data: user });
+      const data = requireAuth(cookies);
+      return HttpResponse.json({ data, success: data.user?.id ? true : false });
     } catch (error: any) {
       return HttpResponse.json(
         { message: error?.message || "Server Error" },

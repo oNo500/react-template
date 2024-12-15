@@ -7,7 +7,7 @@ function authRequestInterceptor(config: InternalAxiosRequestConfig) {
   if (config.headers) {
     config.headers.Accept = "application/json";
   }
-  // TODO: 如果需要 cookie 
+  // TODO: 如果需要 cookie
   // config.withCredentials = true;
   return config;
 }
@@ -20,7 +20,11 @@ export const api = Axios.create({
 api.interceptors.request.use(authRequestInterceptor);
 api.interceptors.response.use(
   (response) => {
-    return response.data;
+    const { sussess, data } = response.data;
+    if (!sussess) {
+      return Promise.reject(data);
+    }
+    return data;
   },
   (error) => {
     const message = error.response?.data?.message || error.message;

@@ -92,8 +92,7 @@ export function requireAuth(cookies: Record<string, string>) {
         },
       },
     });
-
-    if (!user) {
+    if (!user || !user.id) {
       return { error: "Unauthorized", user: null };
     }
 
