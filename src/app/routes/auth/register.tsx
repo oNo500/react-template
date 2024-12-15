@@ -1,4 +1,11 @@
+import { AuthLayout } from "@/components/layouts";
+import { RegisterForm } from "@/features/auth/register-form";
+
 const RegisterRoute = () => {
-  return <div>注册</div>;
+  return (
+    <AuthLayout title="Register">
+      <RegisterForm onSuccess={() => {}} />
+    </AuthLayout>
+  );
 };
 export default RegisterRoute;

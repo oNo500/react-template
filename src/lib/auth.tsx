@@ -9,7 +9,7 @@ import { paths } from "@/config/paths";
  * Login fields
  */
 export const loginInputSchema = z.object({
-  name: z.string().min(1, "Required"),
+  username: z.string().min(1, "Required"),
   password: z.string().min(5, "Required"),
 });
 
@@ -19,7 +19,8 @@ export type LoginInput = z.infer<typeof loginInputSchema>;
  * Register fields
  */
 export const registerInputSchema = z.object({
-  name: z.string().min(1, "Required"),
+  username: z.string().min(1, "Required"),
+  nikename: z.string().min(1, "Required"),
   password: z.string().min(5, "Required"),
 });
 
@@ -59,7 +60,7 @@ export const { useUser, useLogin, useLogout, useRegister, AuthLoader } =
 
 export const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const user = useUser();
-  console.log('user', user)
+  console.log("user", user);
   const location = useLocation();
   if (!user.data) {
     return (
