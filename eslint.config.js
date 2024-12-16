@@ -3,19 +3,17 @@ import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
-import eslintPluginPrettier from 'eslint-plugin-prettier/recommended';
+import prettierConfig from 'eslint-config-prettier';
+import tailwindcssPlugin from 'eslint-plugin-tailwindcss';
 
 export default tseslint.config(
-  { ignores: ['dist'] },
+  ...tailwindcssPlugin.configs['flat/recommended'],
+  { ignores: ['dist', 'public/mockServiceWorker.js'] },
   {
-    extends: [
-      js.configs.recommended,
-      ...tseslint.configs.recommended,
-      ...eslintPluginPrettier,
-    ],
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
-      ecmaVersion: 2020,
+      ecmaVersion: 'latest',
       globals: globals.browser,
     },
     plugins: {
@@ -29,6 +27,8 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      'react-refresh/only-export-components': 'off',
     },
   },
+  prettierConfig,
 );

@@ -1,6 +1,6 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 
-import { DashboardLayout } from "@/components/layouts";
+import { DashboardLayout } from '@/components/layouts';
 
 export const AppRoot = () => {
   return (

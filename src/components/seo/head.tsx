@@ -1,4 +1,4 @@
-import { Helmet, HelmetData } from "react-helmet-async";
+import { Helmet, HelmetData } from 'react-helmet-async';
 
 type HeadProps = {
   title?: string;
@@ -6,7 +6,7 @@ type HeadProps = {
 };
 
 const helmetData = new HelmetData({});
-export const Head = ({ title = "", description = "" }: HeadProps) => {
+export const Head = ({ title = '', description = '' }: HeadProps) => {
   return (
     <Helmet
       helmetData={helmetData}

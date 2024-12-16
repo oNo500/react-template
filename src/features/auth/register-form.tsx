@@ -1,9 +1,9 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from 'react-router-dom';
 
-import { Button } from "@/components/ui/button";
-import { Form, Input } from "@/components/ui/form";
-import { paths } from "@/config/paths";
-import { useRegister, registerInputSchema } from "@/lib/auth";
+import { Button } from '@/components/ui/button';
+import { Form, Input } from '@/components/ui/form';
+import { paths } from '@/config/paths';
+import { useRegister, registerInputSchema } from '@/lib/auth';
 
 type RegisterFormProps = {
   onSuccess: () => void;
@@ -12,7 +12,7 @@ type RegisterFormProps = {
 export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
   const registering = useRegister({ onSuccess });
   const [searchParams] = useSearchParams();
-  const redirectTo = searchParams.get("redirectTo");
+  const redirectTo = searchParams.get('redirectTo');
 
   return (
     <div>
@@ -30,21 +30,21 @@ export const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
             <Input
               type="text"
               label="Nickname"
-              error={formState.errors["nikename"]}
-              registration={register("nikename")}
+              error={formState.errors['nikename']}
+              registration={register('nikename')}
             />
             <Input
               type="text"
               label="Username"
-              error={formState.errors["username"]}
-              registration={register("username")}
+              error={formState.errors['username']}
+              registration={register('username')}
             />
 
             <Input
               type="password"
               label="Password"
-              error={formState.errors["password"]}
-              registration={register("password")}
+              error={formState.errors['password']}
+              registration={register('password')}
             />
 
             <div>

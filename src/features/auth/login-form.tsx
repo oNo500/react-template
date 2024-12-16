@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
-import { Form, Input } from "@/components/ui/form";
-import { paths } from "@/config/paths";
-import { loginInputSchema, useLogin } from "@/lib/auth";
-import { Link } from "react-router-dom";
+import { Button } from '@/components/ui/button';
+import { Form, Input } from '@/components/ui/form';
+import { paths } from '@/config/paths';
+import { loginInputSchema, useLogin } from '@/lib/auth';
+import { Link } from 'react-router-dom';
 
 type LoginFormProps = {
   onSuccess: () => void;
@@ -24,14 +24,14 @@ export const LoginForm = ({ onSuccess }: LoginFormProps) => {
             <Input
               type="text"
               label="Username"
-              error={formState.errors["username"]}
-              registration={register("username")}
+              error={formState.errors['username']}
+              registration={register('username')}
             />
             <Input
               type="password"
               label="Password"
-              error={formState.errors["password"]}
-              registration={register("password")}
+              error={formState.errors['password']}
+              registration={register('password')}
             />
             <div>
               <Button type="submit" className="w-full">

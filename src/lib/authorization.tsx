@@ -1,10 +1,10 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { useUser } from "./auth";
+import { useUser } from './auth';
 
 export enum ROLES {
-  ADMIN = "ADMIN",
-  USER = "USER",
+  ADMIN = 'ADMIN',
+  USER = 'USER',
 }
 
 type RoleTypes = keyof typeof ROLES;
@@ -13,7 +13,7 @@ export const useAuthorization = () => {
   const user = useUser();
 
   if (!user.data) {
-    throw Error("User does not exist!");
+    throw Error('User does not exist!');
   }
 
   const checkAccess = React.useCallback(
@@ -24,7 +24,7 @@ export const useAuthorization = () => {
 
       return true;
     },
-    [user.data]
+    [user.data],
   );
 
   return { checkAccess, role: user.data.role };
@@ -58,7 +58,7 @@ export const Authorization = ({
     canAccess = checkAccess({ allowedRoles });
   }
 
-  if (typeof policyCheck !== "undefined") {
+  if (typeof policyCheck !== 'undefined') {
     canAccess = policyCheck;
   }
 

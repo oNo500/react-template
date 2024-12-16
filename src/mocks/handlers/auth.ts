@@ -1,16 +1,16 @@
-import Cookies from "js-cookie";
-import { HttpResponse, http } from "msw";
+import Cookies from 'js-cookie';
+import { HttpResponse, http } from 'msw';
 
-import { env } from "@/config/env";
+import { env } from '@/config/env';
 
-import { db, persistDb } from "../db";
+import { db, persistDb } from '../db';
 import {
   authenticate,
   hash,
   requireAuth,
   AUTH_COOKIE,
   networkDelay,
-} from "../utils";
+} from '../utils';
 
 type RegisterBody = {
   nickname: string;
@@ -39,12 +39,12 @@ export const authHandlers = [
 
       if (existingUser) {
         return HttpResponse.json(
-          { message: "The user already exists" },
-          { status: 400 }
+          { message: 'The user already exists' },
+          { status: 400 },
         );
       }
 
-      const role = "USER";
+      const role = 'USER';
 
       db.user.create({
         ...userObject,
@@ -52,7 +52,7 @@ export const authHandlers = [
         password: hash(userObject.password),
       });
 
-      await persistDb("user");
+      await persistDb('user');
 
       const result = authenticate({
         username: userObject.username,
@@ -60,7 +60,7 @@ export const authHandlers = [
       });
 
       // todo: remove once tests in Github Actions are fixed
-      Cookies.set(AUTH_COOKIE, result.jwt, { path: "/" });
+      Cookies.set(AUTH_COOKIE, result.jwt, { path: '/' });
 
       return HttpResponse.json(
         {
@@ -70,14 +70,14 @@ export const authHandlers = [
         {
           headers: {
             // with a real API servier, the token cookie should also be Secure and HttpOnly
-            "Set-Cookie": `${AUTH_COOKIE}=${result.jwt}; Path=/;`,
+            'Set-Cookie': `${AUTH_COOKIE}=${result.jwt}; Path=/;`,
           },
-        }
+        },
       );
     } catch (error: any) {
       return HttpResponse.json(
-        { message: error?.message || "Server Error" },
-        { status: 500 }
+        { message: error?.message || 'Server Error' },
+        { status: 500 },
       );
     }
   }),
@@ -90,18 +90,18 @@ export const authHandlers = [
       const result = authenticate(credentials);
 
       // todo: remove once tests in Github Actions are fixed
-      Cookies.set(AUTH_COOKIE, result.jwt, { path: "/" });
+      Cookies.set(AUTH_COOKIE, result.jwt, { path: '/' });
 
       return HttpResponse.json(result, {
         headers: {
           // with a real API servier, the token cookie should also be Secure and HttpOnly
-          "Set-Cookie": `${AUTH_COOKIE}=${result.jwt}; Path=/;`,
+          'Set-Cookie': `${AUTH_COOKIE}=${result.jwt}; Path=/;`,
         },
       });
     } catch (error: any) {
       return HttpResponse.json(
-        { message: error?.message || "Server Error" },
-        { status: 500 }
+        { message: error?.message || 'Server Error' },
+        { status: 500 },
       );
     }
   }),
@@ -113,25 +113,25 @@ export const authHandlers = [
     Cookies.remove(AUTH_COOKIE);
 
     return HttpResponse.json(
-      { message: "Logged out" },
+      { message: 'Logged out' },
       {
         headers: {
-          "Set-Cookie": `${AUTH_COOKIE}=; Path=/;`,
+          'Set-Cookie': `${AUTH_COOKIE}=; Path=/;`,
         },
-      }
+      },
     );
   }),
 
   http.get(`${env.API_URL}/auth/user`, async ({ cookies, ...rest }) => {
     await networkDelay();
-    console.log("cookies", rest);
+    console.log('cookies', rest);
     try {
       const data = requireAuth(cookies);
       return HttpResponse.json({ data, success: data.user?.id ? true : false });
     } catch (error: any) {
       return HttpResponse.json(
-        { message: error?.message || "Server Error" },
-        { status: 500 }
+        { message: error?.message || 'Server Error' },
+        { status: 500 },
       );
     }
   }),

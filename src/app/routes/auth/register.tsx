@@ -1,12 +1,12 @@
-import { AuthLayout } from "@/components/layouts";
-import { paths } from "@/config/paths";
-import { RegisterForm } from "@/features/auth/register-form";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { AuthLayout } from '@/components/layouts';
+import { paths } from '@/config/paths';
+import { RegisterForm } from '@/features/auth/register-form';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const RegisterRoute = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const redirectTo = searchParams.get("redirectTo");
+  const redirectTo = searchParams.get('redirectTo');
   return (
     <AuthLayout title="Register">
       <RegisterForm
