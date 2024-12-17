@@ -8,9 +8,9 @@ import { Button } from '@/components/ui/button';
 
 const LandingRoute = () => {
   const navigate = useNavigate();
-  const user = useUser();
+  const response = useUser();
   const handleStart = () => {
-    if (user.data) {
+    if (response.data) {
       navigate(paths.app.dashboard.getHref());
     } else {
       navigate(paths.auth.login.getHref());

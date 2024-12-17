@@ -21,8 +21,8 @@ export const api = Axios.create({
 api.interceptors.request.use(authRequestInterceptor);
 api.interceptors.response.use(
   (response) => {
-    const { sussess, data } = response.data;
-    if (!sussess) {
+    const { success, data } = response.data;
+    if (!success) {
       return Promise.reject(data);
     }
     return data;
