@@ -4,6 +4,7 @@ import { api } from './api-client';
 import { configureAuth } from 'react-query-auth';
 import { Navigate, useLocation } from 'react-router-dom';
 import { paths } from '@/config/paths';
+import { Spinner } from '@/components/ui/spinner';
 
 /**
  * Login fields
@@ -36,9 +37,7 @@ const logout = (): Promise<void> => {
 const loginWithNameAndPassword = (data: LoginInput): Promise<AuthResponse> => {
   return api.post('/auth/login', data);
 };
-const registerWithNameAndPassword = (
-  data: RegisterInput,
-): Promise<AuthResponse> => {
+const registerWithNameAndPassword = (data: RegisterInput): Promise<AuthResponse> => {
   return api.post('/auth/register', data);
 };
 
@@ -55,21 +54,20 @@ const authConfig = {
   logoutFn: logout,
 };
 
-export const { useUser, useLogin, useLogout, useRegister, AuthLoader } =
-  configureAuth(authConfig);
+export const { useUser, useLogin, useLogout, useRegister, AuthLoader } = configureAuth(authConfig);
 
 export const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const user = useUser();
-  console.log('user', user);
   const location = useLocation();
-  if (!user.data) {
+  if (user.isLoading) {
     return (
-      <Navigate
-        to={paths.auth.login.getHref(location.pathname)}
-        replace
-        state={{ from: location }}
-      />
+      <div className='flex h-screen w-screen items-center justify-center'>
+        <Spinner />
+      </div>
     );
+  }
+  if (!user.data) {
+    return <Navigate to={paths.auth.login.getHref(location.pathname)} replace state={{ from: location }} />;
   }
   return children;
 };
