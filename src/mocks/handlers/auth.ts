@@ -4,13 +4,7 @@ import { HttpResponse, http } from 'msw';
 import { env } from '@/config/env';
 
 import { db, persistDb } from '../db';
-import {
-  authenticate,
-  hash,
-  requireAuth,
-  AUTH_COOKIE,
-  networkDelay,
-} from '../utils';
+import { authenticate, hash, requireAuth, AUTH_COOKIE, networkDelay } from '../utils';
 
 type RegisterBody = {
   nickname: string;
@@ -38,10 +32,7 @@ export const authHandlers = [
       });
 
       if (existingUser) {
-        return HttpResponse.json(
-          { message: 'The user already exists' },
-          { status: 400 },
-        );
+        return HttpResponse.json({ message: 'The user already exists' }, { status: 400 });
       }
 
       const role = 'USER';
@@ -75,10 +66,7 @@ export const authHandlers = [
         },
       );
     } catch (error: any) {
-      return HttpResponse.json(
-        { message: error?.message || 'Server Error' },
-        { status: 500 },
-      );
+      return HttpResponse.json({ message: error?.message || 'Server Error' }, { status: 500 });
     }
   }),
 
@@ -99,10 +87,7 @@ export const authHandlers = [
         },
       });
     } catch (error: any) {
-      return HttpResponse.json(
-        { message: error?.message || 'Server Error' },
-        { status: 500 },
-      );
+      return HttpResponse.json({ message: error?.message || 'Server Error' }, { status: 500 });
     }
   }),
 
@@ -122,17 +107,13 @@ export const authHandlers = [
     );
   }),
 
-  http.get(`${env.API_URL}/auth/user`, async ({ cookies, ...rest }) => {
+  http.get(`${env.API_URL}/auth/user`, async ({ cookies }) => {
     await networkDelay();
-    console.log('cookies', rest);
     try {
       const data = requireAuth(cookies);
       return HttpResponse.json({ data, success: data.user?.id ? true : false });
     } catch (error: any) {
-      return HttpResponse.json(
-        { message: error?.message || 'Server Error' },
-        { status: 500 },
-      );
+      return HttpResponse.json({ message: error?.message || 'Server Error' }, { status: 500 });
     }
   }),
 ];

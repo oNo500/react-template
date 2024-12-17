@@ -7,11 +7,7 @@ import { queryConfig } from '@/lib/react-query';
 import { Notifications } from '@/components/ui/notifications';
 
 const MainErrorFallback = () => {
-  return (
-    <div className="flex h-screen w-screen items-center justify-center">
-      Error
-    </div>
-  );
+  return <div className="flex h-screen w-screen items-center justify-center">Error</div>;
 };
 
 type AppProviderProps = {
@@ -26,13 +22,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   );
   return (
     <>
-      <Suspense
-        fallback={
-          <div className="flex h-screen w-screen items-center justify-center">
-            Loading...
-          </div>
-        }
-      >
+      <Suspense fallback={<div className="flex h-screen w-screen items-center justify-center">Loading...</div>}>
         <ErrorBoundary FallbackComponent={MainErrorFallback}>
           <HelmetProvider>
             <QueryClientProvider client={queryClient}>

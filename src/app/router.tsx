@@ -1,7 +1,7 @@
 import { paths } from '@/config/paths';
 import { ProtectedRoute } from '@/lib/auth';
 import { QueryClient, useQueryClient } from '@tanstack/react-query';
-import { useMemo } from 'react';
+import { Suspense, useMemo } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AppRoot } from './routes/root';
 
@@ -55,5 +55,9 @@ export const CreateAppRouter = (queryClient: QueryClient) =>
 export const AppRouter = () => {
   const queryClient = useQueryClient();
   const router = useMemo(() => CreateAppRouter(queryClient), [queryClient]);
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense fallback={<div>加载中...</div>}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 };
