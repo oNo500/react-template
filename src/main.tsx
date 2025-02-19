@@ -7,9 +7,10 @@ async function enableMockServiceWorker() {
   const { worker } = await import("./mocks/browser.ts");
   await worker.start();
 }
-enableMockServiceWorker();
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
+enableMockServiceWorker().then(() => {
+  createRoot(document.getElementById("root")!).render(
+    <StrictMode>
+      <App />
+    </StrictMode>
+  );
+});
