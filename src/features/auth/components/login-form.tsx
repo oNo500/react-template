@@ -20,17 +20,18 @@ export function LoginForm({
   onSuccess,
   ...props
 }: React.ComponentProps<"div"> & LoginFormProps) {
-  const onSubmit = (form: React.FormEvent) => {
+  const onSubmit = async (form: React.FormEvent) => {
     form.preventDefault();
     const formEl = form.target as HTMLFormElement;
     const formData = new FormData(formEl);
-    const { name, password } = Object.fromEntries(formData);
-    console.log("form data", Object.fromEntries(formData));
-    apiClient("/login", {
+    const { email, password } = Object.fromEntries(formData);
+
+    const response = await apiClient("/login", {
       method: "POST",
-      data: { name, password },
+      data: { email, password },
     });
-    // onSuccess();
+    console.log("response", response);
+    onSuccess();
   };
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>

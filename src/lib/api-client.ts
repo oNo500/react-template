@@ -9,7 +9,7 @@ function authRequestInterceptor(config: InternalAxiosRequestConfig) {
 }
 
 export const apiClient = Axios.create({
-  baseURL: "http://localhost:3000", // 从环境变量中获取
+  baseURL: "", // 从环境变量中获取
 });
 
 apiClient.interceptors.request.use(authRequestInterceptor);
