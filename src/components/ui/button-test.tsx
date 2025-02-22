@@ -38,13 +38,7 @@ function ButtonDemo({
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     >
-      <h1>
-        {" 12"}
-        <p>
-          {/* <Slottable>{props.children}</Slottable> */}
-          {props.children}
-        </p>
-      </h1>
+      {props.children}
     </Comp>
   );
 }

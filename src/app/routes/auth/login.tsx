@@ -1,16 +1,18 @@
-import { useNavigate } from "react-router";
+import { LoginForm } from "@/features/auth/components/login-form";
+import { useNavigate, useSearchParams } from "react-router";
 
-const Login = () => {
+export default function Page() {
   const navigate = useNavigate();
-  const handleLogin = () => {
-    localStorage.setItem("token", "123");
-    navigate("/");
+  const [searchParams] = useSearchParams();
+  const redirectTo = searchParams.get("redirectTo");
+  const handleSuccess = () => {
+    navigate(redirectTo || "/", { replace: true });
   };
   return (
-    <div>
-      <h2>登录</h2>
-      <button onClick={handleLogin}>登录</button>
+    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+      <div className="w-full max-w-sm">
+        <LoginForm onSuccess={handleSuccess} />
+      </div>
     </div>
   );
-};
-export default Login;
+}
