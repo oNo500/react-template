@@ -1,6 +1,7 @@
 import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { ButtonDemo } from "@/components/ui/button-test";
+import { ZustandExample } from "@/features/example/components/zustand-example";
 import { useNavigate } from "react-router";
 
 export const AppRoot = () => {
@@ -25,6 +26,7 @@ export const AppRoot = () => {
           <div>我是自定义按钮</div>
         </ButtonDemo>
       </div>
+      <ZustandExample/>
     </div>
   );
 };

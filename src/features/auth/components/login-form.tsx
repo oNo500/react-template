@@ -15,6 +15,11 @@ type LoginFormProps = {
   onSuccess: () => void;
 };
 
+type FormFiled = {
+  email: string;
+  password: string;
+};
+
 export function LoginForm({
   className,
   onSuccess,
@@ -26,11 +31,11 @@ export function LoginForm({
     const formData = new FormData(formEl);
     const { email, password } = Object.fromEntries(formData);
 
-    const response = await apiClient("/login", {
+    const response = await apiClient<FormFiled>("/login", {
       method: "POST",
       data: { email, password },
     });
-    console.log("response", response);
+    console.log("response", response, response.data);
     onSuccess();
   };
   return (
@@ -53,6 +58,7 @@ export function LoginForm({
                   name="email"
                   placeholder="m@example.com"
                   required
+                  defaultValue={"m@example.com"}
                 />
               </div>
               <div className="grid gap-3">
@@ -65,7 +71,13 @@ export function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" name="password" required />
+                <Input
+                  id="password"
+                  type="password"
+                  name="password"
+                  defaultValue={"m@example.com"}
+                  required
+                />
               </div>
               <div className="flex flex-col gap-3">
                 <Button type="submit" className="w-full">
