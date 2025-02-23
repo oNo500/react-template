@@ -9,15 +9,10 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { apiClient } from "@/lib/api-client";
+import { useLogin } from "../api/auth-login";
 
 type LoginFormProps = {
   onSuccess: () => void;
-};
-
-type FormFiled = {
-  email: string;
-  password: string;
 };
 
 export function LoginForm({
@@ -25,18 +20,20 @@ export function LoginForm({
   onSuccess,
   ...props
 }: React.ComponentProps<"div"> & LoginFormProps) {
+  const loginMutation = useLogin({
+    mutationConfig: {
+      onSuccess: (data) => {
+        console.log("onSuccess", data);
+        onSuccess();
+      },
+    },
+  });
   const onSubmit = async (form: React.FormEvent) => {
     form.preventDefault();
     const formEl = form.target as HTMLFormElement;
     const formData = new FormData(formEl);
-    const { email, password } = Object.fromEntries(formData);
-
-    const response = await apiClient<FormFiled>("/login", {
-      method: "POST",
-      data: { email, password },
-    });
-    console.log("response", response, response.data);
-    onSuccess();
+    const { email, password }: any = Object.fromEntries(formData);
+    loginMutation.mutate({ data: { email, password } });
   };
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -80,8 +77,12 @@ export function LoginForm({
                 />
               </div>
               <div className="flex flex-col gap-3">
-                <Button type="submit" className="w-full">
-                  Login
+                <Button
+                  disabled={loginMutation.isPending}
+                  type="submit"
+                  className="w-full"
+                >
+                  {loginMutation.isPending ? "Loading..." : "Login"}
                 </Button>
               </div>
             </div>
