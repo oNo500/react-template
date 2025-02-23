@@ -32,6 +32,10 @@ const router = createBrowserRouter([
     lazy: () => import("./routes/auth/login").then(convert),
   },
   {
+    path: "/register",
+    lazy: () => import("./routes/auth/register").then(convert),
+  },
+  {
     path: "*",
     lazy: () => import("./routes/not-found").then(convert),
   },

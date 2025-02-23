@@ -1,3 +1,4 @@
+import { ProfileForm } from "@/features/auth/components/register-form";
 import { Link } from "react-router";
 
 const Register = () => {
@@ -5,6 +6,7 @@ const Register = () => {
     <div>
       <h2>注册</h2>
       <Link to={"/login"}>登录</Link>
+      <ProfileForm/>
     </div>
   );
 };
