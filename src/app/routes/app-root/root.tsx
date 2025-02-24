@@ -1,7 +1,5 @@
 import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
-import { ButtonDemo } from "@/components/ui/button-test";
-import { ZustandExample } from "@/features/example/components/zustand-example";
 import { useNavigate } from "react-router";
 
 export const AppRoot = () => {
@@ -10,23 +8,14 @@ export const AppRoot = () => {
     navigate("/login");
   };
   return (
-    <div className="text-center">
-      <h2 className=" text-2xl text-amber-950">我在首页的你</h2>
-      <Button variant={"default"} onClick={onLogin}>
-        走～ 去登录
-      </Button>
-      <h2>看看主题</h2>
-      <div className="bg-background text-foreground">
-        <p className=" bg-primary text-primary-foreground">12323213</p>
+    <div className="text-center flex flex-col items-center justify-center min-h-svh gap-4">
+      <h2 className=" text-2x">首页</h2>
+      <div className="flex gap-4">
+        <Button variant={"default"} onClick={onLogin}>
+          登录
+        </Button>
         <ModeToggle />
       </div>
-      <div>
-        <h2>查看自定义按钮</h2>
-        <ButtonDemo size="sm" asChild className="text-2xl">
-          <div>我是自定义按钮</div>
-        </ButtonDemo>
-      </div>
-      <ZustandExample/>
     </div>
   );
 };
