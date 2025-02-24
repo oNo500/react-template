@@ -3,14 +3,14 @@ import { MutationConfig } from "@/lib/react-query";
 import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
 
-export const loginInputSchema = z.object({
+export const formSchema = z.object({
   email: z.string().min(1, "Required").email("Invalid email"),
   password: z.string().min(1, "Required"),
 });
 
-export type LoginInput = z.infer<typeof loginInputSchema>;
+export type FormSchema = z.infer<typeof formSchema>;
 
-export const login = async ({ data }: { data: LoginInput }) => {
+export const login = async ({ data }: { data: FormSchema }) => {
   return apiClient.post("/login", data);
 };
 

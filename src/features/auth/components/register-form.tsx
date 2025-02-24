@@ -7,19 +7,17 @@ import {
   FormField,
   FormLabel,
   FormItem,
-  FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-const formSchema = z.object({
-  userName: z.string().min(3).max(20),
-});
+import { formSchema, FormSchema } from "../api/auth-login";
 
 const ProfileForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      userName: "",
+      email: "",
+      password: "",
     },
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -31,20 +29,31 @@ const ProfileForm = () => {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
             control={form.control}
-            name="userName"
+            name="email"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>UserName</FormLabel>
                 <FormControl>
-                  <Input placeholder="shadcn" {...field} />
+                  <Input placeholder="shadcn@mail.com" {...field} />
                 </FormControl>
-                <FormDescription>
-                  This is your public display name
-                </FormDescription>
               </FormItem>
             )}
-          ></FormField>
-          <Button type="submit">Submit</Button>
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <Input placeholder="password" {...field} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <Button type="submit" className="w-full">
+            注册
+          </Button>
         </form>
       </Form>
     </>
