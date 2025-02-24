@@ -11,8 +11,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { formSchema, FormSchema } from "../api/auth-login";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Link } from "react-router";
 
-const ProfileForm = () => {
+const RegisterForm = () => {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -25,39 +33,52 @@ const ProfileForm = () => {
   }
   return (
     <>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>UserName</FormLabel>
-                <FormControl>
-                  <Input placeholder="shadcn@mail.com" {...field} />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input placeholder="password" {...field} />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-          <Button type="submit" className="w-full">
-            注册
-          </Button>
-        </form>
-      </Form>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-center">注册</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>邮箱</FormLabel>
+                    <FormControl>
+                      <Input placeholder="shadcn@mail.com" {...field} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>密码</FormLabel>
+                    <FormControl>
+                      <Input placeholder="password" {...field} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full">
+                注册
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+        <CardFooter className="text-sm">
+          已有账号？{" "}
+          <Link className=" underline underline-offset-4" to={"/login"}>
+            点击登录
+          </Link>
+        </CardFooter>
+      </Card>
     </>
   );
 };
 
-export { ProfileForm };
+export { RegisterForm };

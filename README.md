@@ -13,12 +13,24 @@
 6. 类型！！
 7. 配置别名
 
-## mock
 
+## 堆栈
+
+**路由**
+- React Router
+
+**UI**
+- Tailwind CSS
+- Shadcn UI
+
+**MOCK**
 - MSW
-- 先mock登录和注册体验一下
-- 等待 msw 先加载，在加载react，避免数据请求比mock服务启动早
 
+**状态管理**
+- Zustand
+- React Query
 
-Ant Design 是一个成熟、稳定且功能丰富的 UI 组件库，尤其是在企业级应用或后台管理系统中，Ant Design 是一个非常可靠的选择
-如果你需要更为灵活、个性化的设计，可能需要进行较多的定制。
+**工具**
+- zod
+- clsx
+- axios

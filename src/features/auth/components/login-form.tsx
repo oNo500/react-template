@@ -78,7 +78,7 @@ export function LoginForm({
                 </Button>
               </div>
             </div>
-            <div className="mt-4 text-center text-sm">
+            <div className="mt-4 text-sm">
               还没有账号？{" "}
               <Link to={"/register"} className="underline underline-offset-4">
                 点击注册
