@@ -1,6 +1,7 @@
 import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
+import logoUrl from "@/assets/icons/react.svg";
 
 export const AppRoot = () => {
   const navigate = useNavigate();
@@ -9,13 +10,23 @@ export const AppRoot = () => {
   };
   // TODO: 添加layout 组件
   return (
-    <div className="text-center flex flex-col items-center justify-center min-h-svh gap-4">
-      <h2 className=" text-2x">首页</h2>
-      <div className="flex gap-4">
-        <Button variant={"default"} onClick={onLogin}>
-          登录
-        </Button>
-        <ModeToggle />
+    <div>
+      <nav className="flex items-center justify-between py-2 px-4">
+        <div>
+          <a href="/" className="flex items-center gap-4">
+            <h1 className="text-base">React App</h1>
+            <img src={logoUrl} alt="logo" className="h-6 w-6" />
+          </a>
+        </div>
+        <div className="flex gap-4">
+          <Button variant={"default"} onClick={onLogin}>
+            登录
+          </Button>
+          <ModeToggle />
+        </div>
+      </nav>
+      <div className="flex items-center justify-center h-96">
+        <h1 className="text-4xl">Hello World</h1>
       </div>
     </div>
   );
