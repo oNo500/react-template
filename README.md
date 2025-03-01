@@ -38,3 +38,6 @@
 // TODO
 登录状态
 zstand 存储 登录状态。。。然后是否可以联合 localstoarge
+错误处理
+loading
+环境处理

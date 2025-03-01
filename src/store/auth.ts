@@ -37,6 +37,13 @@ const useUserStore = create<UserStore>()(
   )
 );
 
+// TODO: 有点拿不住，需要先熟练算法和设计模式
+// const createStoreB = (getA: () => StoreAState) =>
+//   create(() => ({
+//     dataB: 0,
+//     methodB: () => getA().dataA,
+//   }));
+
 export type User = {
   name: string;
   age: number;
