@@ -22,10 +22,28 @@ export const useLogin = ({ mutationConfig }: LoginOptions = {}) => {
   const { onSuccess, ...restConfig } = mutationConfig || {};
   return useMutation({
     onSuccess: (...args) => {
-      console.log(args);
       onSuccess?.(...args);
     },
     ...restConfig,
     mutationFn: login,
+  });
+};
+
+export const register = async ({ data }: { data: FormSchema }) => {
+  return apiClient.post("/register", data);
+};
+
+type RegisterOptions = {
+  mutationConfig?: MutationConfig<typeof register>;
+};
+
+export const useRegister = ({ mutationConfig }: RegisterOptions = {}) => {
+  const { onSuccess, ...restConfig } = mutationConfig || {};
+  return useMutation({
+    onSuccess: (...args) => {
+      onSuccess?.(...args);
+    },
+    ...restConfig,
+    mutationFn: register,
   });
 };

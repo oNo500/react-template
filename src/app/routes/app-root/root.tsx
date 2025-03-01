@@ -2,9 +2,11 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
 import logoUrl from "@/assets/icons/react.svg";
+import { useAuthStore } from "@/store/auth";
 
 export const AppRoot = () => {
   const navigate = useNavigate();
+  const state = useAuthStore();
   const onLogin = () => {
     navigate("/login");
   };
@@ -19,9 +21,13 @@ export const AppRoot = () => {
           </a>
         </div>
         <div className="flex gap-4">
-          <Button variant={"default"} onClick={onLogin}>
-            登录
-          </Button>
+          {state.isLogin ? (
+            <div>{state.user?.name}</div>
+          ) : (
+            <Button variant={"default"} onClick={onLogin}>
+              登录
+            </Button>
+          )}
           <ModeToggle />
         </div>
       </nav>

@@ -7,10 +7,11 @@ import {
   FormField,
   FormLabel,
   FormItem,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { formSchema, FormSchema } from "../api/auth-login";
+import { formSchema, FormSchema, useRegister } from "../api/auth-login";
 import {
   Card,
   CardContent,
@@ -19,8 +20,27 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Link } from "react-router";
+import { useAuthStore, User } from "@/store/auth";
 
-const RegisterForm = () => {
+type RegisterFormProps = {
+  onSuccess: () => void;
+};
+
+const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
+  const state = useAuthStore();
+  const registerMution = useRegister({
+    mutationConfig: {
+      onSuccess: (res) => {
+        const { data } = res;
+        const { accessToken } = data;
+        state.setAuth({
+          user: data.user as User,
+          token: accessToken,
+        });
+        onSuccess();
+      },
+    },
+  });
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -29,7 +49,7 @@ const RegisterForm = () => {
     },
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    registerMution.mutate({ data: values });
   }
   return (
     <>
@@ -49,6 +69,7 @@ const RegisterForm = () => {
                     <FormControl>
                       <Input placeholder="shadcn@mail.com" {...field} />
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -61,11 +82,16 @@ const RegisterForm = () => {
                     <FormControl>
                       <Input placeholder="password" {...field} />
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full">
-                注册
+              <Button
+                disabled={registerMution.isPending}
+                type="submit"
+                className="w-full"
+              >
+                {registerMution.isPending ? "注册中..." : "注册"}
               </Button>
             </form>
           </Form>

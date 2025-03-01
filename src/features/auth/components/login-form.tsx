@@ -1,92 +1,111 @@
+import { useForm } from "react-hook-form";
+import z from "zod";
+
+import { zodResolver } from "@hookform/resolvers/zod";
 import { cn } from "@/lib/utils";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  Form,
+} from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useLogin } from "../api/auth-login";
+import { formSchema, FormSchema, useLogin } from "../api/auth-login";
 import { Link } from "react-router";
+import { useAuthStore } from "@/store/auth";
 
 type LoginFormProps = {
   onSuccess: () => void;
 };
-
-export function LoginForm({
-  className,
-  onSuccess,
-  ...props
-}: React.ComponentProps<"div"> & LoginFormProps) {
+const LoginForm = ({ onSuccess, ...props }: LoginFormProps) => {
+  const state = useAuthStore();
   const loginMutation = useLogin({
     mutationConfig: {
-      onSuccess: (data) => {
-        console.log("onSuccess", data);
+      onSuccess: (res) => {
+        const { data } = res;
+        // TODO: 抽离到全局状态
+        state.setAuth({
+          user: data.user,
+          token: data.accessToken,
+        });
         onSuccess();
       },
     },
   });
-  const onSubmit = async (form: React.FormEvent) => {
-    form.preventDefault();
-    const formEl = form.target as HTMLFormElement;
-    const formData = new FormData(formEl);
-    const { email, password }: any = Object.fromEntries(formData);
-    loginMutation.mutate({ data: { email, password } });
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    loginMutation.mutate({ data: values });
   };
+  const form = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn("flex flex-col gap-6")} {...props}>
       <Card>
         <CardHeader>
           <CardTitle className="text-center">登录</CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={onSubmit}>
-            <div className="flex flex-col gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="email">邮箱</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="m@example.com"
-                  required
-                  defaultValue={"m@example.com"}
-                />
-              </div>
-              <div className="grid gap-3">
-                <div className="flex items-center">
-                  <Label htmlFor="password">密码</Label>
-                  {/* <a
-                    href="#"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </a> */}
-                </div>
-                <Input
-                  id="password"
-                  type="password"
-                  name="password"
-                  defaultValue={"m@example.com"}
-                  required
-                />
-              </div>
-              <div className="flex flex-col gap-3">
-                <Button
-                  disabled={loginMutation.isPending}
-                  type="submit"
-                  className="w-full"
-                >
-                  {loginMutation.isPending ? "Loading..." : "登录"}
-                </Button>
-              </div>
-            </div>
-            <div className="mt-4 text-sm">
-              还没有账号？{" "}
-              <Link to={"/register"} className="underline underline-offset-4">
-                点击注册
-              </Link>
-            </div>
-          </form>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>邮箱</FormLabel>
+                    <FormControl>
+                      <Input placeholder="" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>密码</FormLabel>
+                    <FormControl>
+                      <Input placeholder="" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button
+                disabled={loginMutation.isPending}
+                type="submit"
+                className="w-full"
+              >
+                {loginMutation.isPending ? "登录中..." : "登录"}
+              </Button>
+            </form>
+          </Form>
         </CardContent>
+        <CardFooter className="text-sm">
+          没有账号？{" "}
+          <Link className="underline underline-offset-4" to={"/register"}>
+            点击注册
+          </Link>
+        </CardFooter>
       </Card>
     </div>
   );
-}
+};
+
+export { LoginForm };
