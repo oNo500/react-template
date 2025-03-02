@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { AppRoot } from "./routes/app-root/root";
 import { ProtectedRouter } from "./routes/app-root/protected";
+import { MainErrorFallback } from "@/components/errors/main";
 
 const convert = ({
   default: Component,
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
   {
     path: "/login",
     lazy: () => import("./routes/auth/login").then(convert),
+    ErrorBoundary: MainErrorFallback,
   },
   {
     path: "/register",

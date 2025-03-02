@@ -39,5 +39,11 @@
 登录状态
 zstand 存储 登录状态。。。然后是否可以联合 localstoarge
 错误处理
+    1. 需要在全局catch 路由层之上的全局错误
+    2. 路由层的错误需要在react-router上catch
+    3. 页面级，颗粒度更细的在页面层catch
+    4. 不同的是react-router使用的错误catch和页面的不是同一个
+    5. 怎么整合统一收集错误呢？
+    https://www.brandondail.com/posts/fault-tolerance-react
 loading
 环境处理
