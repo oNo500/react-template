@@ -13,7 +13,7 @@ export const AppRoot = () => {
   };
   // TODO: 添加layout 组件
   return (
-    <div>
+    <div className="container">
       <Head title="首页" />
       <nav className="flex items-center justify-between py-2 px-4">
         <div>

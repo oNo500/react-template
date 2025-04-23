@@ -52,7 +52,6 @@ const LoginForm = ({ onSuccess, ...props }: LoginFormProps) => {
       password: "",
     },
   });
-  throw 'we'
   return (
     <div className={cn("flex flex-col gap-6")} {...props}>
       <Card>
