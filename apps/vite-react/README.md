@@ -1,5 +1,8 @@
 # 构建 React 项目
 
+## 参考
+[bulletproof-react](https://github.com/alan2207/bulletproof-react)
+
 ## 初始化
 1. 使用 `pnpm create vite@latest` 初始化项目
 2. 添加接口请求。
