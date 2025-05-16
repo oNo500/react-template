@@ -1,5 +1,6 @@
 {
   "extends": "./tsconfig.base.json",
+  "display": "Base Library",
   "compilerOptions": {
     "jsx": "react-jsx"
   }

@@ -1,6 +1,8 @@
 {
   "name": "react-template",
   "devDependencies": {
+    "@workspace/eslint-config": "workspace:*",
+    "@workspace/typescript-config": "workspace:*",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "jiti": "^2.4.2",
     "prettier": "^3.5.3",

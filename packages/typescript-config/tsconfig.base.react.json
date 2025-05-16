@@ -1,5 +1,6 @@
 {
   "extends": "./tsconfig.base.json",
+  "display": "Base React",
   "compilerOptions": {
     "plugins": [{ "name": "next" }],
     "module": "ESNext",
