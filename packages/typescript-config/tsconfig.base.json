@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    /* 基础选项: */
+    "esModuleInterop": true, // 允许默认导入非ES模块的模块
+    "skipLibCheck": true, // 跳过库文件的类型检查，加快编译速度
+    "target": "ES2022", // 指定编译后输出的JavaScript版本
+    "allowJs": true, // 允许编译JS文件
+    "resolveJsonModule": true, // 允许导入JSON模块
+    "moduleDetection": "force", // 强制模块检测
+    "isolatedModules": true, // 每个文件作为单独的模块进行编译
+    "verbatimModuleSyntax": true, // 保留导入导出语法不变
+
+    /* 严格模式 */
+    "strict": true, // 启用所有严格类型检查选项
+    "noUncheckedIndexedAccess": true, // 索引签名类型会包含 undefined
+    "noImplicitOverride": true, // 子类重写父类方法时必须显式使用 override 关键字
+
+    /* 如果你在为库开发: */
+    // "declaration": true, // 生成 .d.ts 类型声明文件
+
+    /* 如果你在 monorepo 中为库开发: */
+    "composite": true, // 启用增量编译，适用于大型项目或 monorepo
+    "declarationMap": true, // 生成声明文件的 source map，便于调试
+
+    /* 如果不使用 TypeScript 转译: */
+    "module": "preserve", // 保持模块类型不变
+    "noEmit": true, // 不生成输出文件
+
+    /* 如果你的代码运行在 DOM 中: */
+    // "lib": ["es2022", "dom", "dom.iterable"], // 启用 DOM 和 ES2022 的类型定义
+
+    /* 如果你的代码不运行在 DOM 中: */
+    "lib": ["es2022", "DOM", "DOM.Iterable"]
+  }
+}
