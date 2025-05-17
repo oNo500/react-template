@@ -1,11 +1,12 @@
 {
   "name": "react-template",
   "devDependencies": {
-    "@workspace/eslint-config": "workspace:*",
-    "@workspace/typescript-config": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "jiti": "^2.4.2",
     "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "syncpack": "14.0.0-alpha.12",
     "turbo": "^2.5.3",
     "typescript": "5.8.2"
@@ -13,7 +14,7 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "pnpm@9.0.0",
+  "packageManager": "pnpm@10.11.0",
   "private": true,
   "scripts": {
     "build": "turbo run build",
