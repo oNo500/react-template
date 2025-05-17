@@ -81,6 +81,7 @@ const turboConfig = [
       'import/first': 'error', // import 语句必须放在文件最前面
       'import/newline-after-import': 'error', // import 语句后必须空一行
       'import/no-duplicates': 'error', // 禁止重复导入
+      'import/no-unresolved': 'error', // 禁止未解析的导入
     },
     settings: {
       'import/resolver': {
