@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { Button } from '@repo/ui/components/button';
 
 import Navbar from '@/components/navbar';
 
@@ -15,9 +15,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col items-center justify-center gap-6 p-8 pb-20 sm:p-20">
       <Navbar />
       <p>React + Next.js + Tailwind CSS</p>
-      <button className="rounded-md bg-blue-500 p-2 text-white">
-        Click me
-      </button>
+      <Button variant="default">Click me</Button>
       <p className="text-sm text-gray-500">这是由...构建</p>
     </div>
   );
