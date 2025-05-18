@@ -1,16 +1,11 @@
-import { Button } from '@repo/ui/components/button';
-import { Card } from '@repo/ui/components/card';
-
 import LoginForm from '@/features/components/login-form';
 
 const LoginPage = () => {
   return (
-    <div className="flex h-screen w-screen items-center justify-center">
-      <Card>
-        <h1 className="text-2xl font-bold">Login</h1>
-        <Button>这是一个按钮</Button>
+    <div className="flex min-h-svh w-full items-center justify-center">
+      <div className="w-full max-w-sm">
         <LoginForm />
-      </Card>
+      </div>
     </div>
   );
 };
