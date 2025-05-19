@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { cn } from '@repo/ui/lib/utils';
 
 import NextLogo from '@/components/icons/nextdotjs.svg';
 import ReactLogo from '@/components/icons/react.svg';
@@ -6,7 +6,6 @@ import ReactRouterLogo from '@/components/icons/reactrouter.svg';
 import ShadcnLogo from '@/components/icons/shadcnui.svg';
 import TailwindLogo from '@/components/icons/tailwindcss.svg';
 import TurborepoLogo from '@/components/icons/turborepo.svg';
-import { cn } from '@/lib/utils';
 
 const techs = [
   {

@@ -11,6 +11,7 @@ import {
   FormMessage,
 } from '@repo/ui/components/form';
 import { Input } from '@repo/ui/components/input';
+import { cn } from '@repo/ui/lib/utils';
 import { z } from 'zod';
 
 import { useForm } from 'react-hook-form';
@@ -20,7 +21,6 @@ import Link from 'next/link';
 import AppleIcon from '@/components/icons/apple.svg';
 import GoogleIcon from '@/components/icons/google.svg';
 import ReactIcon from '@/components/icons/react.svg';
-import { cn } from '@/lib/utils';
 
 const formSchema = z.object({
   email: z.string().min(1, { message: 'Email is required' }),

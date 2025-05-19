@@ -1,11 +1,10 @@
 'use client';
 
 import { Button } from '@repo/ui/components/button';
+import { cn } from '@repo/ui/lib/utils';
 import { Check, Copy } from 'lucide-react';
 
 import React, { useRef, useState } from 'react';
-
-import { cn } from '@/lib/utils';
 
 const Code = ({
   children,
