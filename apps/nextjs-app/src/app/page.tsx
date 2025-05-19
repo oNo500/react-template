@@ -1,6 +1,8 @@
 import { Button } from '@repo/ui/components/button';
 
 import Navbar from '@/components/navbar';
+import Features from '@/features/home/components/features';
+import Hero from '@/features/home/components/hero';
 
 /**
  * TODO:
@@ -14,9 +16,10 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-6 p-8 pb-20 sm:p-20">
       <Navbar />
-      <p>React + Next.js + Tailwind CSS</p>
-      <Button variant="default">Click me</Button>
-      <p className="text-sm text-gray-500">这是由...构建</p>
+      <main className="flex h-full w-full flex-1 flex-col">
+        <Hero />
+        {/* <Features /> */}
+      </main>
     </div>
   );
 }
