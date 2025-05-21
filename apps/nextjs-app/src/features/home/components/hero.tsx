@@ -1,8 +1,16 @@
+'use client';
+
+import { useEffect } from 'react';
+
 import Code from '@/components/code';
+import { env } from '@/config/env';
 
 import TechStack from './tech-stack';
 
 const Hero = () => {
+  useEffect(() => {
+    console.log('NEXT_PUBLIC_API_URL', env);
+  }, []);
   return (
     <section className="mt-10 flex flex-col gap-4 text-center">
       {/* <div className="text-2xl">Turbo + Nextjs + Tailwind CSS</div> */}

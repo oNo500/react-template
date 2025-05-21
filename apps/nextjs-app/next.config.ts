@@ -1,7 +1,13 @@
+// import { loadEnvConfig } from '@next/env';
 import type { NextConfig } from 'next';
+import { PHASE_DEVELOPMENT_SERVER } from 'next/constants';
 
-const nextConfig: NextConfig = {
+const nextConfig: NextConfig = (
+  phase: string,
+  { defaultConfig }: { defaultConfig: NextConfig },
+) => ({
   transpilePackages: ['@repo/ui'],
+  ...(phase === PHASE_DEVELOPMENT_SERVER ? {} : {}),
   turbopack: {
     rules: {
       '*.svg': {
@@ -10,6 +16,6 @@ const nextConfig: NextConfig = {
       },
     },
   },
-};
+});
 
 export default nextConfig;

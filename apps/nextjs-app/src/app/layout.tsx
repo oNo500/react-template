@@ -1,20 +1,19 @@
 import '@repo/ui/styles/globals.css';
 
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono, Inder } from 'next/font/google';
+
+import { env } from '@/config/env';
 
 // import './globals.css';
 import AppProvider from './provider';
 import ReactScan from './react-scan';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const inter = Inder({
+  weight: '400',
   subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
 });
 
 export const metadata: Metadata = {
@@ -29,10 +28,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <ReactScan />
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      {env.NODE_ENV === 'development' && <ReactScan />}
+      <body className={`${inter.variable} antialiased`}>
         <AppProvider>{children}</AppProvider>
       </body>
     </html>
