@@ -64,18 +64,13 @@ const ignoresConfig = [
 ] as FlatConfig.Config[];
 
 // =========================================
-// turbo配置
+// Import 配置
 // =========================================
-const turboConfig = [
+const importConfig = [
+  ...pluginImport.flatConfigs.recommended,
   {
-    name: 'base/turbo/recommended',
-    plugins: {
-      turbo: turboPlugin,
-      import: pluginImport,
-    },
+    name: 'base/import/recommended',
     rules: {
-      'turbo/no-undeclared-env-vars': 'warn',
-      // 导出规则// =========================================
       'import/no-anonymous-default-export': 'warn', // 警告匿名默认导出
       'import/order': 'off', // 禁用可能与 Prettier 冲突的规则
       'import/first': 'error', // import 语句必须放在文件最前面
@@ -93,9 +88,25 @@ const turboConfig = [
   },
 ] as FlatConfig.Config[];
 
+// =========================================
+// turbo配置
+// =========================================
+const turboConfig = [
+  {
+    name: 'base/turbo/recommended',
+    plugins: {
+      turbo: turboPlugin,
+    },
+    rules: {
+      'turbo/no-undeclared-env-vars': 'warn',
+    },
+  },
+] as FlatConfig.Config[];
+
 export const config = [
   ...eslintConfig,
   ...tseslintConfig,
+  ...importConfig,
   ...turboConfig,
   ...ignoresConfig,
   pluginPrettierRecommended as FlatConfig.Config,
