@@ -1,11 +1,11 @@
-
-import pluginReactHooks from 'eslint-plugin-react-hooks';
-import pluginReact from 'eslint-plugin-react';
-import pluginJsxA11y from 'eslint-plugin-jsx-a11y';
 // @ts-expect-error 此包没有类型定义
 import pluginNext from '@next/eslint-plugin-next';
-import { config as baseConfig } from './base.js';
 import type { FlatConfig } from '@typescript-eslint/utils/ts-eslint';
+import pluginJsxA11y from 'eslint-plugin-jsx-a11y';
+import pluginReact from 'eslint-plugin-react';
+import pluginReactHooks from 'eslint-plugin-react-hooks';
+
+import { config as baseConfig } from './base.js';
 
 const nextJsConfig = [
   {
@@ -27,12 +27,6 @@ const nextJsConfig = [
       ...pluginJsxA11y.configs.strict.rules,
 
       // 自定义规则调整
-      // 导出规则// =========================================
-      'import/no-anonymous-default-export': 'warn', // 警告匿名默认导出
-      'import/order': 'off', // 禁用可能与 Prettier 冲突的规则
-      'import/first': 'error', // import 语句必须放在文件最前面
-      'import/newline-after-import': 'error', // import 语句后必须空一行
-      'import/no-duplicates': 'error', // 禁止重复导入
       // react
       'react/no-unknown-property': 'off', // 禁用未知属性检查
       'react/react-in-jsx-scope': 'off', // 无需导入 React
