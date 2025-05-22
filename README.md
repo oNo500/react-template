@@ -25,3 +25,10 @@ npx syncpack lint --dependency-types prod,dev
 # 修复版本
 npx syncpack fix --dependency-types prod,dev
 ```
+
+## 使用 `degit` 克隆项目
+
+```bash
+pnpx degit https://github.com/gaoxiu333/react-template.git my-project
+```
+
