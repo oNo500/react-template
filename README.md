@@ -32,3 +32,12 @@ npx syncpack fix --dependency-types prod,dev
 pnpx degit https://github.com/gaoxiu333/react-template.git my-project
 ```
 
+
+对齐一下我的 react-template
+https://github.com/
+codeguide-dev/codeguide-starter-lite
+https://github.com/shaadcode/Nextjs-Frontend-Boilerplate
+https://dev.to/shaadcode/it-doesnt-get-faster-than-this-launching-a-nextjs-project-with-a-professional-boilerplate-4j1e
+
+
+还是用来完善项目吧！！
