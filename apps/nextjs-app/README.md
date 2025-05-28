@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+> 这个项目会比较全面，用来做集成参考，不考虑实际场景直接使用改动可能会比较麻烦。
+
 ## Getting Started
 
 First, run the development server:

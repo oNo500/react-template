@@ -1,15 +1,7 @@
 'use client';
 
-// TODO: 补充注册表单
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@repo/ui/components/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@repo/ui/components/card';
 import {
   Form,
   FormControl,
@@ -26,7 +18,11 @@ import { useForm } from 'react-hook-form';
 
 import Link from 'next/link';
 
+import ReactIcon from '@/components/icons/react.svg';
+
 const formSchema = z.object({
+  firstName: z.string().min(1, { message: 'First Name is required' }),
+  lastName: z.string().min(1, { message: 'Last Name is required' }),
   email: z.string().min(1, { message: 'Email is required' }),
   password: z.string().min(1, { message: 'Password is required' }),
 });
@@ -38,6 +34,8 @@ const RegisterForm = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
     },
@@ -47,65 +45,88 @@ const RegisterForm = ({
   }
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
-      <Card>
-        <CardHeader>
-          <CardTitle>Login</CardTitle>
-          <CardDescription>
-            Enter your email below to login to your account
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
-              <div className="space-y-8">
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Enter your email" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => {
-                    return (
-                      <FormItem>
-                        <FormLabel>Password</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Enter your password" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                />
-                <Button className="w-full" type="submit">
-                  Login
-                </Button>
-              </div>
-              <Button variant="outline" className="mt-4 w-full" type="button">
-                Login with Google
-              </Button>
-              <div className="mt-4 text-center text-sm">
-                Don&apos;t have an account?{' '}
-                <Link
-                  href="/auth/register"
-                  className="underline underline-offset-4"
-                >
-                  Sign up
-                </Link>
-              </div>
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="space-y-8">
+            <div className="flex flex-col items-center gap-2">
+              <Link
+                href="/"
+                className="flex flex-col items-center gap-2 font-medium"
+              >
+                <div className="flex size-12 items-center justify-center rounded-md">
+                  <ReactIcon />
+                </div>
+                <span className="sr-only">React Starter</span>
+              </Link>
+              <h1 className="text-xl font-bold">Welcome to React Starter</h1>
+            </div>
+            <FormField
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>First Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter your first name" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Last Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter your last name" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter your email" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => {
+                return (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter your password" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
+            />
+            <Button className="w-full" type="submit">
+              Sign Up
+            </Button>
+          </div>
+
+          <div className="mt-4 text-center text-sm">
+            Already have an account?{' '}
+            <Link href="/auth/login" className="underline underline-offset-4">
+              Login
+            </Link>
+          </div>
+        </form>
+      </Form>
     </div>
   );
 };
