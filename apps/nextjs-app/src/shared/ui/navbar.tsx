@@ -4,8 +4,9 @@ import { useState } from 'react';
 
 import Link from 'next/link';
 
-import GithubIcon from './icons/github.svg';
-import ReactIcon from './icons/react.svg';
+import GithubIcon from '@/shared/assets/icons/github.svg';
+import ReactIcon from '@/shared/assets/icons/react.svg';
+
 import { ModeToggle } from './mode-toggle';
 
 export default function Navbar() {

@@ -1,8 +1,9 @@
+import { Toaster } from '@repo/ui/components/sonner';
 import '@repo/ui/styles/globals.css';
 
 import type { Metadata } from 'next';
 
-import AppProvider from './provider';
+import { AppProviders } from '@/core/providers';
 
 export const metadata: Metadata = {
   title: 'Nextjs App',
@@ -17,7 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`antialiased`}>
-        <AppProvider>{children}</AppProvider>
+        <AppProviders>
+          <Toaster />
+          {children}
+        </AppProviders>
       </body>
     </html>
   );

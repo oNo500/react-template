@@ -1,11 +1,11 @@
 import { cn } from '@repo/ui/lib/utils';
 
-import NextLogo from '@/components/icons/nextdotjs.svg';
-import ReactLogo from '@/components/icons/react.svg';
-import ReactRouterLogo from '@/components/icons/reactrouter.svg';
-import ShadcnLogo from '@/components/icons/shadcnui.svg';
-import TailwindLogo from '@/components/icons/tailwindcss.svg';
-import TurborepoLogo from '@/components/icons/turborepo.svg';
+import NextLogo from '@/shared/assets/icons/nextdotjs.svg';
+import ReactLogo from '@/shared/assets/icons/react.svg';
+import ReactRouterLogo from '@/shared/assets/icons/reactrouter.svg';
+import ShadcnLogo from '@/shared/assets/icons/shadcnui.svg';
+import TailwindLogo from '@/shared/assets/icons/tailwindcss.svg';
+import TurborepoLogo from '@/shared/assets/icons/turborepo.svg';
 
 const techs = [
   {
@@ -21,6 +21,7 @@ const techs = [
     logo: <ReactRouterLogo className="text-[#CA4245]" />,
   },
 ];
+
 const TechStack = ({
   className,
   ...props

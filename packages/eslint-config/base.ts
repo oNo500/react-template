@@ -6,6 +6,7 @@ import pluginImport from 'eslint-plugin-import';
 import pluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import turboPlugin from 'eslint-plugin-turbo';
 import tseslint, { configs as tseslintConfigs } from 'typescript-eslint';
+import tsParser from '@typescript-eslint/parser';
 
 // =========================================
 // 基础 ESLint 配置
@@ -30,7 +31,13 @@ const tseslintConfig = tseslint.config(
       parserOptions: {
         // 启用类型检查功能
         projectService: true,
-        tsconfigRootDir: import.meta.dirname,
+
+        project: [
+          './tsconfig.json',
+          './apps/*/tsconfig.json',
+          './packages/*/tsconfig.json',
+        ],
+
         // it is recommended to keep version warnings turned on
         warnOnUnsupportedTypeScriptVersion: true,
       },
@@ -44,7 +51,7 @@ const tseslintConfig = tseslint.config(
     // 对 .mjs 文件禁用类型检查
     files: ['**/*.mjs'],
     ...tseslintConfigs.disableTypeChecked,
-    name: 'custom/typescript-eslint/disable-type-checked',
+    name: 'base/typescript-eslint/disable-type-checked',
   },
 );
 
@@ -67,9 +74,16 @@ const ignoresConfig = [
 // Import 配置
 // =========================================
 const importConfig = [
-  ...pluginImport.flatConfigs.recommended,
+  pluginImport.flatConfigs.recommended,
+  pluginImport.flatConfigs.typescript,
+  pluginImport.flatConfigs.react,
   {
     name: 'base/import/recommended',
+    languageOptions: {
+      parser: tsParser,
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+    },
     rules: {
       'import/no-anonymous-default-export': 'warn', // 警告匿名默认导出
       'import/order': 'off', // 禁用可能与 Prettier 冲突的规则
@@ -80,9 +94,8 @@ const importConfig = [
     },
     settings: {
       'import/resolver': {
-        typescript: {
-          alwaysTryTypes: true, // 总是尝试解析类型定义
-        },
+        typescript: true,
+        node: true,
       },
     },
   },

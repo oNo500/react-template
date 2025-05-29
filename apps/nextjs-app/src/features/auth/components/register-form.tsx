@@ -18,7 +18,8 @@ import { useForm } from 'react-hook-form';
 
 import Link from 'next/link';
 
-import ReactIcon from '@/components/icons/react.svg';
+import { type RegisterRequest, useRegister } from '@/shared/api/endpoints/auth';
+import ReactIcon from '@/shared/assets/icons/react.svg';
 
 const formSchema = z.object({
   firstName: z.string().min(1, { message: 'First Name is required' }),
@@ -31,7 +32,7 @@ const RegisterForm = ({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<'div'>) => {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       firstName: '',
@@ -40,8 +41,14 @@ const RegisterForm = ({
       password: '',
     },
   });
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  const registerMutation = useRegister();
+  function onSubmit(values: typeof formSchema._type) {
+    const payload: RegisterRequest = {
+      email: values.email,
+      password: values.password,
+      name: `${values.firstName} ${values.lastName}`.trim(),
+    };
+    registerMutation.mutate(payload);
   }
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>

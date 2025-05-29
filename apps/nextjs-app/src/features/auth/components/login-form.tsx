@@ -18,9 +18,10 @@ import { useForm } from 'react-hook-form';
 
 import Link from 'next/link';
 
-import AppleIcon from '@/components/icons/apple.svg';
-import GoogleIcon from '@/components/icons/google.svg';
-import ReactIcon from '@/components/icons/react.svg';
+import { type LoginRequest, useLogin } from '@/shared/api/endpoints/auth';
+import AppleIcon from '@/shared/assets/icons/apple.svg';
+import GoogleIcon from '@/shared/assets/icons/google.svg';
+import ReactIcon from '@/shared/assets/icons/react.svg';
 
 const formSchema = z.object({
   email: z.string().min(1, { message: 'Email is required' }),
@@ -30,15 +31,16 @@ const LoginForm = ({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<'div'>) => {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<LoginRequest>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: '',
       password: '',
     },
   });
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  const loginMutation = useLogin();
+  function onSubmit(values: LoginRequest) {
+    loginMutation.mutate(values);
   }
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
@@ -94,7 +96,11 @@ const LoginForm = ({
                 );
               }}
             />
-            <Button className="w-full" type="submit">
+            <Button
+              disabled={loginMutation.isPending}
+              className="w-full"
+              type="submit"
+            >
               Login
             </Button>
             <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
