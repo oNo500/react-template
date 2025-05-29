@@ -4,7 +4,6 @@
 import { replayIntegration } from '@sentry/browser';
 import * as Sentry from '@sentry/nextjs';
 import { captureRouterTransitionStart } from '@sentry/nextjs';
-import { registerOTel } from '@vercel/otel';
 
 import { env } from './core/config/env';
 
