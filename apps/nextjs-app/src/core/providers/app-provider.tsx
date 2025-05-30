@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { ThemeProvider } from 'next-themes';
 
-import { queryClient } from '@/shared/api';
+import { queryClient } from '@/shared/lib/query-client';
 
 interface ProvidersProps {
   children: React.ReactNode;

@@ -1,6 +1,6 @@
 import { type DefaultOptions, QueryClient } from '@tanstack/react-query';
 
-import type { ApiError } from './client';
+import type { ApiError } from './api-client';
 
 const queryConfig: DefaultOptions = {
   queries: {

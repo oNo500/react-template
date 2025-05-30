@@ -1,16 +1,31 @@
 'use client';
 
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@repo/ui/components/avatar';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@repo/ui/components/dropdown-menu';
+
 import { useState } from 'react';
 
 import Link from 'next/link';
 
+import { paths } from '@/core/config/paths';
 import GithubIcon from '@/shared/assets/icons/github.svg';
 import ReactIcon from '@/shared/assets/icons/react.svg';
 
+import { useAuthStore } from '../auth';
 import { ModeToggle } from './mode-toggle';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, isAuthenticated, logout } = useAuthStore(); // 避免闪烁，最好服务端存储状态
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -38,12 +53,28 @@ export default function Navbar() {
             <span className="hidden lg:block">GitHub</span>
           </Link>
           <ModeToggle />
-          <Link
-            href="/auth/login"
-            className="border-border hover:bg-accent rounded-md border px-3 py-1 transition-colors"
-          >
-            登录
-          </Link>
+          {!isAuthenticated ? (
+            <Link
+              href={paths.auth.login.getHref()}
+              className="border-border hover:bg-accent rounded-md border px-3 py-1 transition-colors"
+            >
+              Login
+            </Link>
+          ) : (
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>{user?.name}</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem onClick={() => logout()}>
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
         </div>
 
         {/* 移动端汉堡菜单按钮 */}
@@ -52,7 +83,7 @@ export default function Navbar() {
           <button
             onClick={toggleMobileMenu}
             className="hover:bg-accent flex h-10 w-10 items-center justify-center rounded-md transition-colors"
-            aria-label="切换菜单"
+            aria-label="Toggle menu"
           >
             <div className="space-y-1">
               <div

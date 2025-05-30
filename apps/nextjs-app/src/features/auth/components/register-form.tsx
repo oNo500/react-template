@@ -18,7 +18,7 @@ import { useForm } from 'react-hook-form';
 
 import Link from 'next/link';
 
-import { type RegisterRequest, useRegister } from '@/shared/api/endpoints/auth';
+import { type RegisterRequest, useRegister } from '@/shared/auth/api/auth';
 import ReactIcon from '@/shared/assets/icons/react.svg';
 
 const formSchema = z.object({

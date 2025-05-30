@@ -17,11 +17,13 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
-import { type LoginRequest, useLogin } from '@/shared/api/endpoints/auth';
+import { paths } from '@/core/config/paths';
 import AppleIcon from '@/shared/assets/icons/apple.svg';
 import GoogleIcon from '@/shared/assets/icons/google.svg';
 import ReactIcon from '@/shared/assets/icons/react.svg';
+import { type LoginRequest, useLogin } from '@/shared/auth/api/auth';
 
 const formSchema = z.object({
   email: z.string().min(1, { message: 'Email is required' }),
@@ -31,6 +33,7 @@ const LoginForm = ({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<'div'>) => {
+  const router = useRouter();
   const form = useForm<LoginRequest>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,9 +41,11 @@ const LoginForm = ({
       password: '',
     },
   });
+
   const loginMutation = useLogin();
-  function onSubmit(values: LoginRequest) {
-    loginMutation.mutate(values);
+  async function onSubmit(values: LoginRequest) {
+    await loginMutation.mutateAsync(values);
+    router.push(paths.home.getHref());
   }
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>

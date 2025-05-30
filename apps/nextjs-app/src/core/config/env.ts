@@ -4,11 +4,16 @@ import * as z from 'zod';
 const createEnv = () => {
   const envSchema = z.object({
     API_URL: z.string().url(),
-    NODE_ENV: z.string(),
+    NODE_ENV: z.string().optional(),
+    MOCK_PORT: z
+      .string()
+      .default('3001')
+      .transform((val) => parseInt(val)),
   });
   const envVars = {
     API_URL: process.env.NEXT_PUBLIC_API_URL,
     NODE_ENV: process.env.NODE_ENV,
+    MOCK_PORT: process.env.MOCK_PORT,
   };
   const parsedEnv = envSchema.safeParse(envVars);
   if (!parsedEnv.success) {

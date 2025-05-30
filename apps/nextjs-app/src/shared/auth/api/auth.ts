@@ -1,9 +1,14 @@
 import { toast } from '@repo/ui/components/sonner';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
-import { type User, useAuthStore } from '../../auth';
-import { type ApiError, type ApiResponse, apiClient } from '../client';
-import { queryClient } from '../query-client';
+import {
+  type ApiError,
+  type ApiResponse,
+  apiClient,
+} from '@/shared/lib/api-client';
+import { queryClient } from '@/shared/lib/query-client';
+
+import { type User, useAuthStore } from '../model/auth-store';
 
 // 类型定义
 export interface LoginRequest {
@@ -42,6 +47,7 @@ export const useLogin = () => {
       );
     },
     onError: (error: ApiError) => {
+      console.log(error);
       toast.error(
         error.response?.data?.message || 'Please check your email and password',
       );

@@ -29,7 +29,7 @@ export const apiClient = axios.create({
 apiClient.interceptors.request.use(authRequestInterceptor);
 apiClient.interceptors.response.use(
   (response) => {
-    return response.data;
+    return response;
   },
   (error) => {
     if (error.response?.status === 401) {
