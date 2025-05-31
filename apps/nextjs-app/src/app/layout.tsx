@@ -3,7 +3,7 @@ import '@repo/ui/styles/globals.css';
 
 import type { Metadata } from 'next';
 
-import { AppProviders, VercelAnalytics, WebVitals } from '@/core/providers';
+import { AppProviders } from '@/components/providers';
 
 export const metadata: Metadata = {
   title: 'Nextjs App',
@@ -18,8 +18,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`antialiased`}>
-        <WebVitals />
-        <VercelAnalytics />
         <AppProviders>
           <Toaster />
           {children}

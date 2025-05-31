@@ -1,5 +1,5 @@
+import Navbar from '@/components/navbar';
 import Hero from '@/features/home/components/hero';
-import Navbar from '@/shared/ui/navbar';
 
 export default function Home() {
   return (

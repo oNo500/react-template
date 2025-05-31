@@ -1,14 +1,9 @@
 import { toast } from '@repo/ui/components/sonner';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
-import {
-  type ApiError,
-  type ApiResponse,
-  apiClient,
-} from '@/shared/lib/api-client';
-import { queryClient } from '@/shared/lib/query-client';
-
-import { type User, useAuthStore } from '../model/auth-store';
+import { type User, useAuthStore } from '@/auth/auth-store';
+import { type ApiError, type ApiResponse, apiClient } from '@/lib/api-client';
+import { queryClient } from '@/lib/query-client';
 
 // 类型定义
 export interface LoginRequest {

@@ -3,9 +3,9 @@ import axios, {
   type InternalAxiosRequestConfig,
 } from 'axios';
 
-import { env } from '@/core/config/env';
-import { paths } from '@/core/config/paths';
-import { useAuthStore } from '@/shared/auth';
+import { useAuthStore } from '@/auth';
+import { env } from '@/config/env';
+import { paths } from '@/config/paths';
 
 function authRequestInterceptor(config: InternalAxiosRequestConfig) {
   const token = useAuthStore.getState().token;

@@ -1,12 +1,13 @@
 import js from '@eslint/js';
+import tsParser from '@typescript-eslint/parser';
 // import onlyWarn from 'eslint-plugin-only-warn'; // TODO: 区域环境，只在生产环境启用
 import type { FlatConfig } from '@typescript-eslint/utils/ts-eslint';
+import gitignore from 'eslint-config-flat-gitignore';
 // @ts-expect-error 此包没有类型定义
 import pluginImport from 'eslint-plugin-import';
 import pluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import turboPlugin from 'eslint-plugin-turbo';
 import tseslint, { configs as tseslintConfigs } from 'typescript-eslint';
-import tsParser from '@typescript-eslint/parser';
 
 // =========================================
 // 基础 ESLint 配置
@@ -62,11 +63,7 @@ const ignoresConfig = [
   {
     name: 'base/eslint/ignores',
     // ignores 选项需要在单独的配置对象中 替代 .eslintignore 文件
-    ignores: [
-      '.next/', // Next.js 构建输出
-      '.vscode/', // VS Code 配置
-      'dist/',
-    ],
+    ignores: [...gitignore().ignores],
   },
 ] as FlatConfig.Config[];
 

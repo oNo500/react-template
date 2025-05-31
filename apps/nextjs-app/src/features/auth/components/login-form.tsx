@@ -19,16 +19,17 @@ import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { paths } from '@/core/config/paths';
-import AppleIcon from '@/shared/assets/icons/apple.svg';
-import GoogleIcon from '@/shared/assets/icons/google.svg';
-import ReactIcon from '@/shared/assets/icons/react.svg';
-import { type LoginRequest, useLogin } from '@/shared/auth/api/auth';
+import AppleIcon from '@/assets/icons/apple.svg';
+import GoogleIcon from '@/assets/icons/google.svg';
+import ReactIcon from '@/assets/icons/react.svg';
+import { type LoginRequest, useLogin } from '@/auth';
+import { paths } from '@/config/paths';
 
 const formSchema = z.object({
   email: z.string().min(1, { message: 'Email is required' }),
   password: z.string().min(1, { message: 'Password is required' }),
 });
+
 const LoginForm = ({
   className,
   ...props
@@ -43,10 +44,12 @@ const LoginForm = ({
   });
 
   const loginMutation = useLogin();
+
   async function onSubmit(values: LoginRequest) {
     await loginMutation.mutateAsync(values);
     router.push(paths.home.getHref());
   }
+
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Form {...form}>

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { paths } from '@/core/config/paths';
+import { paths } from '@/config/paths';
 
 export default function NotFound() {
   return (

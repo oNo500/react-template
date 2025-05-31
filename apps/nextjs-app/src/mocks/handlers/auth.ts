@@ -1,6 +1,6 @@
 import { HttpResponse, http } from 'msw';
 
-import { env } from '@/core/config/env';
+import { env } from '@/config/env';
 
 export const authHandlers = [
   http.post(`${env.API_URL}/api/auth/register`, async ({ request }) => {

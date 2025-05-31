@@ -5,7 +5,7 @@ import { replayIntegration } from '@sentry/browser';
 import * as Sentry from '@sentry/nextjs';
 import { captureRouterTransitionStart } from '@sentry/nextjs';
 
-import { env } from './core/config/env';
+import { env } from './config/env';
 
 if (env.NODE_ENV !== 'development') {
   // registerOTel({ serviceName: 'nextjs-app' });

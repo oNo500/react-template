@@ -18,8 +18,8 @@ import { useForm } from 'react-hook-form';
 
 import Link from 'next/link';
 
-import { type RegisterRequest, useRegister } from '@/shared/auth/api/auth';
-import ReactIcon from '@/shared/assets/icons/react.svg';
+import ReactIcon from '@/assets/icons/react.svg';
+import { type RegisterRequest, useRegister } from '@/auth/use-auth';
 
 const formSchema = z.object({
   firstName: z.string().min(1, { message: 'First Name is required' }),

@@ -5,7 +5,9 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { ThemeProvider } from 'next-themes';
 
-import { queryClient } from '@/shared/lib/query-client';
+import { queryClient } from '@/lib/query-client';
+import { VercelAnalytics } from '@/lib/vercel-analytics';
+import { WebVitals } from '@/lib/web-vitals';
 
 interface ProvidersProps {
   children: React.ReactNode;
@@ -22,6 +24,8 @@ export function AppProviders({ children }: ProvidersProps) {
       >
         {children}
         <ReactQueryDevtools initialIsOpen={false} />
+        <WebVitals />
+        <VercelAnalytics />
       </ThemeProvider>
     </QueryClientProvider>
   );

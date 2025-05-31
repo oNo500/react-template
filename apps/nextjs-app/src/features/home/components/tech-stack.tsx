@@ -1,11 +1,11 @@
 import { cn } from '@repo/ui/lib/utils';
 
-import NextLogo from '@/shared/assets/icons/nextdotjs.svg';
-import ReactLogo from '@/shared/assets/icons/react.svg';
-import ReactRouterLogo from '@/shared/assets/icons/reactrouter.svg';
-import ShadcnLogo from '@/shared/assets/icons/shadcnui.svg';
-import TailwindLogo from '@/shared/assets/icons/tailwindcss.svg';
-import TurborepoLogo from '@/shared/assets/icons/turborepo.svg';
+import NextLogo from '@/assets/icons/nextdotjs.svg';
+import ReactLogo from '@/assets/icons/react.svg';
+import ReactRouterLogo from '@/assets/icons/reactrouter.svg';
+import ShadcnLogo from '@/assets/icons/shadcnui.svg';
+import TailwindLogo from '@/assets/icons/tailwindcss.svg';
+import TurborepoLogo from '@/assets/icons/turborepo.svg';
 
 const techs = [
   {

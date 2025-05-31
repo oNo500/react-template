@@ -1,6 +1,6 @@
 'use client';
 
-import Code from '@/shared/ui/code';
+import Code from '@/components/code';
 
 import TechStack from './tech-stack';
 

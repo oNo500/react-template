@@ -16,11 +16,11 @@ import { useState } from 'react';
 
 import Link from 'next/link';
 
-import { paths } from '@/core/config/paths';
-import GithubIcon from '@/shared/assets/icons/github.svg';
-import ReactIcon from '@/shared/assets/icons/react.svg';
+import GithubIcon from '@/assets/icons/github.svg';
+import ReactIcon from '@/assets/icons/react.svg';
+import { useAuthStore } from '@/auth';
+import { paths } from '@/config/paths';
 
-import { useAuthStore } from '../auth';
 import { ModeToggle } from './mode-toggle';
 
 export default function Navbar() {

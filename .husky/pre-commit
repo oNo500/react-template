@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# 使用turbo运行所有相关包的lint任务
+turbo run lint --filter="...[HEAD~1]"

@@ -3,7 +3,7 @@ import cors from 'cors';
 import express from 'express';
 import logger from 'pino-http';
 
-import { env } from '@/core/config/env';
+import { env } from '@/config/env';
 
 import { handlers } from './handlers';
 
