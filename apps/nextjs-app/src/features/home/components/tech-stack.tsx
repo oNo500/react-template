@@ -2,23 +2,30 @@ import { cn } from '@repo/ui/lib/utils';
 
 import NextLogo from '@/assets/icons/nextdotjs.svg';
 import ReactLogo from '@/assets/icons/react.svg';
-import ReactRouterLogo from '@/assets/icons/reactrouter.svg';
 import ShadcnLogo from '@/assets/icons/shadcnui.svg';
 import TailwindLogo from '@/assets/icons/tailwindcss.svg';
 import TurborepoLogo from '@/assets/icons/turborepo.svg';
 
 const techs = [
   {
-    name: 'React',
+    name: 'React 19',
     logo: <ReactLogo className="text-[#61DAFB]" />,
   },
-  { name: 'Next.js', logo: <NextLogo className="text-[#000000]" /> },
-  { name: 'Tailwind CSS', logo: <TailwindLogo className="text-[#06B6D4]" /> },
-  { name: 'Truborepo', logo: <TurborepoLogo className="text-[#EF4444]" /> },
-  { name: 'Shadcn-ui', logo: <ShadcnLogo /> },
   {
-    name: 'React Router',
-    logo: <ReactRouterLogo className="text-[#CA4245]" />,
+    name: 'Next.js 15',
+    logo: <NextLogo className="text-[#000000] dark:text-white" />,
+  },
+  {
+    name: 'Tailwind CSS v4',
+    logo: <TailwindLogo className="text-[#06B6D4]" />,
+  },
+  {
+    name: 'Turborepo',
+    logo: <TurborepoLogo className="text-[#EF4444]" />,
+  },
+  {
+    name: 'shadcn/ui',
+    logo: <ShadcnLogo className="text-black dark:text-white" />,
   },
 ];
 
@@ -27,19 +34,21 @@ const TechStack = ({
   ...props
 }: React.ComponentPropsWithoutRef<'div'>) => {
   return (
-    <div className={cn('flex flex-col gap-4', className)} {...props}>
-      <div className="flex items-center justify-center">
-        {techs.map((tech, idx) => (
+    <div className={cn('flex flex-col gap-6', className)} {...props}>
+      <div className="flex flex-wrap items-center justify-center gap-4">
+        {techs.map((tech) => (
           <div
             key={tech.name}
-            className="border-primary-foreground bg-primary-foreground -ml-3 box-border flex h-16 w-16 items-center justify-center rounded-full border-2 p-2 shadow first:ml-0"
-            style={{ zIndex: techs.length - idx }}
+            className="bg-background hover:bg-accent border-border flex h-20 w-20 items-center justify-center rounded-2xl border-2 p-3 shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-md"
             title={tech.name}
           >
             {tech.logo}
           </div>
         ))}
       </div>
+      <p className="text-muted-foreground text-sm">
+        基于最新技术栈构建的现代化开发环境
+      </p>
     </div>
   );
 };
