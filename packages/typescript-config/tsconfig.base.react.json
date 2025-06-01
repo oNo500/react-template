@@ -3,6 +3,7 @@
   "extends": "./tsconfig.base.json",
   "display": "Base React",
   "compilerOptions": {
+    "lib": ["es2022", "DOM", "DOM.Iterable"],
     "plugins": [{ "name": "next" }],
     "module": "ESNext",
     "moduleResolution": "Bundler",

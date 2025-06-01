@@ -7,6 +7,7 @@ import gitignore from 'eslint-config-flat-gitignore';
 import pluginImport from 'eslint-plugin-import';
 import pluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import turboPlugin from 'eslint-plugin-turbo';
+import globals from 'globals';
 import tseslint, { configs as tseslintConfigs } from 'typescript-eslint';
 
 // =========================================
@@ -29,6 +30,12 @@ const tseslintConfig = tseslint.config(
     files: ['**/*.mjs', '**/*.ts?(x)'],
     extends: [...tseslintConfigs.recommended] as FlatConfig.ConfigArray,
     languageOptions: {
+      ecmaVersion: 'latest',
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.es2021,
+      },
       parserOptions: {
         // 启用类型检查功能
         projectService: true,
