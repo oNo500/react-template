@@ -1,9 +1,9 @@
 import { toast } from '@repo/ui/components/sonner';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
-import { type User, useAuthStore } from '@/auth/auth-store';
-import { type ApiError, type ApiResponse, apiClient } from '@/lib/api-client';
+import { apiClient } from '@/lib/api-client';
 import { queryClient } from '@/lib/query-client';
+import type { APIResponse, ApiError, User } from '@/types/api';
 
 // 类型定义
 export interface LoginRequest {
@@ -18,34 +18,25 @@ export interface RegisterRequest {
 }
 
 export interface AuthResponse {
-  user: User;
   token: string;
   refreshToken: string;
 }
 
 // 登录
 export const useLogin = () => {
-  const login = useAuthStore((state) => state.login);
-
   return useMutation({
-    mutationFn: async (data: LoginRequest): Promise<AuthResponse> => {
-      const response = await apiClient.post<ApiResponse<AuthResponse>>(
+    mutationFn: async (data: LoginRequest): Promise<User> => {
+      const response = await apiClient.post<APIResponse<User>>(
         '/api/auth/login',
         data,
       );
-      return response.data.data;
+      return response.data;
     },
     onSuccess: (data) => {
-      login(data.user, data.token);
-      toast.success(
-        `Login success, welcome back ${data.user.name || data.user.email}!`,
-      );
+      toast.success(`Login success, welcome back ${data.name || data.email}!`);
     },
     onError: (error: ApiError) => {
-      console.log(error);
-      toast.error(
-        error.response?.data?.message || 'Please check your email and password',
-      );
+      toast.error(error.message || 'Please check your email and password');
     },
   });
 };
@@ -53,12 +44,12 @@ export const useLogin = () => {
 // 注册
 export const useRegister = () => {
   return useMutation({
-    mutationFn: async (data: RegisterRequest): Promise<AuthResponse> => {
-      const response = await apiClient.post<ApiResponse<AuthResponse>>(
+    mutationFn: async (data: RegisterRequest): Promise<User> => {
+      const response = await apiClient.post<APIResponse<User>>(
         '/api/auth/register',
         data,
       );
-      return response.data.data;
+      return response.data;
     },
     onSuccess: () => {
       toast.success(
@@ -66,38 +57,29 @@ export const useRegister = () => {
       );
     },
     onError: (error: ApiError) => {
-      toast.error(
-        error.response?.data?.message ||
-          'An error occurred during registration',
-      );
+      toast.error(error.message || 'An error occurred during registration');
     },
   });
 };
 
 // 获取当前用户信息
 export const useCurrentUser = () => {
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-
   return useQuery({
     queryKey: ['current-user'],
     queryFn: async (): Promise<User> => {
-      const response = await apiClient.get<ApiResponse<User>>('/api/auth/me');
-      return response.data.data;
+      const response = await apiClient.get<APIResponse<User>>('/api/auth/me');
+      return response.data;
     },
-    enabled: isAuthenticated,
   });
 };
 
 // 登出
 export const useLogout = () => {
-  const logout = useAuthStore((state) => state.logout);
-
   return useMutation({
     mutationFn: async () => {
       await apiClient.post('/api/auth/logout');
     },
     onSuccess: () => {
-      logout();
       toast.info('Logged out');
     },
     onSettled: () => {

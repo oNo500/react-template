@@ -1,7 +1,5 @@
 import { type DefaultOptions, QueryClient } from '@tanstack/react-query';
 
-import type { ApiError } from './api-client';
-
 const queryConfig: DefaultOptions = {
   queries: {
     // 数据被认为是新鲜的时间
@@ -9,10 +7,7 @@ const queryConfig: DefaultOptions = {
     // 缓存时间
     gcTime: 1000 * 60 * 10, // 10 minutes
     // 重试配置
-    retry: (failureCount, error: ApiError) => {
-      if (error?.response?.status === 404) return false;
-      return failureCount < 3;
-    },
+    retry: false,
     // 重新获取配置
     refetchOnWindowFocus: false,
     refetchOnMount: true,
@@ -22,7 +17,14 @@ const queryConfig: DefaultOptions = {
     retry: false,
   },
 };
+const ssrQueryConfig: DefaultOptions = {
+  queries: {
+    staleTime: 0,
+    gcTime: 0,
+    retry: false,
+  },
+};
 
 export const queryClient = new QueryClient({
-  defaultOptions: queryConfig,
+  defaultOptions: typeof window === 'undefined' ? ssrQueryConfig : queryConfig,
 });

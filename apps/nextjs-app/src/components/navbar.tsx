@@ -12,20 +12,26 @@ import {
   DropdownMenuTrigger,
 } from '@repo/ui/components/dropdown-menu';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Link from 'next/link';
 
 import GithubIcon from '@/assets/icons/github.svg';
 import ReactIcon from '@/assets/icons/react.svg';
-import { useAuthStore } from '@/auth';
+import { useLogout } from '@/auth';
 import { paths } from '@/config/paths';
+import { useUser } from '@/hooks/useUser';
 
 import { ModeToggle } from './mode-toggle';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { user, isAuthenticated, logout } = useAuthStore(); // 避免闪烁，最好服务端存储状态
+  const { mutate: logout } = useLogout();
+  const { userData, isLoading } = useUser();
+
+  useEffect(() => {
+    console.log('userData', userData);
+  }, [userData]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -53,7 +59,7 @@ export default function Navbar() {
             <span className="hidden lg:block">GitHub</span>
           </Link>
           <ModeToggle />
-          {!isAuthenticated ? (
+          {!userData ? (
             <Link
               href={paths.auth.login.getHref()}
               className="border-border hover:bg-accent rounded-md border px-3 py-1 transition-colors"
@@ -65,7 +71,7 @@ export default function Navbar() {
               <DropdownMenuTrigger>
                 <Avatar>
                   <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>{user?.name}</AvatarFallback>
+                  <AvatarFallback>{userData?.name}</AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent>

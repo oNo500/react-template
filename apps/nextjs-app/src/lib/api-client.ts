@@ -1,60 +1,130 @@
-import axios, {
-  type AxiosResponse,
-  type InternalAxiosRequestConfig,
-} from 'axios';
+import { toast } from '@repo/ui/components/sonner';
 
-import { useAuthStore } from '@/auth';
 import { env } from '@/config/env';
-import { paths } from '@/config/paths';
+import type { ApiError } from '@/types/api';
 
-function authRequestInterceptor(config: InternalAxiosRequestConfig) {
-  const token = useAuthStore.getState().token;
+type RequestOptions = {
+  method?: string;
+  headers?: Record<string, string>;
+  body?: unknown;
+  cookie?: string;
+  params?: Record<string, string | number | boolean | undefined | null>;
+  cache?: RequestCache;
+  next?: NextFetchRequestConfig;
+};
 
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  //   config.withCredentials = true; // 开启 cookie 跨域
-
-  return config;
+function buildURLWithParams(
+  url: string,
+  params?: RequestOptions['params'],
+): string {
+  if (!params) return url;
+  const filteredParams = Object.fromEntries(
+    Object.entries(params).filter(
+      ([, value]) => value !== undefined && value !== null,
+    ),
+  );
+  if (Object.keys(filteredParams).length === 0) return url;
+  const queryString = new URLSearchParams(
+    filteredParams as Record<string, string>,
+  ).toString();
+  return `${url}?${queryString}`;
 }
 
-export const apiClient = axios.create({
-  baseURL: env.API_URL,
-  timeout: 10000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+export function getServerSideCookies() {
+  if (typeof window !== 'undefined') return '';
 
-apiClient.interceptors.request.use(authRequestInterceptor);
-apiClient.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    if (error.response?.status === 401) {
-      useAuthStore.getState().logout();
-      const searchParams = new URLSearchParams();
-      const redirectTo =
-        searchParams.get('redirectTo') || window.location.pathname;
-      window.location.href = paths.auth.login.getHref(redirectTo);
+  // Dynamic import next/headers only on server-side
+  return import('next/headers').then(async ({ cookies }) => {
+    try {
+      const cookieStore = await cookies();
+      return cookieStore
+        .getAll()
+        .map((c) => `${c.name}=${c.value}`)
+        .join('; ');
+    } catch (error) {
+      console.error('Failed to access cookies:', error);
+      return '';
     }
+  });
+}
 
-    return Promise.reject(error);
+async function fetchAPI<T>(
+  url: string,
+  options: RequestOptions = {},
+): Promise<T> {
+  const {
+    method = 'GET',
+    headers = {},
+    body,
+    cookie,
+    params,
+    cache = 'no-store',
+    next,
+  } = options;
+
+  // Get cookies from the request when running on server
+  let cookieHeader = cookie;
+  if (typeof window === 'undefined' && !cookie) {
+    cookieHeader = await getServerSideCookies();
+  }
+
+  const fullURL = buildURLWithParams(`${env.API_URL}${url}`, params);
+
+  const response = await fetch(fullURL, {
+    method,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      ...headers,
+      ...(cookieHeader ? { Cookie: cookieHeader } : {}),
+    },
+    body: body ? JSON.stringify(body) : undefined,
+    credentials: 'include',
+    cache,
+    next,
+  });
+
+  if (!response.ok) {
+    if (response.status === 404) {
+      throw {
+        status: response.status,
+        message: response.statusText,
+        name: 'ApiError',
+      } as ApiError;
+    }
+    const contentType = response.headers.get('content-type');
+    let message = response.statusText;
+    if (contentType?.includes('application/json')) {
+      const json = await response.json();
+      message = json.message || response.statusText;
+    }
+    if (contentType?.includes('text/plain')) {
+      message = await response.text();
+    }
+    if (typeof window !== 'undefined') {
+      toast.error('Request Failed', {
+        description: message,
+      });
+    }
+  }
+
+  return response.json();
+}
+
+export const apiClient = {
+  get<T>(url: string, options?: RequestOptions): Promise<T> {
+    return fetchAPI<T>(url, { ...options, method: 'GET' });
   },
-);
-
-// 通用 API 响应类型
-export interface ApiResponse<T = unknown> {
-  data: T;
-  message: string;
-  success: boolean;
-}
-
-// 通用错误类型
-export interface ApiError {
-  message: string;
-  code?: string;
-  details?: unknown;
-  response?: AxiosResponse;
-}
+  post<T>(url: string, body?: unknown, options?: RequestOptions): Promise<T> {
+    return fetchAPI<T>(url, { ...options, method: 'POST', body });
+  },
+  put<T>(url: string, body?: unknown, options?: RequestOptions): Promise<T> {
+    return fetchAPI<T>(url, { ...options, method: 'PUT', body });
+  },
+  patch<T>(url: string, body?: unknown, options?: RequestOptions): Promise<T> {
+    return fetchAPI<T>(url, { ...options, method: 'PATCH', body });
+  },
+  delete<T>(url: string, options?: RequestOptions): Promise<T> {
+    return fetchAPI<T>(url, { ...options, method: 'DELETE' });
+  },
+};
