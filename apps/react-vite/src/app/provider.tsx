@@ -6,14 +6,21 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import { ThemeProvider } from 'next-themes';
 
-import { GlobalError } from '@/components/errors/global-error';
+import { ErrorFallback } from '@/components/errors/error-fallback';
 import { env } from '@/config/env';
+import { logError } from '@/lib/error-handling';
 import { queryClient } from '@/lib/query-client';
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <ErrorBoundary fallback={<GlobalError />}>
+      <ErrorBoundary
+        FallbackComponent={ErrorFallback}
+        onError={logError}
+        onReset={() => {
+          queryClient.clear();
+        }}
+      >
         <QueryClientProvider client={queryClient}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}

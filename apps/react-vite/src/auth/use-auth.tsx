@@ -1,6 +1,7 @@
 import { toast } from '@repo/ui/components/sonner';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
+import { paths } from '@/config/paths';
 import { apiClient } from '@/lib/api-client';
 import { queryClient } from '@/lib/query-client';
 import type { APIResponse, ApiError, LoginData, User } from '@/types/api';
@@ -87,12 +88,20 @@ export const useLogout = () => {
     mutationFn: async () => {
       await apiClient.post('/api/auth/logout');
     },
+    onMutate: () => {
+      logout();
+      queryClient.clear();
+    },
     onSuccess: () => {
       toast.info('Logged out');
     },
-    onSettled: () => {
-      queryClient.clear();
+    onError: (error: ApiError) => {
       logout();
+      queryClient.clear();
+      toast.error(error.message || 'An error occurred during logout');
+    },
+    onSettled: () => {
+      window.location.href = paths.auth.login.path;
     },
   });
 };

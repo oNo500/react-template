@@ -1,12 +1,27 @@
 import React from 'react';
-import { RouterProvider, createBrowserRouter } from 'react-router';
+import {
+  RouterProvider,
+  createBrowserRouter,
+  useRouteError,
+} from 'react-router';
 
-import { GlobalError } from '@/components/errors/global-error';
+import { ErrorFallback } from '@/components/errors/error-fallback';
+
+// React Router 错误边界组件
+const RouterErrorBoundary = () => {
+  const error = useRouteError();
+  return (
+    <ErrorFallback
+      error={error}
+      resetErrorBoundary={() => window.location.reload()}
+    />
+  );
+};
 
 const router = createBrowserRouter([
   {
     path: '/',
-    ErrorBoundary: GlobalError,
+    ErrorBoundary: RouterErrorBoundary,
     HydrateFallback: () => null,
     lazy: async () => ({
       Component: (await import('@/app/routes/home')).default,
