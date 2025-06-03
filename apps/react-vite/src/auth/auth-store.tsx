@@ -1,23 +1,44 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-interface AuthStore {
+import type { User } from '@/types/api';
+
+interface AuthState {
   isAuthenticated: boolean;
   token: string | null;
-  setToken: (token: string) => void;
-  logout: () => void;
+  user: User | null;
 }
+
+interface AuthActions {
+  login: (token: string, user: User) => void;
+  logout: () => void;
+  setUser: (user: User) => void;
+}
+
+type AuthStore = AuthState & AuthActions;
 
 export const authStore = create<AuthStore>()(
   persist(
     (set) => ({
       isAuthenticated: false,
       token: null,
-      setToken: (token) => set({ token, isAuthenticated: !!token }),
-      logout: () => set({ token: null, isAuthenticated: false }),
+      user: null,
+      login: (token: string, user: User) =>
+        set({
+          token,
+          user,
+          isAuthenticated: true,
+        }),
+      logout: () =>
+        set({
+          token: null,
+          user: null,
+          isAuthenticated: false,
+        }),
+      setUser: (user: User) => set({ user }),
     }),
     {
-      name: 'auth-storage', // 存储的key名称,
+      name: 'auth-storage',
     },
   ),
 );

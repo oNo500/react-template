@@ -4,7 +4,6 @@ import { env } from '@/config/env';
 
 export const userHandlers = [
   http.get(`${env.API_URL}/api/user/me`, async ({ request }) => {
-    console.log('----------------------request', request);
     const token = request.headers.get('Authorization');
     if (!token) {
       return HttpResponse.json(

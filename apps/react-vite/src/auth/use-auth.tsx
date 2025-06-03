@@ -25,7 +25,7 @@ export interface AuthResponse {
 }
 // 登录
 export const useLogin = () => {
-  const { setToken } = authStore();
+  const { login } = authStore();
   return useMutation({
     mutationFn: async (data: LoginRequest): Promise<LoginData> => {
       const response = await apiClient.post<APIResponse<LoginData>>(
@@ -35,7 +35,7 @@ export const useLogin = () => {
       return response.data.data;
     },
     onSuccess: (data) => {
-      setToken(data.token);
+      login(data.token, data.user);
       toast.success(
         `Login success, welcome back ${data.user.name || data.user.email}!`,
       );
@@ -48,7 +48,7 @@ export const useLogin = () => {
 
 // 注册
 export const useRegister = () => {
-  const { setToken } = authStore();
+  const { login } = authStore();
   return useMutation({
     mutationFn: async (data: RegisterRequest): Promise<LoginData> => {
       const response = await apiClient.post<APIResponse<LoginData>>(
@@ -58,7 +58,7 @@ export const useRegister = () => {
       return response.data.data;
     },
     onSuccess: (data) => {
-      setToken(data.token);
+      login(data.token, data.user);
       toast.success(
         'Registration successful, please log in with your new account',
       );

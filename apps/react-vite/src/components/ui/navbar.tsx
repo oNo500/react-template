@@ -16,15 +16,15 @@ import { Link } from 'react-router';
 import GithubIcon from '@/assets/icons/github.svg?react';
 import ReactIcon from '@/assets/icons/react.svg?react';
 import { useLogout } from '@/auth';
+import { authStore } from '@/auth/auth-store';
 import { paths } from '@/config/paths';
-import { useUser } from '@/hooks/use-user';
 
 import { ModeToggle } from './mode-toggle';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { mutate: logout } = useLogout();
-  const { userData } = useUser();
+  const { user: userData, isAuthenticated } = authStore();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -52,7 +52,7 @@ export default function Navbar() {
             <span className="hidden lg:block">GitHub</span>
           </Link>
           <ModeToggle />
-          {!userData ? (
+          {!isAuthenticated ? (
             <Link
               to={paths.auth.login.getHref()}
               className="border-border hover:bg-accent rounded-md border px-3 py-1 transition-colors"
