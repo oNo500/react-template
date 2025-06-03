@@ -1,5 +1,3 @@
-'use client';
-
 import {
   Avatar,
   AvatarFallback,
@@ -13,11 +11,10 @@ import {
 } from '@repo/ui/components/dropdown-menu';
 
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 
-import Link from 'next/link';
-
-import GithubIcon from '@/assets/icons/github.svg';
-import ReactIcon from '@/assets/icons/react.svg';
+import GithubIcon from '@/assets/icons/github.svg?react';
+import ReactIcon from '@/assets/icons/react.svg?react';
 import { useLogout } from '@/auth';
 import { paths } from '@/config/paths';
 import { useUser } from '@/hooks/use-user';
@@ -27,11 +24,7 @@ import { ModeToggle } from './mode-toggle';
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { mutate: logout } = useLogout();
-  const { userData, isLoading } = useUser();
-
-  useEffect(() => {
-    console.log('userData', userData);
-  }, [userData]);
+  const { userData } = useUser();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -42,7 +35,7 @@ export default function Navbar() {
       <div className="mx-auto flex h-16 max-w-5xl flex-nowrap items-center justify-between gap-4 whitespace-nowrap px-4 sm:px-6 lg:px-8">
         {/* 品牌标识 - 始终显示 */}
         <div className="flex-shrink-0">
-          <Link href="/" className="flex items-center gap-2 text-lg font-bold">
+          <Link to="/" className="flex items-center gap-2 text-lg font-bold">
             <ReactIcon className="h-8 w-8 flex-shrink-0" />
             <span className="hidden sm:block">React Starter</span>
             <span className="block sm:hidden">React</span>
@@ -52,7 +45,7 @@ export default function Navbar() {
         {/* 桌面端导航 */}
         <div className="hidden flex-row items-center justify-end gap-4 md:flex">
           <Link
-            href="https://github.com"
+            to="https://github.com"
             className="hover:bg-accent flex items-center gap-2 rounded-md p-2 transition-colors"
           >
             <GithubIcon className="h-5 w-5" />
@@ -61,7 +54,7 @@ export default function Navbar() {
           <ModeToggle />
           {!userData ? (
             <Link
-              href={paths.auth.login.getHref()}
+              to={paths.auth.login.getHref()}
               className="border-border hover:bg-accent rounded-md border px-3 py-1 transition-colors"
             >
               Login
@@ -85,7 +78,7 @@ export default function Navbar() {
 
         {/* 移动端汉堡菜单按钮 */}
         <div className="flex items-center gap-2 md:hidden">
-          <ModeToggle />
+          {/* <ModeToggle /> */}
           <button
             onClick={toggleMobileMenu}
             className="hover:bg-accent flex h-10 w-10 items-center justify-center rounded-md transition-colors"
@@ -118,7 +111,7 @@ export default function Navbar() {
           <div className="mx-auto max-w-5xl px-4 py-4 sm:px-6 lg:px-8">
             <div className="flex flex-col gap-3">
               <Link
-                href="https://github.com"
+                to="https://github.com"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="hover:bg-accent flex items-center gap-3 rounded-md p-3 transition-colors"
               >
@@ -126,7 +119,7 @@ export default function Navbar() {
                 <span>GitHub</span>
               </Link>
               <Link
-                href="/auth/login"
+                to="/auth/login"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="border-border hover:bg-accent rounded-md border p-3 text-center transition-colors"
               >

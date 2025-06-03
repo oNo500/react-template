@@ -1,10 +1,11 @@
-import { Button } from '@repo/ui/components/button';
+import BaseLayout from '@/components/layouts/base-layout';
+import Hero from '@/features/home/components/hero';
 
 const Home = () => {
   return (
-    <div>
-      <Button>M</Button>
-    </div>
+    <BaseLayout>
+      <Hero />
+    </BaseLayout>
   );
 };
 

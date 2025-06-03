@@ -1,20 +1,21 @@
-import 'dotenv/config';
 import * as z from 'zod';
 
 const createEnv = () => {
   const envSchema = z.object({
     API_URL: z.string().url(),
-    NODE_ENV: z.string().optional(),
-    MOCK_PORT: z
-      .string()
-      .default('3001')
-      .transform((val) => parseInt(val)),
+    MODE: z.enum(['development', 'production', 'test']),
   });
-  const envVars = {
-    API_URL: import.meta.env.VITE_API_URL,
-    NODE_ENV: import.meta.env.VITE_NODE_ENV,
-    MOCK_PORT: import.meta.env.VITE_MOCK_PORT,
-  };
+  const envVars = Object.entries(import.meta.env).reduce<
+    Record<string, string>
+  >((acc, curr) => {
+    const [key, value] = curr;
+    if (key.startsWith('VITE_')) {
+      acc[key.slice(5)] = value;
+    } else {
+      acc[key] = value;
+    }
+    return acc;
+  }, {});
   const parsedEnv = envSchema.safeParse(envVars);
   if (!parsedEnv.success) {
     throw new Error(
