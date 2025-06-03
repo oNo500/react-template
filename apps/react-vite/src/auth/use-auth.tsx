@@ -3,7 +3,9 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 
 import { apiClient } from '@/lib/api-client';
 import { queryClient } from '@/lib/query-client';
-import type { APIResponse, ApiError, User } from '@/types/api';
+import type { APIResponse, ApiError, LoginData, User } from '@/types/api';
+
+import { authStore } from './auth-store';
 
 // 类型定义
 export interface LoginRequest {
@@ -23,17 +25,20 @@ export interface AuthResponse {
 }
 // 登录
 export const useLogin = () => {
+  const { setToken } = authStore();
   return useMutation({
-    mutationFn: async (data: LoginRequest): Promise<User> => {
-      const response = await apiClient.post<APIResponse<User>>(
+    mutationFn: async (data: LoginRequest): Promise<LoginData> => {
+      const response = await apiClient.post<APIResponse<LoginData>>(
         '/api/auth/login',
         data,
       );
       return response.data.data;
-      // return response.data;
     },
     onSuccess: (data) => {
-      toast.success(`Login success, welcome back ${data.name || data.email}!`);
+      setToken(data.token);
+      toast.success(
+        `Login success, welcome back ${data.user.name || data.user.email}!`,
+      );
     },
     onError: (error: ApiError) => {
       toast.error(error.message || 'Please check your email and password');
@@ -43,15 +48,17 @@ export const useLogin = () => {
 
 // 注册
 export const useRegister = () => {
+  const { setToken } = authStore();
   return useMutation({
-    mutationFn: async (data: RegisterRequest): Promise<User> => {
-      const response = await apiClient.post<APIResponse<User>>(
+    mutationFn: async (data: RegisterRequest): Promise<LoginData> => {
+      const response = await apiClient.post<APIResponse<LoginData>>(
         '/api/auth/register',
         data,
       );
       return response.data.data;
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
+      setToken(data.token);
       toast.success(
         'Registration successful, please log in with your new account',
       );
@@ -75,6 +82,7 @@ export const useCurrentUser = () => {
 
 // 登出
 export const useLogout = () => {
+  const { logout } = authStore();
   return useMutation({
     mutationFn: async () => {
       await apiClient.post('/api/auth/logout');
@@ -84,6 +92,7 @@ export const useLogout = () => {
     },
     onSettled: () => {
       queryClient.clear();
+      logout();
     },
   });
 };

@@ -1,11 +1,16 @@
 import axios, { type InternalAxiosRequestConfig } from 'axios';
 
+import { authStore } from '@/auth/auth-store';
 import { env } from '@/config/env';
-import { paths } from '@/config/paths';
 
 function authRequestInterceptor(config: InternalAxiosRequestConfig) {
-  if (config.headers) {
-    config.headers.Accept = 'application/json';
+  config.headers = config.headers || {};
+
+  config.headers.Accept = 'application/json';
+
+  const token = authStore.getState().token;
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
 
   config.withCredentials = true;
@@ -19,7 +24,7 @@ export const apiClient = axios.create({
 apiClient.interceptors.request.use(authRequestInterceptor);
 apiClient.interceptors.response.use(
   (response) => {
-    return response.data;
+    return response;
   },
   (error) => {
     const message = error.response?.data?.message || error.message;

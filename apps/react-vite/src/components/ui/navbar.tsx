@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@repo/ui/components/dropdown-menu';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router';
 
 import GithubIcon from '@/assets/icons/github.svg?react';

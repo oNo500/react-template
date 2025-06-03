@@ -1,6 +1,7 @@
 import { HttpResponse, http } from 'msw';
 
 import { env } from '@/config/env';
+import type { APIResponse, LoginData } from '@/types/api';
 
 export const authHandlers = [
   http.post(`${env.API_URL}/api/auth/register`, async ({ request }) => {
@@ -9,12 +10,15 @@ export const authHandlers = [
         success: true,
         message: '注册成功',
         data: {
-          id: '1',
-          name: 'testuser',
-          email: 'testuser@example.com',
+          user: {
+            id: '1',
+            name: 'testuser',
+            email: 'testuser@example.com',
+          },
           token: 'mock-jwt-token',
+          expiresIn: 1000,
         },
-      },
+      } as APIResponse<LoginData>,
       {
         headers: {
           'Set-Cookie':
@@ -34,8 +38,10 @@ export const authHandlers = [
             name: 'testuser',
             email: 'testuser@example.com',
           },
+          token: 'mock-jwt-token',
+          expiresIn: 1000,
         },
-      },
+      } as APIResponse<LoginData>,
       {
         headers: {
           'Set-Cookie':
