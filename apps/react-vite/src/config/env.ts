@@ -4,6 +4,10 @@ const createEnv = () => {
   const envSchema = z.object({
     API_URL: z.string().url(),
     MODE: z.enum(['development', 'production', 'test']),
+    ENABLE_MOCK: z
+      .string()
+      .refine((e) => e === 'true' || e === 'false')
+      .default('false'),
   });
   const envVars = Object.entries(import.meta.env).reduce<
     Record<string, string>
