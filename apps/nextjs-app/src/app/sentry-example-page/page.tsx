@@ -1,9 +1,7 @@
 'use client';
 
 import { diagnoseSdkConnectivity, startSpan } from '@sentry/nextjs';
-
 import { useEffect, useState } from 'react';
-
 import Head from 'next/head';
 
 class SentryExampleFrontendError extends Error {

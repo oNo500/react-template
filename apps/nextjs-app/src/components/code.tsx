@@ -3,7 +3,6 @@
 import { Button } from '@kit101/ui/components/button';
 import { cn } from '@kit101/ui/lib/utils';
 import { Check, Copy } from 'lucide-react';
-
 import React, { useRef, useState } from 'react';
 
 const Code = ({ children, className, ...props }: React.ComponentPropsWithoutRef<'div'>) => {

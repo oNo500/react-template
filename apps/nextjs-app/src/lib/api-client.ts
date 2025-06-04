@@ -1,6 +1,7 @@
 import { toast } from '@kit101/ui/components/sonner';
 
 import { env } from '@/config/env';
+
 import type { ApiError } from '@/types/api';
 
 type RequestOptions = {

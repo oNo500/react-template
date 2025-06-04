@@ -2,9 +2,9 @@ import js from '@eslint/js';
 import tsParser from '@typescript-eslint/parser';
 // import onlyWarn from 'eslint-plugin-only-warn'; // TODO: 区域环境，只在生产环境启用
 import type { FlatConfig } from '@typescript-eslint/utils/ts-eslint';
+
 import gitignore from 'eslint-config-flat-gitignore';
-// @ts-expect-error 此包没有类型定义
-import pluginImport from 'eslint-plugin-import';
+import pluginImportX from 'eslint-plugin-import-x';
 import pluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import turboPlugin from 'eslint-plugin-turbo';
 import globals from 'globals';
@@ -40,11 +40,7 @@ const tseslintConfig = tseslint.config(
         // 启用类型检查功能
         projectService: true,
 
-        project: [
-          './tsconfig.json',
-          './apps/*/tsconfig.json',
-          './packages/*/tsconfig.json',
-        ],
+        project: ['./tsconfig.json', './apps/*/tsconfig.json', './packages/*/tsconfig.json'],
 
         // it is recommended to keep version warnings turned on
         warnOnUnsupportedTypeScriptVersion: true,
@@ -78,9 +74,9 @@ const ignoresConfig = [
 // Import 配置
 // =========================================
 const importConfig = [
-  pluginImport.flatConfigs.recommended,
-  pluginImport.flatConfigs.typescript,
-  pluginImport.flatConfigs.react,
+  pluginImportX.flatConfigs.recommended,
+  pluginImportX.flatConfigs.typescript,
+  pluginImportX.flatConfigs.react,
   {
     name: 'base/import/recommended',
     languageOptions: {
@@ -89,19 +85,26 @@ const importConfig = [
       sourceType: 'module',
     },
     rules: {
-      'import/no-anonymous-default-export': 'warn', // 警告匿名默认导出
-      'import/order': 'off', // 禁用可能与 Prettier 冲突的规则
-      'import/first': 'error', // import 语句必须放在文件最前面
-      'import/newline-after-import': 'error', // import 语句后必须空一行
-      'import/no-duplicates': 'error', // 禁止重复导入
-      'import/no-unresolved': 'error', // 禁止未解析的导入
+      'import-x/no-anonymous-default-export': 'warn', // 警告匿名默认导出
+      // 'import-x/order': 'off', // 禁用可能与 Prettier 冲突的规则
+      'import-x/order': [
+        'error',
+        {
+          groups: ['builtin', 'external', 'internal', ['parent', 'sibling'], 'index', 'object', 'type'],
+          'newlines-between': 'always',
+        },
+      ],
+      'import-x/first': 'error', // import 语句必须放在文件最前面
+      'import-x/newline-after-import': 'error', // import 语句后必须空一行
+      'import-x/no-duplicates': 'error', // 禁止重复导入
+      'import-x/no-unresolved': 'error', // 禁止未解析的导入
     },
-    settings: {
-      'import/resolver': {
-        typescript: true,
-        node: true,
-      },
-    },
+    // settings: {
+    //   'import/resolver': {
+    //     typescript: true,
+    //     node: true,
+    //   },
+    // },
   },
 ] as FlatConfig.Config[];
 

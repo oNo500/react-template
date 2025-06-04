@@ -1,4 +1,3 @@
-import React from 'react';
 import { RouterProvider, createBrowserRouter, useRouteError } from 'react-router';
 
 import { ErrorFallback } from '@/components/errors/error-fallback';

@@ -7,10 +7,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@kit101/ui/components/dropdown-menu';
-
-import { useEffect, useState } from 'react';
-
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 import GithubIcon from '@/assets/icons/github.svg';
 import ReactIcon from '@/assets/icons/react.svg';

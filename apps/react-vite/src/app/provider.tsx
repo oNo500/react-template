@@ -1,9 +1,7 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-
 import { ThemeProvider } from 'next-themes';
 
 import { ErrorFallback } from '@/components/errors/error-fallback';

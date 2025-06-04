@@ -1,6 +1,6 @@
-import type { ErrorInfo } from 'react';
-
 import { env } from '@/config/env';
+
+import type { ErrorInfo } from 'react';
 
 export function logError(error: Error, errorInfo?: ErrorInfo) {
   // 开发环境详细日志

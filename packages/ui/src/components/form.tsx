@@ -1,10 +1,7 @@
 'use client';
 
-import { Label } from '@kit101/ui/components/label';
-import { cn } from '@kit101/ui/lib/utils';
 import * as LabelPrimitive from '@radix-ui/react-label';
 import { Slot } from '@radix-ui/react-slot';
-
 import * as React from 'react';
 import {
   Controller,
@@ -15,6 +12,9 @@ import {
   useFormContext,
   useFormState,
 } from 'react-hook-form';
+
+import { cn } from '@kit101/ui/lib/utils';
+import { Label } from '@kit101/ui/components/label';
 
 const Form = FormProvider;
 

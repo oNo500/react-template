@@ -1,8 +1,8 @@
 import { cn } from '@kit101/ui/lib/utils';
 
-import type React from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-const Features = ({ className, ...props }: React.ComponentPropsWithoutRef<'section'>) => {
+const Features = ({ className, ...props }: ComponentPropsWithoutRef<'section'>) => {
   return (
     <section className={cn('mt-10 flex flex-col gap-4', className)} {...props}>
       <h2 className="text-center text-2xl font-bold">Features</h2>

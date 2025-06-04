@@ -1,9 +1,9 @@
 'use client';
 
-import { cn } from '@kit101/ui/lib/utils';
 import * as AvatarPrimitive from '@radix-ui/react-avatar';
-
 import * as React from 'react';
+
+import { cn } from '@kit101/ui/lib/utils';
 
 function Avatar({ className, ...props }: React.ComponentProps<typeof AvatarPrimitive.Root>) {
   return (

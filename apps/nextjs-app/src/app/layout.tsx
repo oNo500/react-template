@@ -1,9 +1,9 @@
 import { Toaster } from '@kit101/ui/components/sonner';
 import '@kit101/ui/globals.css';
 
-import type { Metadata } from 'next';
-
 import { AppProviders } from '@/components/providers';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Nextjs App',

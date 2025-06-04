@@ -4,6 +4,7 @@ import Navbar from '@/components/navbar';
 import Hero from '@/features/home/components/hero';
 import { apiClient } from '@/lib/api-client';
 import { queryClient } from '@/lib/query-client';
+
 import type { APIResponse, User } from '@/types/api';
 
 export default async function Home() {

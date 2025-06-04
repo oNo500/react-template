@@ -4,9 +4,10 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { paths } from '@/config/paths';
 import { apiClient } from '@/lib/api-client';
 import { queryClient } from '@/lib/query-client';
-import type { APIResponse, ApiError, LoginData, User } from '@/types/api';
 
 import { authStore } from './auth-store';
+
+import type { APIResponse, ApiError, LoginData, User } from '@/types/api';
 
 // 类型定义
 export interface LoginRequest {

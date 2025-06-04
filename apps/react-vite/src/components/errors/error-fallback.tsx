@@ -1,11 +1,11 @@
 import { Button } from '@kit101/ui/components/button';
 import { AlertTriangle, Home, RefreshCw } from 'lucide-react';
-
-import type { FallbackProps } from 'react-error-boundary';
 import { Link } from 'react-router';
 
 import { env } from '@/config/env';
 import { paths } from '@/config/paths';
+
+import type { FallbackProps } from 'react-error-boundary';
 
 export function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   return (

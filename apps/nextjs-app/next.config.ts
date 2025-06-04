@@ -1,8 +1,7 @@
 import { withSentryConfig } from '@sentry/nextjs';
-
-// import { loadEnvConfig } from '@next/env';
-import type { NextConfig } from 'next';
 import { PHASE_DEVELOPMENT_SERVER } from 'next/constants';
+
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = (phase: string, { defaultConfig }: { defaultConfig: NextConfig }) => ({
   transpilePackages: ['@kit101/ui'],
