@@ -15,17 +15,27 @@ import ReactIcon from '@/assets/icons/react.svg';
 import { useLogout } from '@/auth';
 import { paths } from '@/config/paths';
 import { useUser } from '@/hooks/use-user';
+import { queryClient } from '@/lib/query-client';
+import { apiClient } from '@/lib/api-client';
 
 import { ModeToggle } from './mode-toggle';
+
+import type { APIResponse, User } from '@/types/api';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { mutate: logout } = useLogout();
-  const { userData, isLoading } = useUser();
+  const { userData } = useUser();
 
   useEffect(() => {
-    console.log('userData', userData);
-  }, [userData]);
+    queryClient.prefetchQuery({
+      queryKey: ['user'],
+      queryFn: () =>
+        apiClient.get<APIResponse<User>>('/api/auth/me', {
+          cache: 'no-cache',
+        }),
+    });
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);

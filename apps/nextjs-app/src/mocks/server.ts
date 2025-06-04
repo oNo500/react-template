@@ -1,6 +1,6 @@
 import { createMiddleware } from '@mswjs/http-middleware';
 import cors from 'cors';
-import express from 'express';
+import express, { json } from 'express';
 import logger from 'pino-http';
 
 import { env } from '@/config/env';
@@ -16,7 +16,7 @@ app.use(
   }),
 );
 
-app.use(express.json());
+app.use(json());
 app.use(
   logger({
     level: 'info',
