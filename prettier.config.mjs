@@ -2,7 +2,7 @@
 const config = {
   trailingComma: 'all',
   singleQuote: true,
-  printWidth: undefined,
+  printWidth: 10000,
   plugins: [
     '@trivago/prettier-plugin-sort-imports',
     'prettier-plugin-tailwindcss',
