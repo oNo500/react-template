@@ -1,4 +1,4 @@
-import { cn } from '@repo/ui/lib/utils';
+import { cn } from '@kit101/ui/lib/utils';
 
 import NextLogo from '@/assets/icons/nextdotjs.svg';
 import ReactLogo from '@/assets/icons/react.svg';

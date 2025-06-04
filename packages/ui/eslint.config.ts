@@ -1,4 +1,4 @@
-import { config as reactInternalConfig } from '@repo/eslint-config/react-internal';
+import { config as reactInternalConfig } from '@kit101/eslint-config/react-internal';
 
 const config = [
   ...reactInternalConfig,

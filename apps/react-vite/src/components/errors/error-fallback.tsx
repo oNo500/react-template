@@ -1,4 +1,4 @@
-import { Button } from '@repo/ui/components/button';
+import { Button } from '@kit101/ui/components/button';
 import { AlertTriangle, Home, RefreshCw } from 'lucide-react';
 
 import type { FallbackProps } from 'react-error-boundary';

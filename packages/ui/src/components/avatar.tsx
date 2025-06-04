@@ -1,7 +1,7 @@
 'use client';
 
+import { cn } from '@kit101/ui/lib/utils';
 import * as AvatarPrimitive from '@radix-ui/react-avatar';
-import { cn } from '@repo/ui/lib/utils';
 
 import * as React from 'react';
 

@@ -8,7 +8,7 @@ const nextConfig: NextConfig = (
   phase: string,
   { defaultConfig }: { defaultConfig: NextConfig },
 ) => ({
-  transpilePackages: ['@repo/ui'],
+  transpilePackages: ['@kit101/ui'],
   ...(phase === PHASE_DEVELOPMENT_SERVER ? {} : {}),
   // 开发环境：Turbopack 配置
   turbopack: {

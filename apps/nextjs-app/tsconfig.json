@@ -1,10 +1,10 @@
 {
-  "extends": "@repo/typescript-config/tsconfig.base.react.json",
+  "extends": "@kit101/typescript-config/tsconfig.base.react.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@repo/ui/*": ["../../packages/ui/src/*"]
+      "@kit101/ui/*": ["../../packages/ui/src/*"]
     },
     "plugins": [
       {

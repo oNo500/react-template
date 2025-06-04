@@ -1,7 +1,7 @@
 'use client';
 
+import { cn } from '@kit101/ui/lib/utils';
 import * as LabelPrimitive from '@radix-ui/react-label';
-import { cn } from '@repo/ui/lib/utils';
 
 import * as React from 'react';
 

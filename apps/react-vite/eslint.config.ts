@@ -1,3 +1,3 @@
-import { config as viteConfig } from '@repo/eslint-config/react-vite';
+import { config as viteConfig } from '@kit101/eslint-config/react-vite';
 
 export default viteConfig;

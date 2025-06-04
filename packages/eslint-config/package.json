@@ -1,10 +1,10 @@
 {
-  "name": "@repo/eslint-config",
+  "name": "@kit101/eslint-config",
   "version": "0.0.0",
   "devDependencies": {
     "@eslint/js": "^9.28.0",
     "@next/eslint-plugin-next": "^15.3.3",
-    "@repo/typescript-config": "workspace:*",
+    "@kit101/typescript-config": "workspace:*",
     "@types/eslint-plugin-jsx-a11y": "^6.10.0",
     "@types/node": "^22.15.29",
     "@typescript-eslint/parser": "^8.33.0",

@@ -1,4 +1,4 @@
-import '@repo/ui/globals.css';
+import '@kit101/ui/globals.css';
 
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';

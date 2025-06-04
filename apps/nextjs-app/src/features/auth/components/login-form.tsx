@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '@repo/ui/components/button';
+import { Button } from '@kit101/ui/components/button';
 import {
   Form,
   FormControl,
@@ -9,9 +9,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@repo/ui/components/form';
-import { Input } from '@repo/ui/components/input';
-import { cn } from '@repo/ui/lib/utils';
+} from '@kit101/ui/components/form';
+import { Input } from '@kit101/ui/components/input';
+import { cn } from '@kit101/ui/lib/utils';
 import { z } from 'zod';
 
 import { useForm } from 'react-hook-form';

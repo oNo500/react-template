@@ -10,11 +10,11 @@
     "cssVariables": true
   },
   "aliases": {
-    "components": "@repo/ui/components",
-    "utils": "@repo/ui/lib/utils",
-    "hooks": "@repo/ui/hooks",
-    "lib": "@repo/ui/lib",
-    "ui": "@repo/ui/components"
+    "components": "@kit101/ui/components",
+    "utils": "@kit101/ui/lib/utils",
+    "hooks": "@kit101/ui/hooks",
+    "lib": "@kit101/ui/lib",
+    "ui": "@kit101/ui/components"
   },
   "iconLibrary": "lucide"
 }

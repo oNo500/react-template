@@ -1,5 +1,5 @@
+import { cn } from '@kit101/ui/lib/utils';
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
-import { cn } from '@repo/ui/lib/utils';
 import { CheckIcon, ChevronRightIcon, CircleIcon } from 'lucide-react';
 
 import * as React from 'react';

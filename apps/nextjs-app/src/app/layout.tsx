@@ -1,5 +1,5 @@
-import { Toaster } from '@repo/ui/components/sonner';
-import '@repo/ui/globals.css';
+import { Toaster } from '@kit101/ui/components/sonner';
+import '@kit101/ui/globals.css';
 
 import type { Metadata } from 'next';
 

@@ -1,4 +1,4 @@
-import { config as baseConfig } from '@repo/eslint-config/base';
+import { config as baseConfig } from '@kit101/eslint-config/base';
 
 const config = [
   ...baseConfig,
