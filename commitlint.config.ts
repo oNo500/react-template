@@ -4,7 +4,11 @@ const Configuration: UserConfig = {
   extends: ['@commitlint/config-conventional'],
   formatter: '@commitlint/format',
   rules: {
-    'type-enum': [2, 'always', ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'build', 'ci', 'chore', 'revert']],
+    'type-enum': [
+      2,
+      'always',
+      ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'build', 'ci', 'chore', 'revert'],
+    ],
     'type-empty': [2, 'never'],
     'subject-empty': [2, 'never'],
     'subject-max-length': [2, 'always', 50],
