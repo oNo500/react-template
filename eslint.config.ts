@@ -3,7 +3,7 @@ import { config as baseConfig } from '@kit101/eslint-config/base';
 const config = [
   ...baseConfig,
   {
-    ignorePatterns: ['apps/**', 'packages/**'],
+    ignores: ['apps/**', 'packages/**'],
   },
 ];
 
