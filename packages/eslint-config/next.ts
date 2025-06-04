@@ -56,7 +56,4 @@ const nextJsConfig = [
   },
 ] as FlatConfig.Config[];
 
-export const config = [
-  ...baseConfig,
-  ...nextJsConfig,
-] satisfies FlatConfig.Config[];
+export const config = [...baseConfig, ...nextJsConfig] satisfies FlatConfig.Config[];
