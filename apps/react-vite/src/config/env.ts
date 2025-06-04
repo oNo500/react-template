@@ -9,9 +9,7 @@ const createEnv = () => {
       .refine((e) => e === 'true' || e === 'false')
       .default('false'),
   });
-  const envVars = Object.entries(import.meta.env).reduce<
-    Record<string, string>
-  >((acc, curr) => {
+  const envVars = Object.entries(import.meta.env).reduce<Record<string, string>>((acc, curr) => {
     const [key, value] = curr;
     if (key.startsWith('VITE_')) {
       acc[key.slice(5)] = value;

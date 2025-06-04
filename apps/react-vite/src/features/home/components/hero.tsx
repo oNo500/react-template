@@ -14,9 +14,7 @@ const Hero = () => {
 
       {/* 快速开始 */}
       <div className="space-y-4">
-        <Code className="mx-auto w-fit">
-          pnpx degit https://github.com/gaoxiu333/react-template.git my-project
-        </Code>
+        <Code className="mx-auto w-fit">pnpx degit https://github.com/gaoxiu333/react-template.git my-project</Code>
         <p className="text-muted-foreground text-sm">一键克隆，即刻开始</p>
       </div>
 
@@ -29,9 +27,7 @@ const Hero = () => {
               <span className="text-2xl">🚀</span>
               <h3 className="text-lg font-semibold">现代化技术栈</h3>
             </div>
-            <p className="text-muted-foreground text-left">
-              Next.js 15 + React 19 + TypeScript
-            </p>
+            <p className="text-muted-foreground text-left">Next.js 15 + React 19 + TypeScript</p>
           </div>
 
           <div className="space-y-4 rounded-xl border p-6">
@@ -39,9 +35,7 @@ const Hero = () => {
               <span className="text-2xl">🎨</span>
               <h3 className="text-lg font-semibold">精美 UI 组件</h3>
             </div>
-            <p className="text-muted-foreground text-left">
-              Tailwind CSS v4 + shadcn/ui + Radix UI
-            </p>
+            <p className="text-muted-foreground text-left">Tailwind CSS v4 + shadcn/ui + Radix UI</p>
           </div>
 
           <div className="space-y-4 rounded-xl border p-6">
@@ -49,9 +43,7 @@ const Hero = () => {
               <span className="text-2xl">⚡</span>
               <h3 className="text-lg font-semibold">企业级工程化</h3>
             </div>
-            <p className="text-muted-foreground text-left">
-              Turborepo + pnpm + ESLint + Prettier
-            </p>
+            <p className="text-muted-foreground text-left">Turborepo + pnpm + ESLint + Prettier</p>
           </div>
 
           <div className="space-y-4 rounded-xl border p-6">
@@ -59,9 +51,7 @@ const Hero = () => {
               <span className="text-2xl">🔧</span>
               <h3 className="text-lg font-semibold">状态管理</h3>
             </div>
-            <p className="text-muted-foreground text-left">
-              React Query + Zustand + React Hook Form
-            </p>
+            <p className="text-muted-foreground text-left">React Query + Zustand + React Hook Form</p>
           </div>
 
           <div className="space-y-4 rounded-xl border p-6">
@@ -69,9 +59,7 @@ const Hero = () => {
               <span className="text-2xl">🧪</span>
               <h3 className="text-lg font-semibold">测试覆盖</h3>
             </div>
-            <p className="text-muted-foreground text-left">
-              Vitest + Playwright + MSW
-            </p>
+            <p className="text-muted-foreground text-left">Vitest + Playwright + MSW</p>
           </div>
 
           <div className="space-y-4 rounded-xl border p-6">
@@ -79,9 +67,7 @@ const Hero = () => {
               <span className="text-2xl">📊</span>
               <h3 className="text-lg font-semibold">生产监控</h3>
             </div>
-            <p className="text-muted-foreground text-left">
-              Sentry + Vercel Analytics
-            </p>
+            <p className="text-muted-foreground text-left">Sentry + Vercel Analytics</p>
           </div>
         </div>
       </div>

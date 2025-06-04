@@ -1,8 +1,4 @@
-import {
-  HydrationBoundary,
-  QueryClient,
-  dehydrate,
-} from '@tanstack/react-query';
+import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
 
 import Navbar from '@/components/navbar';
 import Hero from '@/features/home/components/hero';

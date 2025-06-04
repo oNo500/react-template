@@ -31,8 +31,7 @@ apiClient.interceptors.response.use(
 
     if (error.response?.status === 401) {
       const searchParams = new URLSearchParams();
-      const redirectTo =
-        searchParams.get('redirectTo') || window.location.pathname;
+      const redirectTo = searchParams.get('redirectTo') || window.location.pathname;
       // window.location.href = paths.auth.login.getHref(redirectTo);
     }
 

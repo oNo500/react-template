@@ -1,13 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@kit101/ui/components/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@kit101/ui/components/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@kit101/ui/components/form';
 import { Input } from '@kit101/ui/components/input';
 import { cn } from '@kit101/ui/lib/utils';
 import { z } from 'zod';
@@ -26,10 +19,7 @@ const formSchema = z.object({
   password: z.string().min(1, { message: 'Password is required' }),
 });
 
-const LoginForm = ({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<'div'>) => {
+const LoginForm = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => {
   const navigate = useNavigate();
   const form = useForm<LoginRequest>({
     resolver: zodResolver(formSchema),
@@ -52,10 +42,7 @@ const LoginForm = ({
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="space-y-6">
             <div className="flex flex-col items-center gap-2">
-              <Link
-                to={paths.home.getHref()}
-                className="flex flex-col items-center gap-2 font-medium"
-              >
+              <Link to={paths.home.getHref()} className="flex flex-col items-center gap-2 font-medium">
                 <div className="flex size-12 items-center justify-center rounded-md">
                   <ReactIcon />
                 </div>
@@ -64,10 +51,7 @@ const LoginForm = ({
               <h1 className="text-xl font-bold">Welcome to React Starter</h1>
               <div className="text-center text-sm">
                 Don&apos;t have an account?{' '}
-                <Link
-                  to={paths.auth.register.getHref()}
-                  className="underline underline-offset-4"
-                >
+                <Link to={paths.auth.register.getHref()} className="underline underline-offset-4">
                   Sign up
                 </Link>
               </div>
@@ -100,17 +84,11 @@ const LoginForm = ({
                 );
               }}
             />
-            <Button
-              disabled={loginMutation.isPending}
-              className="w-full"
-              type="submit"
-            >
+            <Button disabled={loginMutation.isPending} className="w-full" type="submit">
               Login
             </Button>
             <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
-              <span className="bg-background text-muted-foreground relative z-10 px-2">
-                Or
-              </span>
+              <span className="bg-background text-muted-foreground relative z-10 px-2">Or</span>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <Button variant="outline" className="w-full" type="button">
@@ -126,8 +104,7 @@ const LoginForm = ({
         </form>
       </Form>
       <div className="text-muted-foreground hover:[&_a]:text-primary text-balance text-center text-xs [&_a]:underline [&_a]:underline-offset-4">
-        By clicking continue, you agree to our{' '}
-        <Link to="#">Terms of Service</Link> and{' '}
+        By clicking continue, you agree to our <Link to="#">Terms of Service</Link> and{' '}
         <Link to="#">Privacy Policy</Link>.
       </div>
     </div>

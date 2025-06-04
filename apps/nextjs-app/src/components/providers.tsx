@@ -16,12 +16,7 @@ interface ProvidersProps {
 export function AppProviders({ children }: ProvidersProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
         {children}
         <ReactQueryDevtools initialIsOpen={false} />
         <WebVitals />

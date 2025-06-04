@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@kit101/ui/components/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@kit101/ui/components/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -75,9 +71,7 @@ export default function Navbar() {
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem onClick={() => logout()}>
-                  Logout
-                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => logout()}>Logout</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           )}
@@ -98,9 +92,7 @@ export default function Navbar() {
                 }`}
               />
               <div
-                className={`h-0.5 w-5 bg-current transition-opacity ${
-                  isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
-                }`}
+                className={`h-0.5 w-5 bg-current transition-opacity ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}
               />
               <div
                 className={`h-0.5 w-5 bg-current transition-transform ${

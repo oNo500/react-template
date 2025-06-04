@@ -6,11 +6,7 @@ import { useEffect } from 'react';
 
 import NextError from 'next/error';
 
-export default function GlobalError({
-  error,
-}: {
-  error: Error & { digest?: string };
-}) {
+export default function GlobalError({ error }: { error: Error & { digest?: string } }) {
   useEffect(() => {
     captureException(error);
   }, [error]);

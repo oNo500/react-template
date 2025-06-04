@@ -26,10 +26,7 @@ export interface AuthResponse {
 export const useLogin = () => {
   return useMutation({
     mutationFn: async (data: LoginRequest): Promise<User> => {
-      const response = await apiClient.post<APIResponse<User>>(
-        '/api/auth/login',
-        data,
-      );
+      const response = await apiClient.post<APIResponse<User>>('/api/auth/login', data);
       return response.data;
     },
     onSuccess: (data) => {
@@ -45,16 +42,11 @@ export const useLogin = () => {
 export const useRegister = () => {
   return useMutation({
     mutationFn: async (data: RegisterRequest): Promise<User> => {
-      const response = await apiClient.post<APIResponse<User>>(
-        '/api/auth/register',
-        data,
-      );
+      const response = await apiClient.post<APIResponse<User>>('/api/auth/register', data);
       return response.data;
     },
     onSuccess: () => {
-      toast.success(
-        'Registration successful, please log in with your new account',
-      );
+      toast.success('Registration successful, please log in with your new account');
     },
     onError: (error: ApiError) => {
       toast.error(error.message || 'An error occurred during registration');

@@ -29,10 +29,7 @@ const techs = [
   },
 ];
 
-const TechStack = ({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<'div'>) => {
+const TechStack = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => {
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <div className="flex flex-wrap items-center justify-center gap-4">
@@ -46,9 +43,7 @@ const TechStack = ({
           </div>
         ))}
       </div>
-      <p className="text-muted-foreground text-sm">
-        基于最新技术栈构建的现代化开发环境
-      </p>
+      <p className="text-muted-foreground text-sm">基于最新技术栈构建的现代化开发环境</p>
     </div>
   );
 };

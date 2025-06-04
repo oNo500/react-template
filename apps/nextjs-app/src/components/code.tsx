@@ -6,11 +6,7 @@ import { Check, Copy } from 'lucide-react';
 
 import React, { useRef, useState } from 'react';
 
-const Code = ({
-  children,
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<'div'>) => {
+const Code = ({ children, className, ...props }: React.ComponentPropsWithoutRef<'div'>) => {
   const [copied, setCopied] = useState(false);
   const codeRef = useRef<HTMLDivElement>(null);
 
@@ -28,13 +24,7 @@ const Code = ({
   };
 
   return (
-    <div
-      className={cn(
-        'bg-muted relative rounded-md py-2 pl-2 pr-8 font-mono text-sm',
-        className,
-      )}
-      {...props}
-    >
+    <div className={cn('bg-muted relative rounded-md py-2 pl-2 pr-8 font-mono text-sm', className)} {...props}>
       <Button
         onClick={handleCopy}
         size="icon"
@@ -42,11 +32,7 @@ const Code = ({
         className="absolute right-0 top-1/2 -translate-y-1/2"
         aria-label="复制代码"
       >
-        {copied ? (
-          <Check className="text-primary size-3" />
-        ) : (
-          <Copy className="size-3" />
-        )}
+        {copied ? <Check className="text-primary size-3" /> : <Copy className="size-3" />}
       </Button>
       <div ref={codeRef}>{children}</div>
     </div>

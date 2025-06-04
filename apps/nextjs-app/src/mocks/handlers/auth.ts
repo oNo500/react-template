@@ -17,8 +17,7 @@ export const authHandlers = [
       },
       {
         headers: {
-          'Set-Cookie':
-            'token=mock-jwt-token; Path=/; HttpOnly; SameSite=Strict',
+          'Set-Cookie': 'token=mock-jwt-token; Path=/; HttpOnly; SameSite=Strict',
         },
       },
     );
@@ -38,8 +37,7 @@ export const authHandlers = [
       },
       {
         headers: {
-          'Set-Cookie':
-            'token=mock-jwt-token; Path=/; HttpOnly; SameSite=Strict',
+          'Set-Cookie': 'token=mock-jwt-token; Path=/; HttpOnly; SameSite=Strict',
         },
       },
     );

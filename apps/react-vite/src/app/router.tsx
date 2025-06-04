@@ -1,21 +1,12 @@
 import React from 'react';
-import {
-  RouterProvider,
-  createBrowserRouter,
-  useRouteError,
-} from 'react-router';
+import { RouterProvider, createBrowserRouter, useRouteError } from 'react-router';
 
 import { ErrorFallback } from '@/components/errors/error-fallback';
 
 // React Router 错误边界组件
 const RouterErrorBoundary = () => {
   const error = useRouteError();
-  return (
-    <ErrorFallback
-      error={error}
-      resetErrorBoundary={() => window.location.reload()}
-    />
-  );
+  return <ErrorFallback error={error} resetErrorBoundary={() => window.location.reload()} />;
 };
 
 const router = createBrowserRouter([

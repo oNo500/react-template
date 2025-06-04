@@ -29,17 +29,12 @@ export const useLogin = () => {
   const { login } = authStore();
   return useMutation({
     mutationFn: async (data: LoginRequest): Promise<LoginData> => {
-      const response = await apiClient.post<APIResponse<LoginData>>(
-        '/api/auth/login',
-        data,
-      );
+      const response = await apiClient.post<APIResponse<LoginData>>('/api/auth/login', data);
       return response.data.data;
     },
     onSuccess: (data) => {
       login(data.token, data.user);
-      toast.success(
-        `Login success, welcome back ${data.user.name || data.user.email}!`,
-      );
+      toast.success(`Login success, welcome back ${data.user.name || data.user.email}!`);
     },
     onError: (error: ApiError) => {
       toast.error(error.message || 'Please check your email and password');
@@ -52,17 +47,12 @@ export const useRegister = () => {
   const { login } = authStore();
   return useMutation({
     mutationFn: async (data: RegisterRequest): Promise<LoginData> => {
-      const response = await apiClient.post<APIResponse<LoginData>>(
-        '/api/auth/register',
-        data,
-      );
+      const response = await apiClient.post<APIResponse<LoginData>>('/api/auth/register', data);
       return response.data.data;
     },
     onSuccess: (data) => {
       login(data.token, data.user);
-      toast.success(
-        'Registration successful, please log in with your new account',
-      );
+      toast.success('Registration successful, please log in with your new account');
     },
     onError: (error: ApiError) => {
       toast.error(error.message || 'An error occurred during registration');

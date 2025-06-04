@@ -1,13 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@kit101/ui/components/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@kit101/ui/components/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@kit101/ui/components/form';
 import { Input } from '@kit101/ui/components/input';
 import { cn } from '@kit101/ui/lib/utils';
 import { z } from 'zod';
@@ -26,10 +19,7 @@ const formSchema = z.object({
   password: z.string().min(1, { message: 'Password is required' }),
 });
 
-const RegisterForm = ({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<'div'>) => {
+const RegisterForm = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -54,10 +44,7 @@ const RegisterForm = ({
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="space-y-8">
             <div className="flex flex-col items-center gap-2">
-              <Link
-                to={paths.home.getHref()}
-                className="flex flex-col items-center gap-2 font-medium"
-              >
+              <Link to={paths.home.getHref()} className="flex flex-col items-center gap-2 font-medium">
                 <div className="flex size-12 items-center justify-center rounded-md">
                   <ReactIcon />
                 </div>
@@ -126,10 +113,7 @@ const RegisterForm = ({
 
           <div className="mt-4 text-center text-sm">
             Already have an account?{' '}
-            <Link
-              to={paths.auth.login.getHref()}
-              className="underline underline-offset-4"
-            >
+            <Link to={paths.auth.login.getHref()} className="underline underline-offset-4">
               Login
             </Link>
           </div>

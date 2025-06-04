@@ -21,8 +21,7 @@ export const authHandlers = [
       } as APIResponse<LoginData>,
       {
         headers: {
-          'Set-Cookie':
-            'token=mock-jwt-token; Path=/; HttpOnly; SameSite=Strict',
+          'Set-Cookie': 'token=mock-jwt-token; Path=/; HttpOnly; SameSite=Strict',
         },
       },
     );
@@ -44,8 +43,7 @@ export const authHandlers = [
       } as APIResponse<LoginData>,
       {
         headers: {
-          'Set-Cookie':
-            'token=mock-jwt-token; Path=/; HttpOnly; SameSite=Strict',
+          'Set-Cookie': 'token=mock-jwt-token; Path=/; HttpOnly; SameSite=Strict',
         },
       },
     );
