@@ -1,12 +1,8 @@
-import js from '@eslint/js';
 import type { FlatConfig } from '@typescript-eslint/utils/ts-eslint';
 import pluginJsxA11y from 'eslint-plugin-jsx-a11y';
 import pluginReact from 'eslint-plugin-react';
-import reactHooks from 'eslint-plugin-react-hooks';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import pluginReactRefresh from 'eslint-plugin-react-refresh';
-import globals from 'globals';
-import tseslint from 'typescript-eslint';
 
 import { config as baseConfig } from './base.js';
 
@@ -24,10 +20,7 @@ const viteConfig = [
       ...pluginReact.configs['jsx-runtime'].rules,
       ...pluginReactHooks.configs.recommended.rules,
       ...pluginJsxA11y.configs.strict.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'react/no-unknown-property': 'off', // 禁用未知属性检查
       'react/react-in-jsx-scope': 'off', // 无需导入 React
       'react/prop-types': 'off', // 禁用 PropTypes 检查
@@ -41,7 +34,4 @@ const viteConfig = [
   },
 ] as FlatConfig.Config[];
 
-export const config = [
-  ...baseConfig,
-  ...viteConfig,
-] satisfies FlatConfig.Config[];
+export const config = [...baseConfig, ...viteConfig] satisfies FlatConfig.Config[];

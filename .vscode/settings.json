@@ -4,5 +4,15 @@
       "mode": "auto"
     }
   ],
-  "prettier.prettierPath": "node_modules/prettier"
+  "prettier.prettierPath": "node_modules/prettier",
+  //  Tailwindcss start
+  "tailwindCSS.classAttributes": ["classNames", "className"],
+  "tailwindCSS.classFunctions": ["tw", "clsx", "tw\\.[a-z-]+"],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  }
+  //  Tailwindcss end
 }

@@ -26,13 +26,13 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-background/80 fixed left-0 top-0 z-50 w-full border-b backdrop-blur">
+    <nav className="bg-background/80 fixed left-0 top-0 z-50 w-full backdrop-blur">
       <div className="mx-auto flex h-16 max-w-5xl flex-nowrap items-center justify-between gap-4 whitespace-nowrap px-4 sm:px-6 lg:px-8">
         {/* 品牌标识 - 始终显示 */}
         <div className="flex-shrink-0">
           <Link to="/" className="flex items-center gap-2 text-lg font-bold">
             <ReactIcon className="h-8 w-8 flex-shrink-0" />
-            <span className="hidden sm:block">React Starter</span>
+            <span className="hidden sm:block">React Boilerplate</span>
             <span className="block sm:hidden">React</span>
           </Link>
         </div>

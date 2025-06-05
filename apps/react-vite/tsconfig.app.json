@@ -5,7 +5,7 @@
     "allowImportingTsExtensions": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["./src/*"],
       "@kit101/ui/*": ["../../packages/ui/src/*"]
     }
   },

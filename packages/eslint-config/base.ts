@@ -9,6 +9,7 @@ import pluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import turboPlugin from 'eslint-plugin-turbo';
 import globals from 'globals';
 import tseslint, { configs as tseslintConfigs } from 'typescript-eslint';
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 
 // =========================================
 // 基础 ESLint 配置
@@ -98,6 +99,14 @@ const importConfig = [
       'import-x/newline-after-import': 'error', // import 语句后必须空一行
       'import-x/no-duplicates': 'error', // 禁止重复导入
       'import-x/no-unresolved': 'error', // 禁止未解析的导入
+    },
+    settings: {
+      'import-x/resolver-next': [
+        createTypeScriptImportResolver({
+          alwaysTryTypes: true,
+          project: ['./tsconfig.json', './apps/*/tsconfig.json', './packages/*/tsconfig.json'],
+        }),
+      ],
     },
     // settings: {
     //   'import/resolver': {
