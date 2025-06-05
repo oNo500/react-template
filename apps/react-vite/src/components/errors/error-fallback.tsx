@@ -1,5 +1,5 @@
 import { Button } from '@kit101/ui/components/button';
-import { AlertTriangle, Home, RefreshCw } from 'lucide-react';
+import { AlertTriangle } from 'lucide-react';
 import { Link } from 'react-router';
 
 import { env } from '@/config/env';
@@ -9,32 +9,37 @@ import type { FallbackProps } from 'react-error-boundary';
 
 export function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   return (
-    <div className="bg-background flex min-h-screen items-center justify-center">
-      <div className="max-w-md p-8 text-center">
-        <AlertTriangle className="text-destructive mx-auto mb-4 h-12 w-12" />
-        <h1 className="text-foreground mb-2 text-2xl font-bold">应用程序出错了</h1>
-        <p className="text-muted-foreground mb-6">{error.message || '遇到了意外问题，请尝试刷新页面'}</p>
+    <div className="flex min-h-screen items-center justify-center bg-neutral-950">
+      <div className="w-full max-w-md rounded-2xl border border-white/10 bg-white/70 p-10 text-center shadow-xl dark:bg-neutral-900/80">
+        <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-white/80 dark:bg-neutral-800/80">
+          <AlertTriangle className="fill-destructive h-8 w-8 dark:text-white" />
+        </div>
+        <h1 className="mb-2 text-2xl font-bold tracking-tight text-neutral-900 dark:text-white">
+          Something went wrong
+        </h1>
+        <p className="mb-6 text-base text-neutral-600 dark:text-neutral-300">
+          {error.message || 'An unexpected error occurred. Please try refreshing the page.'}
+        </p>
 
-        {/* 开发环境显示错误详情 */}
+        {/* Show error details in development mode */}
         {env.MODE === 'development' && (
-          <details className="mb-6 text-left">
-            <summary className="text-muted-foreground hover:text-foreground mb-2 cursor-pointer text-sm">
-              查看错误详情
+          <details className="mb-6 rounded-lg border border-white/10 bg-white/60 p-3 text-left text-xs text-neutral-700 dark:bg-neutral-800/80 dark:text-neutral-200">
+            <summary className="mb-2 cursor-pointer text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">
+              Show error details
             </summary>
-            <pre className="bg-muted max-h-32 overflow-auto rounded p-3 text-xs">{error.stack}</pre>
+            <pre className="scrollbar-thin scrollbar-thumb-neutral-300 dark:scrollbar-thumb-neutral-700 scrollbar-track-transparent max-h-40 overflow-auto whitespace-pre-wrap font-mono text-xs">
+              {error.stack}
+            </pre>
           </details>
         )}
 
-        <div className="space-x-4">
-          <Button onClick={resetErrorBoundary} className="gap-2">
-            <RefreshCw className="h-4 w-4" />
-            重试1
-          </Button>
-          <Button variant="outline" asChild className="gap-2">
-            <Link to={paths.home.getHref()}>
-              <Home className="h-4 w-4" />
-              回到首页
-            </Link>
+        <div className="mt-4 flex justify-center gap-4">
+          <Button
+            variant="ghost"
+            asChild
+            className="rounded-lg px-6 py-2 font-medium transition-colors duration-200 hover:bg-neutral-200/60 dark:text-white dark:hover:bg-neutral-700/60"
+          >
+            <Link to={paths.home.getHref()}>Back to Home</Link>
           </Button>
         </div>
       </div>

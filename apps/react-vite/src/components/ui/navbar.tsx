@@ -8,13 +8,12 @@ import {
 import { useState } from 'react';
 import { Link } from 'react-router';
 
-import GithubIcon from '@/assets/icons/github.svg?react';
 import ReactIcon from '@/assets/icons/react.svg?react';
 import { useLogout } from '@/auth';
 import { authStore } from '@/auth/auth-store';
 import { paths } from '@/config/paths';
 
-import { ModeToggle } from './mode-toggle';
+import ThemeToggle from './theme-toggle';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -28,7 +27,6 @@ export default function Navbar() {
   return (
     <nav className="bg-background/80 fixed left-0 top-0 z-50 w-full backdrop-blur">
       <div className="mx-auto flex h-16 max-w-5xl flex-nowrap items-center justify-between gap-4 whitespace-nowrap px-4 sm:px-6 lg:px-8">
-        {/* 品牌标识 - 始终显示 */}
         <div className="flex-shrink-0">
           <Link to="/" className="flex items-center gap-2 text-lg font-bold">
             <ReactIcon className="h-8 w-8 flex-shrink-0" />
@@ -37,20 +35,12 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* 桌面端导航 */}
         <div className="hidden flex-row items-center justify-end gap-4 md:flex">
-          <Link
-            to="https://github.com"
-            className="hover:bg-accent flex items-center gap-2 rounded-md p-2 transition-colors"
-          >
-            <GithubIcon className="h-5 w-5" />
-            <span className="hidden lg:block">GitHub</span>
-          </Link>
-          <ModeToggle />
+          <ThemeToggle />
           {!isAuthenticated ? (
             <Link
               to={paths.auth.login.getHref()}
-              className="border-border hover:bg-accent rounded-md border px-3 py-1 transition-colors"
+              className="border-border hover:bg-accent rounded-full border px-3 py-1 transition-colors"
             >
               Login
             </Link>
@@ -69,12 +59,10 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* 移动端汉堡菜单按钮 */}
         <div className="flex items-center gap-2 md:hidden">
-          {/* <ModeToggle /> */}
           <button
             onClick={toggleMobileMenu}
-            className="hover:bg-accent flex h-10 w-10 items-center justify-center rounded-md transition-colors"
+            className="hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full transition-colors"
             aria-label="Toggle menu"
           >
             <div className="space-y-1">
@@ -98,24 +86,17 @@ export default function Navbar() {
 
       {/* 移动端下拉菜单 */}
       {isMobileMenuOpen && (
-        <div className="bg-background/95 border-t backdrop-blur md:hidden">
-          <div className="mx-auto max-w-5xl px-4 py-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col gap-3">
-              <Link
-                to="https://github.com"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="hover:bg-accent flex items-center gap-3 rounded-md p-3 transition-colors"
-              >
-                <GithubIcon className="h-5 w-5" />
-                <span>GitHub</span>
-              </Link>
-              <Link
-                to="/auth/login"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="border-border hover:bg-accent rounded-md border p-3 text-center transition-colors"
-              >
-                登录
-              </Link>
+        <div
+          className={`bg-background/98 fixed left-0 right-0 z-40 backdrop-blur-md transition-transform duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'} `}
+          style={{
+            top: '64px', // 导航栏高度
+            height: 'calc(100vh - 64px)',
+          }}
+        >
+          <div className="relative mx-auto h-full max-w-5xl px-4 py-4 sm:px-6 lg:px-8">
+            <div className="flex h-full flex-col gap-3">{/* 这里可以放菜单项 */}</div>
+            <div className="absolute bottom-6 right-6 flex flex-col items-end gap-3">
+              <ThemeToggle />
             </div>
           </div>
         </div>

@@ -87,15 +87,17 @@ const techs = [
 const TechStack = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => {
   return (
     <div className={cn('bg-muted text-primary absolute bottom-0 left-0 flex w-full flex-col', className)} {...props}>
-      <div className="flex flex-none flex-nowrap items-center justify-center gap-12 overflow-hidden px-4 py-3">
-        {techs.map((tech) => (
-          <div key={tech.name} className="flex-0 flex min-w-fit flex-row items-center gap-3">
-            <div className="duration-600 flex size-10 items-center justify-center" title={tech.name}>
-              {tech.logo}
+      <div className="overflow-hidden px-4 py-3">
+        <div className="tech-scroll-animate gap-12">
+          {[...techs, ...techs].map((tech, idx) => (
+            <div key={tech.name + idx} className="flex-0 flex min-w-fit flex-row items-center gap-3">
+              <div className="duration-600 flex size-10 items-center justify-center" title={tech.name}>
+                {tech.logo}
+              </div>
+              <p className="text-sm">{tech.name}</p>
             </div>
-            <p className="text-sm">{tech.name}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
