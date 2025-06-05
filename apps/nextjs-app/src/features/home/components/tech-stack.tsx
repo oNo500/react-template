@@ -5,45 +5,103 @@ import ReactLogo from '@/assets/icons/react.svg';
 import ShadcnLogo from '@/assets/icons/shadcnui.svg';
 import TailwindLogo from '@/assets/icons/tailwindcss.svg';
 import TurborepoLogo from '@/assets/icons/turborepo.svg';
+import ReactRouterLogo from '@/assets/icons/reactrouter.svg';
+import ViteLogo from '@/assets/icons/vite.svg';
+import VitestLogo from '@/assets/icons/vitest.svg';
+import PrettierLogo from '@/assets/icons/prettier.svg';
+import EslintLogo from '@/assets/icons/eslint.svg';
+import TypeScriptLogo from '@/assets/icons/typescript.svg';
+import ZustandLogo from '@/assets/icons/zustand.svg';
+import ReactQueryLogo from '@/assets/icons/reactquery.svg';
+import ReactHookFormLogo from '@/assets/icons/reacthookform.svg';
+import MswLogo from '@/assets/icons/msw.svg';
+import PlaywrightLogo from '@/assets/icons/playwright.svg';
 
 const techs = [
   {
+    name: 'Turborepo',
+    logo: <TurborepoLogo />,
+  },
+  {
     name: 'React 19',
-    logo: <ReactLogo className="text-[#61DAFB]" />,
+    logo: <ReactLogo />,
   },
   {
     name: 'Next.js 15',
-    logo: <NextLogo className="text-[#000000] dark:text-white" />,
+    logo: <NextLogo />,
   },
   {
     name: 'Tailwind CSS v4',
-    logo: <TailwindLogo className="text-[#06B6D4]" />,
+    logo: <TailwindLogo />,
   },
   {
-    name: 'Turborepo',
-    logo: <TurborepoLogo className="text-[#EF4444]" />,
+    name: 'Shadcn UI',
+    logo: <ShadcnLogo />,
   },
   {
-    name: 'shadcn/ui',
-    logo: <ShadcnLogo className="text-black dark:text-white" />,
+    name: 'Vite',
+    logo: <ViteLogo />,
+  },
+  {
+    name: 'Vitest',
+    logo: <VitestLogo />,
+  },
+  {
+    name: 'Prettier',
+    logo: <PrettierLogo />,
+  },
+  {
+    name: 'Eslint',
+    logo: <EslintLogo />,
+  },
+  {
+    name: 'TypeScript',
+    logo: <TypeScriptLogo />,
+  },
+  {
+    name: 'Zustand',
+    logo: <ZustandLogo />,
+  },
+  {
+    name: 'React Router',
+    logo: <ReactRouterLogo />,
+  },
+  {
+    name: 'React Query',
+    logo: <ReactQueryLogo />,
+  },
+  {
+    name: 'React Hook Form',
+    logo: <ReactHookFormLogo />,
+  },
+  {
+    name: 'MSW',
+    logo: <MswLogo />,
+  },
+  {
+    name: 'Playwright',
+    logo: <PlaywrightLogo />,
   },
 ];
 
 const TechStack = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => {
   return (
-    <div className={cn('flex flex-col gap-6', className)} {...props}>
-      <div className="flex flex-wrap items-center justify-center gap-4">
-        {techs.map((tech) => (
-          <div
-            key={tech.name}
-            className="bg-background hover:bg-accent border-border flex h-20 w-20 items-center justify-center rounded-2xl border-2 p-3 shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-md"
-            title={tech.name}
-          >
-            {tech.logo}
-          </div>
-        ))}
+    <div
+      className={cn('bg-muted text-primary absolute bottom-0 left-0 right-0 flex h-fit flex-col', className)}
+      {...props}
+    >
+      <div className="overflow-hidden px-4 py-3">
+        <div className="tech-scroll-animate gap-12">
+          {[...techs, ...techs].map((tech, idx) => (
+            <div key={tech.name + idx} className="flex-0 flex min-w-fit flex-row items-center gap-3">
+              <div className="duration-600 flex size-10 items-center justify-center text-xs" title={tech.name}>
+                {tech.logo}
+              </div>
+              <p className="text-sm">{tech.name}</p>
+            </div>
+          ))}
+        </div>
       </div>
-      <p className="text-muted-foreground text-sm">基于最新技术栈构建的现代化开发环境</p>
     </div>
   );
 };

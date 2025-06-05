@@ -1,5 +1,5 @@
 import { Toaster } from '@kit101/ui/components/sonner';
-import '@kit101/ui/globals.css';
+import '@/styles/index.css';
 
 import { AppProviders } from '@/components/providers';
 
