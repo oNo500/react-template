@@ -7,11 +7,11 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router';
 
-import AppleIcon from '@/assets/icons/apple.svg?react';
-import GoogleIcon from '@/assets/icons/google.svg?react';
 import ReactIcon from '@/assets/icons/react.svg?react';
 import { type LoginRequest, useLogin } from '@/auth';
 import { paths } from '@/config/paths';
+import GoogleIcon from '@/assets/icons/google.svg?react';
+import AppleIcon from '@/assets/icons/apple.svg?react';
 
 const formSchema = z.object({
   email: z.string().min(1, { message: 'Email is required' }),
