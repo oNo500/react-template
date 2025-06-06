@@ -7,6 +7,6 @@
       "@kit101/ui/*": ["./src/*"]
     }
   },
-  "include": ["."],
+  "include": ["src", "turbo", "eslint.config.ts", ".storybook/**/*.ts", "vitest.config.ts", "vitest.shims.d.ts"],
   "exclude": ["node_modules", "dist"]
 }
