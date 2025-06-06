@@ -1,0 +1,8 @@
+{
+  "extends": "@kit101/typescript-config/tsconfig.base.library.json",
+  "compilerOptions": {
+    "incremental": false
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

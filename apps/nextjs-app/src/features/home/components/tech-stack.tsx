@@ -1,21 +1,20 @@
-import { cn } from '@kit101/ui/lib/utils';
-
-import NextLogo from '@/assets/icons/nextdotjs.svg';
-import ReactLogo from '@/assets/icons/react.svg';
-import ShadcnLogo from '@/assets/icons/shadcnui.svg';
-import TailwindLogo from '@/assets/icons/tailwindcss.svg';
-import TurborepoLogo from '@/assets/icons/turborepo.svg';
-import ReactRouterLogo from '@/assets/icons/reactrouter.svg';
-import ViteLogo from '@/assets/icons/vite.svg';
-import VitestLogo from '@/assets/icons/vitest.svg';
-import PrettierLogo from '@/assets/icons/prettier.svg';
-import EslintLogo from '@/assets/icons/eslint.svg';
-import TypeScriptLogo from '@/assets/icons/typescript.svg';
-import ZustandLogo from '@/assets/icons/zustand.svg';
-import ReactQueryLogo from '@/assets/icons/reactquery.svg';
-import ReactHookFormLogo from '@/assets/icons/reacthookform.svg';
-import MswLogo from '@/assets/icons/msw.svg';
-import PlaywrightLogo from '@/assets/icons/playwright.svg';
+import { cn } from '@kit101/ui/utils';
+import NextLogo from '@kit101/icons/nextdotjs.svg';
+import ReactLogo from '@kit101/icons/react.svg';
+import ShadcnLogo from '@kit101/icons/shadcnui.svg';
+import TailwindLogo from '@kit101/icons/tailwindcss.svg';
+import TurborepoLogo from '@kit101/icons/turborepo.svg';
+import ReactRouterLogo from '@kit101/icons/reactrouter.svg';
+import ViteLogo from '@kit101/icons/vite.svg';
+import VitestLogo from '@kit101/icons/vitest.svg';
+import PrettierLogo from '@kit101/icons/prettier.svg';
+import EslintLogo from '@kit101/icons/eslint.svg';
+import TypeScriptLogo from '@kit101/icons/typescript.svg';
+import ZustandLogo from '@kit101/icons/zustand.svg';
+import ReactQueryLogo from '@kit101/icons/reactquery.svg';
+import ReactHookFormLogo from '@kit101/icons/reacthookform.svg';
+import MswLogo from '@kit101/icons/msw.svg';
+import PlaywrightLogo from '@kit101/icons/playwright.svg';
 
 const techs = [
   {

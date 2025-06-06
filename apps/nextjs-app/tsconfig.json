@@ -4,7 +4,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@kit101/ui/*": ["../../packages/ui/src/*"]
+      "@kit101/ui/*": ["../../packages/ui/src/*"],
+      "@kit101/icons/*": ["../../packages/ui/src/assets/icons/*"]
     },
     "plugins": [
       {

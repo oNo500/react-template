@@ -1,7 +1,6 @@
 import { Link } from 'react-router';
 import { Button } from '@kit101/ui/components/button';
-
-import GithubIcon from '@/assets/icons/github.svg?react';
+import GithubIcon from '@kit101/icons/github.svg?react';
 
 const Hero = () => {
   return (

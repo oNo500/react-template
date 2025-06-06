@@ -2,16 +2,16 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@kit101/ui/components/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@kit101/ui/components/form';
 import { Input } from '@kit101/ui/components/input';
-import { cn } from '@kit101/ui/lib/utils';
+import { cn } from '@kit101/ui/utils';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router';
+import ReactIcon from '@kit101/icons/react.svg?react';
+import GoogleIcon from '@kit101/icons/google.svg?react';
+import AppleIcon from '@kit101/icons/apple.svg?react';
 
-import ReactIcon from '@/assets/icons/react.svg?react';
 import { type LoginRequest, useLogin } from '@/auth';
 import { paths } from '@/config/paths';
-import GoogleIcon from '@/assets/icons/google.svg?react';
-import AppleIcon from '@/assets/icons/apple.svg?react';
 
 const formSchema = z.object({
   email: z.string().min(1, { message: 'Email is required' }),

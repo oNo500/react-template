@@ -1,1 +1,7 @@
-export { default } from '@kit101/ui/postcss.config';
+const config = {
+  plugins: {
+    '@tailwindcss/postcss': {},
+  },
+};
+
+export default config;

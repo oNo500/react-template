@@ -1,21 +1,20 @@
-import { cn } from '@kit101/ui/lib/utils';
-
-import NextLogo from '@/assets/icons/nextdotjs.svg?react';
-import ReactLogo from '@/assets/icons/react.svg?react';
-import ShadcnLogo from '@/assets/icons/shadcnui.svg?react';
-import TailwindLogo from '@/assets/icons/tailwindcss.svg?react';
-import TurborepoLogo from '@/assets/icons/turborepo.svg?react';
-import ViteLogo from '@/assets/icons/vite.svg?react';
-import VitestLogo from '@/assets/icons/vitest.svg?react';
-import PrettierLogo from '@/assets/icons/prettier.svg?react';
-import EslintLogo from '@/assets/icons/eslint.svg?react';
-import TypeScriptLogo from '@/assets/icons/typescript.svg?react';
-import ZustandLogo from '@/assets/icons/zustand.svg?react';
-import ReactRouterLogo from '@/assets/icons/reactrouter.svg?react';
-import ReactQueryLogo from '@/assets/icons/reactquery.svg?react';
-import ReactHookFormLogo from '@/assets/icons/reacthookform.svg?react';
-import MswLogo from '@/assets/icons/msw.svg?react';
-import PlaywrightLogo from '@/assets/icons/playwright.svg?react';
+import { cn } from '@kit101/ui/utils';
+import NextLogo from '@kit101/icons/nextdotjs.svg?react';
+import ReactLogo from '@kit101/icons/react.svg?react';
+import ShadcnLogo from '@kit101/icons/shadcnui.svg?react';
+import TailwindLogo from '@kit101/icons/tailwindcss.svg?react';
+import TurborepoLogo from '@kit101/icons/turborepo.svg?react';
+import ViteLogo from '@kit101/icons/vite.svg?react';
+import VitestLogo from '@kit101/icons/vitest.svg?react';
+import PrettierLogo from '@kit101/icons/prettier.svg?react';
+import EslintLogo from '@kit101/icons/eslint.svg?react';
+import TypeScriptLogo from '@kit101/icons/typescript.svg?react';
+import ZustandLogo from '@kit101/icons/zustand.svg?react';
+import ReactRouterLogo from '@kit101/icons/reactrouter.svg?react';
+import ReactQueryLogo from '@kit101/icons/reactquery.svg?react';
+import ReactHookFormLogo from '@kit101/icons/reacthookform.svg?react';
+import MswLogo from '@kit101/icons/msw.svg?react';
+import PlaywrightLogo from '@kit101/icons/playwright.svg?react';
 
 const techs = [
   {

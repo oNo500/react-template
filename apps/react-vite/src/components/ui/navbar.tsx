@@ -7,8 +7,9 @@ import {
 } from '@kit101/ui/components/dropdown-menu';
 import { useState } from 'react';
 import { Link } from 'react-router';
+// import ReactIcon from '@kit101/ui/react.svg?react';
+import ReactIcon from '@kit101/icons/apple.svg?react';
 
-import ReactIcon from '@/assets/icons/react.svg?react';
 import { useLogout } from '@/auth';
 import { authStore } from '@/auth/auth-store';
 import { paths } from '@/config/paths';

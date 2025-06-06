@@ -9,9 +9,9 @@ import {
 } from '@kit101/ui/components/dropdown-menu';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import GithubIcon from '@kit101/icons/github.svg';
+import ReactIcon from '@kit101/icons/react.svg';
 
-import GithubIcon from '@/assets/icons/github.svg';
-import ReactIcon from '@/assets/icons/react.svg';
 import { useLogout } from '@/auth';
 import { paths } from '@/config/paths';
 import { useUser } from '@/hooks/use-user';

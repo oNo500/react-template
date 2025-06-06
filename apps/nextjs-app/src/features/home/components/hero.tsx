@@ -1,7 +1,6 @@
 import { Button } from '@kit101/ui/components/button';
 import Link from 'next/link';
-
-import GithubIcon from '@/assets/icons/github.svg';
+import GithubIcon from '@kit101/icons/github.svg';
 
 const Hero = () => {
   return (
