@@ -90,7 +90,7 @@ const TechStack = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'
         <div className="tech-scroll-animate gap-12">
           {[...techs, ...techs].map((tech, idx) => (
             <div key={tech.name + idx} className="flex-0 flex min-w-fit flex-row items-center gap-3">
-              <div className="duration-600 flex size-10 items-center justify-center" title={tech.name}>
+              <div className="duration-600 flex size-10 items-center justify-center text-3xl" title={tech.name}>
                 {tech.logo}
               </div>
               <p className="text-sm">{tech.name}</p>

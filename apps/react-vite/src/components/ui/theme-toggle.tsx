@@ -1,5 +1,3 @@
-'use client';
-
 import { Button } from '@kit101/ui/components/button';
 import {
   DropdownMenu,
