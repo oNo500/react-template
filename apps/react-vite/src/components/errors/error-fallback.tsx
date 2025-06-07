@@ -22,7 +22,7 @@ export function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
         </p>
 
         {/* Show error details in development mode */}
-        {env.MODE === 'development' && (
+        {env.DEPLOY_ENV === 'development' && (
           <details className="mb-6 rounded-lg border border-white/10 bg-white/60 p-3 text-left text-xs text-neutral-700 dark:bg-neutral-800/80 dark:text-neutral-200">
             <summary className="mb-2 cursor-pointer text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">
               Show error details

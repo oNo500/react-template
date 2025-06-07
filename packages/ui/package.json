@@ -58,7 +58,7 @@
   },
   "private": true,
   "scripts": {
-    "check-types": "tsc --noEmit",
+    "check-types": "tsc --noEmit --pretty",
     "generate:component": "turbo gen react-component",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix",

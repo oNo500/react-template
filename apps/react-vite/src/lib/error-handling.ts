@@ -4,7 +4,7 @@ import type { ErrorInfo } from 'react';
 
 export function logError(error: Error, errorInfo?: ErrorInfo) {
   // 开发环境详细日志
-  if (env.MODE === 'development') {
+  if (env.DEPLOY_ENV === 'development') {
     console.group('🚨 Error Boundary');
     console.error('Error:', error);
     if (errorInfo) {
@@ -14,7 +14,7 @@ export function logError(error: Error, errorInfo?: ErrorInfo) {
   }
 
   // 生产环境错误上报
-  if (env.MODE === 'production') {
+  if (env.DEPLOY_ENV === 'production') {
     // 这里可以集成 Sentry 或其他错误监控服务
     // 或者发送到您的后端错误收集接口
     fetch('/api/errors', {

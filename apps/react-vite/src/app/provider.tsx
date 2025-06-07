@@ -23,7 +23,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
           </ThemeProvider>
-          {env.MODE === 'development' && <ReactQueryDevtools />}
+          {env.DEPLOY_ENV === 'development' && <ReactQueryDevtools />}
         </QueryClientProvider>
       </ErrorBoundary>
     </Suspense>

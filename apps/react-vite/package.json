@@ -50,7 +50,8 @@
     "dev": "vite",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check-types": "tsc --noEmit --pretty"
   },
   "type": "module"
 }
