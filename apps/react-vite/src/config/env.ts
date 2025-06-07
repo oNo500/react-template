@@ -4,7 +4,6 @@ const createEnv = () => {
   const envSchema = z.object({
     API_URL: z.string().url(),
     MODE: z.enum(['development', 'production', 'test']),
-    DEPLOY_ENV: z.enum(['local', 'development', 'production', 'staging', 'preprod']),
     ENABLE_MOCK: z
       .string()
       .refine((e) => e === 'true' || e === 'false')
