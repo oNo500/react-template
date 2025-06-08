@@ -11,6 +11,7 @@ import Link from 'next/link';
 import ReactIcon from '@repo/icons/react.svg';
 
 import { type RegisterRequest, useRegister } from '@/auth/use-auth';
+import { paths } from '@/config/paths';
 
 const formSchema = z.object({
   firstName: z.string().min(1, { message: 'First Name is required' }),
@@ -45,12 +46,12 @@ const RegisterForm = ({ className, ...props }: React.ComponentPropsWithoutRef<'d
           <div className="space-y-8">
             <div className="flex flex-col items-center gap-2">
               <Link href="/" className="flex flex-col items-center gap-2 font-medium">
-                <div className="flex size-12 items-center justify-center rounded-md">
+                <div className="flex items-center justify-center rounded-md text-6xl">
                   <ReactIcon />
                 </div>
-                <span className="sr-only">React Starter</span>
+                <span className="sr-only">React Boilerplate</span>
               </Link>
-              <h1 className="text-xl font-bold">Welcome to React Starter</h1>
+              <h1 className="text-xl font-bold">Welcome to React Boilerplate</h1>
             </div>
             <FormField
               control={form.control}
@@ -113,7 +114,7 @@ const RegisterForm = ({ className, ...props }: React.ComponentPropsWithoutRef<'d
 
           <div className="mt-4 text-center text-sm">
             Already have an account?{' '}
-            <Link href="/auth/login" className="underline underline-offset-4">
+            <Link href={paths.auth.login.getHref()} className="underline underline-offset-4">
               Login
             </Link>
           </div>

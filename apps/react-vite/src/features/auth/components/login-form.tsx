@@ -42,12 +42,12 @@ const LoginForm = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'
           <div className="space-y-6">
             <div className="flex flex-col items-center gap-2">
               <Link to={paths.home.getHref()} className="flex flex-col items-center gap-2 font-medium">
-                <div className="flex size-12 items-center justify-center rounded-md">
+                <div className="flex items-center justify-center rounded-md text-6xl">
                   <ReactIcon />
                 </div>
-                <span className="sr-only">React Starter</span>
+                <span className="sr-only">React Boilerplate</span>
               </Link>
-              <h1 className="text-xl font-bold">Welcome to React Starter</h1>
+              <h1 className="text-xl font-bold">Welcome to React Boilerplate</h1>
               <div className="text-center text-sm">
                 Don&apos;t have an account?{' '}
                 <Link to={paths.auth.register.getHref()} className="underline underline-offset-4">

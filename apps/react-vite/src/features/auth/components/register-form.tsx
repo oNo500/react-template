@@ -44,12 +44,12 @@ const RegisterForm = ({ className, ...props }: React.ComponentPropsWithoutRef<'d
           <div className="space-y-8">
             <div className="flex flex-col items-center gap-2">
               <Link to={paths.home.getHref()} className="flex flex-col items-center gap-2 font-medium">
-                <div className="flex size-12 items-center justify-center rounded-md">
+                <div className="flex items-center justify-center rounded-md text-6xl">
                   <ReactIcon />
                 </div>
-                <span className="sr-only">React Starter</span>
+                <span className="sr-only">React Boilerplate</span>
               </Link>
-              <h1 className="text-xl font-bold">Welcome to React Starter</h1>
+              <h1 className="text-xl font-bold">Welcome to React Boilerplate</h1>
             </div>
             <FormField
               control={form.control}

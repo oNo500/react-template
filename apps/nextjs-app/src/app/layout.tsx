@@ -6,8 +6,8 @@ import { AppProviders } from '@/components/providers';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Nextjs App',
-  description: 'Nextjs App',
+  title: 'React Boilerplate',
+  description: 'A complete toolkit for modern React development, production-ready application architecture',
 };
 
 export default function RootLayout({
