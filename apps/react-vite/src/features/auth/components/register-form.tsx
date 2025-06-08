@@ -2,14 +2,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@repo/ui/components/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/ui/components/form';
 import { Input } from '@repo/ui/components/input';
-import { cn } from '@repo/ui/utils';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router';
-import ReactIcon from '@repo/icons/react.svg?react';
 
 import { type RegisterRequest, useRegister } from '@/auth/use-auth';
-import { paths } from '@/config/paths';
 
 const formSchema = z.object({
   firstName: z.string().min(1, { message: 'First Name is required' }),
@@ -18,7 +14,13 @@ const formSchema = z.object({
   password: z.string().min(1, { message: 'Password is required' }),
 });
 
-const RegisterForm = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => {
+const RegisterForm = ({
+  className,
+  onSuccess,
+}: {
+  className?: string;
+  onSuccess: (values: RegisterRequest) => void;
+}) => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -35,22 +37,13 @@ const RegisterForm = ({ className, ...props }: React.ComponentPropsWithoutRef<'d
       password: values.password,
       name: `${values.firstName} ${values.lastName}`.trim(),
     };
-    registerMutation.mutate(payload);
+    onSuccess(payload);
   }
   return (
-    <div className={cn('flex flex-col gap-6', className)} {...props}>
+    <div className={className}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="space-y-8">
-            <div className="flex flex-col items-center gap-2">
-              <Link to={paths.home.getHref()} className="flex flex-col items-center gap-2 font-medium">
-                <div className="flex items-center justify-center rounded-md text-6xl">
-                  <ReactIcon />
-                </div>
-                <span className="sr-only">React Boilerplate</span>
-              </Link>
-              <h1 className="text-xl font-bold">Welcome to React Boilerplate</h1>
-            </div>
             <FormField
               control={form.control}
               name="firstName"
@@ -108,13 +101,6 @@ const RegisterForm = ({ className, ...props }: React.ComponentPropsWithoutRef<'d
             <Button className="w-full" type="submit">
               Sign Up
             </Button>
-          </div>
-
-          <div className="mt-4 text-center text-sm">
-            Already have an account?{' '}
-            <Link to={paths.auth.login.getHref()} className="underline underline-offset-4">
-              Login
-            </Link>
           </div>
         </form>
       </Form>

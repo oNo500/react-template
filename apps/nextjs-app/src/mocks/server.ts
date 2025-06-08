@@ -3,8 +3,6 @@ import cors from 'cors';
 import express, { json } from 'express';
 import logger from 'pino-http';
 
-import { env } from '@/config/env';
-
 import { handlers } from './handlers';
 
 const app = express();
@@ -31,7 +29,7 @@ app.use(
   }),
 );
 app.use(createMiddleware(...handlers));
-
-app.listen(env.MOCK_PORT, () => {
-  console.log(`Mock API server started at http://localhost:${env.MOCK_PORT}`);
+const port = 9090;
+app.listen(port, () => {
+  console.log(`Mock API server started at http://localhost:${port}`);
 });
