@@ -5,7 +5,7 @@ import withBundleAnalyzer from '@next/bundle-analyzer';
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = (phase: string, { defaultConfig }: { defaultConfig: NextConfig }) => ({
-  transpilePackages: ['@kit101/ui'],
+  transpilePackages: ['@repo/ui'],
   ...(phase === PHASE_DEVELOPMENT_SERVER
     ? {
         // 开发环境：Turbopack 配置

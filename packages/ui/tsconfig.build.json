@@ -1,5 +1,5 @@
 {
-  "extends": "@kit101/typescript-config/tsconfig.base.library.json",
+  "extends": "@repo/ts-config/tsconfig.base.library.json",
   "compilerOptions": {
     "incremental": false
   },

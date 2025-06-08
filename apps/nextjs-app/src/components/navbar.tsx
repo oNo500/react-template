@@ -1,15 +1,15 @@
 'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@kit101/ui/components/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/components/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@kit101/ui/components/dropdown-menu';
+} from '@repo/ui/components/dropdown-menu';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import ReactIcon from '@kit101/icons/react.svg';
+import ReactIcon from '@repo/icons/react.svg';
 
 import { useLogout } from '@/auth';
 import { paths } from '@/config/paths';

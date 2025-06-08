@@ -14,8 +14,8 @@
     "components": "@/components",
     "hooks": "@/hooks",
     "lib": "@/lib",
-    "utils": "@kit101/utils",
-    "ui": "@kit101/ui/components"
+    "utils": "@repo/utils",
+    "ui": "@repo/ui/components"
   },
   "iconLibrary": "lucide"
 }

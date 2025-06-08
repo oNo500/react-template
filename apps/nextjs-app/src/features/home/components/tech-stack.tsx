@@ -1,20 +1,20 @@
-import { cn } from '@kit101/ui/utils';
-import NextLogo from '@kit101/icons/nextdotjs.svg';
-import ReactLogo from '@kit101/icons/react.svg';
-import ShadcnLogo from '@kit101/icons/shadcnui.svg';
-import TailwindLogo from '@kit101/icons/tailwindcss.svg';
-import TurborepoLogo from '@kit101/icons/turborepo.svg';
-import ReactRouterLogo from '@kit101/icons/reactrouter.svg';
-import ViteLogo from '@kit101/icons/vite.svg';
-import VitestLogo from '@kit101/icons/vitest.svg';
-import PrettierLogo from '@kit101/icons/prettier.svg';
-import EslintLogo from '@kit101/icons/eslint.svg';
-import TypeScriptLogo from '@kit101/icons/typescript.svg';
-import ZustandLogo from '@kit101/icons/zustand.svg';
-import ReactQueryLogo from '@kit101/icons/reactquery.svg';
-import ReactHookFormLogo from '@kit101/icons/reacthookform.svg';
-import MswLogo from '@kit101/icons/msw.svg';
-import PlaywrightLogo from '@kit101/icons/playwright.svg';
+import { cn } from '@repo/ui/utils';
+import NextLogo from '@repo/icons/nextdotjs.svg';
+import ReactLogo from '@repo/icons/react.svg';
+import ShadcnLogo from '@repo/icons/shadcnui.svg';
+import TailwindLogo from '@repo/icons/tailwindcss.svg';
+import TurborepoLogo from '@repo/icons/turborepo.svg';
+import ReactRouterLogo from '@repo/icons/reactrouter.svg';
+import ViteLogo from '@repo/icons/vite.svg';
+import VitestLogo from '@repo/icons/vitest.svg';
+import PrettierLogo from '@repo/icons/prettier.svg';
+import EslintLogo from '@repo/icons/eslint.svg';
+import TypeScriptLogo from '@repo/icons/typescript.svg';
+import ZustandLogo from '@repo/icons/zustand.svg';
+import ReactQueryLogo from '@repo/icons/reactquery.svg';
+import ReactHookFormLogo from '@repo/icons/reacthookform.svg';
+import MswLogo from '@repo/icons/msw.svg';
+import PlaywrightLogo from '@repo/icons/playwright.svg';
 
 const techs = [
   {

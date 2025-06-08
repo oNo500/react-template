@@ -1,14 +1,14 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '@kit101/ui/components/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@kit101/ui/components/form';
-import { Input } from '@kit101/ui/components/input';
-import { cn } from '@kit101/ui/utils';
+import { Button } from '@repo/ui/components/button';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/ui/components/form';
+import { Input } from '@repo/ui/components/input';
+import { cn } from '@repo/ui/utils';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
-import ReactIcon from '@kit101/icons/react.svg';
+import ReactIcon from '@repo/icons/react.svg';
 
 import { type RegisterRequest, useRegister } from '@/auth/use-auth';
 

@@ -1,20 +1,20 @@
-import { cn } from '@kit101/ui/utils';
-import NextLogo from '@kit101/icons/nextdotjs.svg?react';
-import ReactLogo from '@kit101/icons/react.svg?react';
-import ShadcnLogo from '@kit101/icons/shadcnui.svg?react';
-import TailwindLogo from '@kit101/icons/tailwindcss.svg?react';
-import TurborepoLogo from '@kit101/icons/turborepo.svg?react';
-import ViteLogo from '@kit101/icons/vite.svg?react';
-import VitestLogo from '@kit101/icons/vitest.svg?react';
-import PrettierLogo from '@kit101/icons/prettier.svg?react';
-import EslintLogo from '@kit101/icons/eslint.svg?react';
-import TypeScriptLogo from '@kit101/icons/typescript.svg?react';
-import ZustandLogo from '@kit101/icons/zustand.svg?react';
-import ReactRouterLogo from '@kit101/icons/reactrouter.svg?react';
-import ReactQueryLogo from '@kit101/icons/reactquery.svg?react';
-import ReactHookFormLogo from '@kit101/icons/reacthookform.svg?react';
-import MswLogo from '@kit101/icons/msw.svg?react';
-import PlaywrightLogo from '@kit101/icons/playwright.svg?react';
+import { cn } from '@repo/ui/utils';
+import NextLogo from '@repo/icons/nextdotjs.svg?react';
+import ReactLogo from '@repo/icons/react.svg?react';
+import ShadcnLogo from '@repo/icons/shadcnui.svg?react';
+import TailwindLogo from '@repo/icons/tailwindcss.svg?react';
+import TurborepoLogo from '@repo/icons/turborepo.svg?react';
+import ViteLogo from '@repo/icons/vite.svg?react';
+import VitestLogo from '@repo/icons/vitest.svg?react';
+import PrettierLogo from '@repo/icons/prettier.svg?react';
+import EslintLogo from '@repo/icons/eslint.svg?react';
+import TypeScriptLogo from '@repo/icons/typescript.svg?react';
+import ZustandLogo from '@repo/icons/zustand.svg?react';
+import ReactRouterLogo from '@repo/icons/reactrouter.svg?react';
+import ReactQueryLogo from '@repo/icons/reactquery.svg?react';
+import ReactHookFormLogo from '@repo/icons/reacthookform.svg?react';
+import MswLogo from '@repo/icons/msw.svg?react';
+import PlaywrightLogo from '@repo/icons/playwright.svg?react';
 
 const techs = [
   {

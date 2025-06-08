@@ -1,4 +1,4 @@
-import { Toaster } from '@kit101/ui/components/sonner';
+import { Toaster } from '@repo/ui/components/sonner';
 import '@/styles/index.css';
 
 import { AppProviders } from '@/components/providers';

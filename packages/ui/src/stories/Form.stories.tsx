@@ -8,8 +8,8 @@ import {
   FormDescription,
   FormMessage,
   FormField,
-} from '@kit101/ui/components/form';
-import { Input } from '@kit101/ui/components/input';
+} from '@repo/ui/components/form';
+import { Input } from '@repo/ui/components/input';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 

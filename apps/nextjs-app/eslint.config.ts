@@ -1,3 +1,3 @@
-import { config as nextJsConfig } from '@kit101/eslint-config/next-js';
+import { config as nextJsConfig } from '@repo/lint-config/next-js';
 
 export default nextJsConfig;

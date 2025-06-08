@@ -6,6 +6,7 @@ const createEnv = () => {
     MODE: z.enum(['development', 'production', 'test']),
     ENABLE_MOCK: z
       .string()
+      .optional()
       .refine((e) => e === 'true' || e === 'false')
       .default('false'),
   });

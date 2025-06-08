@@ -6,7 +6,7 @@ import {
   CardContent,
   CardFooter,
   CardAction,
-} from '@kit101/ui/components/card';
+} from '@repo/ui/components/card';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 

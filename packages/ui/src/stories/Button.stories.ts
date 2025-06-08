@@ -1,4 +1,4 @@
-import { Button } from '@kit101/ui/components/button';
+import { Button } from '@repo/ui/components/button';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 

@@ -1,4 +1,4 @@
 {
-  "extends": "@kit101/typescript-config/tsconfig.base.node.json",
+  "extends": "@repo/ts-config/tsconfig.base.node.json",
   "include": ["vite.config.ts", "eslint.config.ts"]
 }

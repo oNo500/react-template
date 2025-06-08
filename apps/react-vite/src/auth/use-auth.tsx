@@ -1,4 +1,4 @@
-import { toast } from '@kit101/ui/components/sonner';
+import { toast } from '@repo/ui/components/sonner';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
 import { paths } from '@/config/paths';

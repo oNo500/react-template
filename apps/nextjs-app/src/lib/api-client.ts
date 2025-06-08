@@ -1,4 +1,4 @@
-import { toast } from '@kit101/ui/components/sonner';
+import { toast } from '@repo/ui/components/sonner';
 
 import { env } from '@/config/env';
 

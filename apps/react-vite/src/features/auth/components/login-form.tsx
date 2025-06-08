@@ -1,14 +1,14 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '@kit101/ui/components/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@kit101/ui/components/form';
-import { Input } from '@kit101/ui/components/input';
-import { cn } from '@kit101/ui/utils';
+import { Button } from '@repo/ui/components/button';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@repo/ui/components/form';
+import { Input } from '@repo/ui/components/input';
+import { cn } from '@repo/ui/utils';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router';
-import ReactIcon from '@kit101/icons/react.svg?react';
-import GoogleIcon from '@kit101/icons/google.svg?react';
-import AppleIcon from '@kit101/icons/apple.svg?react';
+import ReactIcon from '@repo/icons/react.svg?react';
+import GoogleIcon from '@repo/icons/google.svg?react';
+import AppleIcon from '@repo/icons/apple.svg?react';
 
 import { type LoginRequest, useLogin } from '@/auth';
 import { paths } from '@/config/paths';

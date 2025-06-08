@@ -1,18 +1,19 @@
 {
-  "name": "@kit101/eslint-config",
+  "name": "@repo/lint-config",
   "version": "0.0.0",
-  "dependencies": {
-    "eslint-plugin-react-refresh": "^0.4.20"
+  "peerDependencies": {
+    "eslint": "^9.28.0",
+    "typescript": "^5.8.3"
   },
   "devDependencies": {
+    "eslint-plugin-react-refresh": "^0.4.20",
     "@eslint/js": "^9.28.0",
-    "@kit101/typescript-config": "workspace:*",
+    "@repo/ts-config": "workspace:*",
     "@next/eslint-plugin-next": "^15.3.3",
     "@types/eslint-plugin-jsx-a11y": "^6.10.0",
     "@types/node": "^22.15.29",
     "@typescript-eslint/parser": "^8.33.0",
     "@typescript-eslint/utils": "^8.33.0",
-    "eslint": "^9.28.0",
     "eslint-config-flat-gitignore": "^2.1.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-import-resolver-typescript": "^4.4.2",
@@ -24,7 +25,6 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-turbo": "^2.5.4",
     "globals": "^16.2.0",
-    "typescript": "^5.8.3",
     "typescript-eslint": "^8.33.0"
   },
   "exports": {

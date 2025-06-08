@@ -8,7 +8,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from '@kit101/ui/components/dropdown-menu';
+} from '@repo/ui/components/dropdown-menu';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 

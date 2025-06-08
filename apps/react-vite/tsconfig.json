@@ -5,8 +5,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@kit101/ui/*": ["../../packages/ui/src/*"],
-      "@kit101/icons/*": ["../../packages/ui/src/assets/icons/*"]
+      "@repo/ui/*": ["../../packages/ui/src/*"],
+      "@repo/icons/*": ["../../packages/ui/src/assets/icons/*"]
     }
   }
 }

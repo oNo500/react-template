@@ -1,5 +1,0 @@
-{
-  "extends": "@kit101/typescript-config/tsconfig.base.json",
-  "include": ["**/*.ts"],
-  "exclude": ["node_modules"]
-}

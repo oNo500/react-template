@@ -1,4 +1,4 @@
-import { Button } from '@kit101/ui/components/button';
+import { Button } from '@repo/ui/components/button';
 import { AlertTriangle } from 'lucide-react';
 import { Link } from 'react-router';
 

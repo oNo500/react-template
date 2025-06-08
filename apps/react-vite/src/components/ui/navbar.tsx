@@ -1,13 +1,13 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@kit101/ui/components/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/components/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@kit101/ui/components/dropdown-menu';
+} from '@repo/ui/components/dropdown-menu';
 import { useState } from 'react';
 import { Link } from 'react-router';
-import ReactIcon from '@kit101/icons/react.svg?react';
+import ReactIcon from '@repo/icons/react.svg?react';
 
 import { useLogout } from '@/auth';
 import { authStore } from '@/auth/auth-store';

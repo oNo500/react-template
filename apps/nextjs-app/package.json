@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
-    "@kit101/ui": "workspace:*",
+    "@repo/ui": "workspace:*",
     "@opentelemetry/api": "^1.9.0",
     "@sentry/browser": "^9.24.0",
     "@sentry/nextjs": "^9.24.0",
@@ -24,8 +24,8 @@
     "zustand": "^5.0.5"
   },
   "devDependencies": {
-    "@kit101/eslint-config": "workspace:*",
-    "@kit101/typescript-config": "workspace:*",
+    "@repo/lint-config": "workspace:*",
+    "@repo/ts-config": "workspace:*",
     "@mswjs/data": "^0.16.2",
     "@mswjs/http-middleware": "^0.10.3",
     "@next/bundle-analyzer": "^15.3.3",

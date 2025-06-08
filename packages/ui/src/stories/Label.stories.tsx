@@ -1,4 +1,4 @@
-import { Label } from '@kit101/ui/components/label';
+import { Label } from '@repo/ui/components/label';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
