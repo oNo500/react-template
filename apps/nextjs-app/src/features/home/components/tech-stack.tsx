@@ -15,6 +15,7 @@ import ReactQueryLogo from '@repo/icons/reactquery.svg';
 import ReactHookFormLogo from '@repo/icons/reacthookform.svg';
 import MswLogo from '@repo/icons/msw.svg';
 import PlaywrightLogo from '@repo/icons/playwright.svg';
+import StorybookLogo from '@repo/icons/storybook.svg';
 
 const techs = [
   {
@@ -81,6 +82,10 @@ const techs = [
     name: 'Playwright',
     logo: <PlaywrightLogo />,
   },
+  {
+    name: 'Storybook',
+    logo: <StorybookLogo />,
+  },
 ];
 
 const TechStack = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) => {
@@ -90,9 +95,9 @@ const TechStack = ({ className, ...props }: React.ComponentPropsWithoutRef<'div'
       {...props}
     >
       <div className="overflow-hidden px-4 py-3">
-        <div className="tech-scroll-animate gap-12">
+        <div className="animate-tech-scroll-left tech-scroll-animate flex w-max gap-12">
           {[...techs, ...techs].map((tech, idx) => (
-            <div key={tech.name + idx} className="flex-0 flex min-w-fit flex-row items-center gap-3">
+            <div key={tech.name + idx} className="flex min-w-fit flex-row items-center gap-3">
               <div className="duration-600 flex size-10 items-center justify-center text-3xl" title={tech.name}>
                 {tech.logo}
               </div>

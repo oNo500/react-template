@@ -1,5 +1,3 @@
-import { toast } from '@repo/ui/components/sonner';
-
 import { env } from '@/config/env';
 
 import type { ApiError } from '@/types/api';
@@ -85,9 +83,7 @@ async function fetchAPI<T>(url: string, options: RequestOptions = {}): Promise<T
       message = await response.text();
     }
     if (typeof window !== 'undefined') {
-      toast.error('Request Failed', {
-        description: message,
-      });
+      // add error toast
     }
   }
 

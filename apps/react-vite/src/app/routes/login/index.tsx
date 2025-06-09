@@ -5,15 +5,12 @@ import AppleIcon from '@repo/icons/apple.svg?react';
 import { Button } from '@repo/ui/components/button';
 
 import LoginForm from '@/features/auth/components/login-form';
-import { useLogin, type LoginRequest } from '@/auth';
 import { paths } from '@/config/paths';
 
 const LoginPage = () => {
-  const loginMutation = useLogin();
   const navigate = useNavigate();
 
-  const onSuccess = async (values: LoginRequest) => {
-    await loginMutation.mutateAsync(values);
+  const onSuccess = async () => {
     navigate(paths.home.getHref());
   };
   return (

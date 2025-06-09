@@ -12,7 +12,7 @@ const formSchema = z.object({
   password: z.string().min(1, { message: 'Password is required' }),
 });
 
-const LoginForm = ({ className, onSuccess }: { className?: string; onSuccess?: (values: LoginRequest) => void }) => {
+const LoginForm = ({ className, onSuccess }: { className?: string; onSuccess?: () => void }) => {
   const form = useForm<LoginRequest>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -23,10 +23,15 @@ const LoginForm = ({ className, onSuccess }: { className?: string; onSuccess?: (
 
   const loginMutation = useLogin();
 
+  const handleSubmit = async (values: LoginRequest) => {
+    await loginMutation.mutateAsync(values);
+    onSuccess?.();
+  };
+
   return (
     <div className={className}>
       <Form {...form}>
-        <form onSubmit={onSuccess && form.handleSubmit(onSuccess)}>
+        <form onSubmit={form.handleSubmit(handleSubmit)}>
           <div className="space-y-6">
             <FormField
               control={form.control}

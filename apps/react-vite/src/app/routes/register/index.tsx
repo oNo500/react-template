@@ -1,12 +1,10 @@
 import { Link, useNavigate } from 'react-router';
 import ReactIcon from '@repo/icons/react.svg?react';
 
-import { useRegister } from '@/auth';
 import { paths } from '@/config/paths';
 import RegisterForm from '@/features/auth/components/register-form';
 
 const RegisterPage = () => {
-  const registerMutation = useRegister();
   const navigate = useNavigate();
 
   return (
@@ -22,8 +20,7 @@ const RegisterPage = () => {
           <div className="text-secondary-foreground text-sm">Create your account.</div>
         </div>
         <RegisterForm
-          onSuccess={async (values) => {
-            await registerMutation.mutateAsync(values);
+          onSuccess={() => {
             navigate(paths.home.getHref());
           }}
         />
