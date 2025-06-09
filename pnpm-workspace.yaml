@@ -8,3 +8,5 @@ public-hoist-pattern:
   - typescript
   - vite
   - vitest
+  - playwright*
+

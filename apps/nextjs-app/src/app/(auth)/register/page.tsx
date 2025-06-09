@@ -3,13 +3,11 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import ReactIcon from '@repo/icons/react.svg';
 
-import { useRegister } from '@/auth';
 import { paths } from '@/config/paths';
 import RegisterForm from '@/features/auth/components/register-form';
 
 const RegisterPage = () => {
   const router = useRouter();
-  const registerMutation = useRegister();
 
   return (
     <div className="flex min-h-svh w-full items-center justify-center">
@@ -24,8 +22,7 @@ const RegisterPage = () => {
           <div className="text-secondary-foreground text-sm">Create your account.</div>
         </div>
         <RegisterForm
-          onSuccess={async (values) => {
-            await registerMutation.mutateAsync(values);
+          onSuccess={async () => {
             router.push(paths.home.getHref());
           }}
         />

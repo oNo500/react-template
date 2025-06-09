@@ -9,14 +9,11 @@ import { useRouter } from 'next/navigation';
 
 import { paths } from '@/config/paths';
 import LoginForm from '@/features/auth/components/login-form';
-import { useLogin, type LoginRequest } from '@/auth';
 
 const LoginPage = () => {
-  const loginMutation = useLogin();
   const router = useRouter();
 
-  const onSuccess = async (values: LoginRequest) => {
-    await loginMutation.mutateAsync(values);
+  const onSuccess = async () => {
     router.push(paths.home.getHref());
   };
   return (

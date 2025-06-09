@@ -6,14 +6,14 @@ import { cn } from '@repo/ui/utils';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 
-import { type LoginRequest, useLogin } from '@/auth';
+import { useLogin, type LoginRequest } from '@/auth';
 
 const formSchema = z.object({
   email: z.string().min(1, { message: 'Email is required' }),
   password: z.string().min(1, { message: 'Password is required' }),
 });
 
-const LoginForm = ({ className, onSuccess }: { className?: string; onSuccess?: (values: LoginRequest) => void }) => {
+const LoginForm = ({ className, onSuccess }: { className?: string; onSuccess?: () => void }) => {
   const form = useForm<LoginRequest>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -24,19 +24,24 @@ const LoginForm = ({ className, onSuccess }: { className?: string; onSuccess?: (
 
   const loginMutation = useLogin();
 
+  const handleSubmit = async (data: LoginRequest) => {
+    await loginMutation.mutateAsync(data);
+    onSuccess?.();
+  };
+
   return (
     <div className={cn('flex flex-col gap-6', className)}>
       <Form {...form}>
-        <form onSubmit={onSuccess && form.handleSubmit(onSuccess)}>
+        <form onSubmit={form.handleSubmit(handleSubmit)}>
           <div className="space-y-6">
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel htmlFor="email">Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your email" {...field} />
+                    <Input id="email" placeholder="Enter your email" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -48,16 +53,16 @@ const LoginForm = ({ className, onSuccess }: { className?: string; onSuccess?: (
               render={({ field }) => {
                 return (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel htmlFor="password">Password</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your password" {...field} />
+                      <Input id="password" placeholder="Enter your password" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 );
               }}
             />
-            <Button disabled={loginMutation.isPending} className="w-full" type="submit">
+            <Button className="w-full" type="submit" disabled={loginMutation.isPending}>
               Login
             </Button>
           </div>

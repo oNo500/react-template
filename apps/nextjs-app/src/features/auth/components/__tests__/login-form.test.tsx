@@ -1,6 +1,6 @@
-import { expect, test, vi } from 'vitest';
+import { expect, vi } from 'vitest';
 
-import { renderApp, screen, userEvent, waitFor } from '@/testing/test-utils';
+import { renderApp, screen, userEvent, waitFor, test } from '@/testing/test-utils';
 
 import LoginForm from '../login-form';
 

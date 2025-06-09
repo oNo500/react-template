@@ -6,10 +6,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@repo/ui/components/input';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
-import Link from 'next/link';
 
-import { type RegisterRequest } from '@/auth/use-auth';
-import { paths } from '@/config/paths';
+import { type RegisterRequest, useRegister } from '@/auth';
 
 const formSchema = z.object({
   firstName: z.string().min(1, { message: 'First Name is required' }),
@@ -18,13 +16,8 @@ const formSchema = z.object({
   password: z.string().min(1, { message: 'Password is required' }),
 });
 
-const RegisterForm = ({
-  className,
-  onSuccess,
-}: {
-  className?: string;
-  onSuccess: (values: RegisterRequest) => void;
-}) => {
+const RegisterForm = ({ className, onSuccess }: { className?: string; onSuccess: () => void }) => {
+  const registerMutation = useRegister();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,13 +27,14 @@ const RegisterForm = ({
       password: '',
     },
   });
-  function onSubmit(values: typeof formSchema._type) {
+  async function onSubmit(values: typeof formSchema._type) {
     const payload: RegisterRequest = {
       email: values.email,
       password: values.password,
       name: `${values.firstName} ${values.lastName}`.trim(),
     };
-    onSuccess(payload);
+    await registerMutation.mutateAsync(payload);
+    onSuccess?.();
   }
   return (
     <div className={className}>
