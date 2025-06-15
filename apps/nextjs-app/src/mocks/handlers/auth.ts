@@ -23,6 +23,17 @@ export const authHandlers = [
     );
   }),
   http.post(`${env.API_URL}/api/auth/login`, async ({ request }) => {
+    // return HttpResponse.json(
+    //   {
+    //     error: {
+    //       code: '401',
+    //       message: '登录失败',
+    //     },
+    //   },
+    //   {
+    //     status: 401,
+    //   },
+    // );
     return HttpResponse.json(
       {
         success: true,

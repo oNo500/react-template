@@ -1,20 +1,28 @@
-export interface APIResponse<T = unknown> {
+export interface ApiResponse<T = unknown> {
   data: T;
+  error: ApiError;
+  meta: Meta;
+}
+export interface ApiError {
+  code: string;
   message: string;
-  success: boolean;
-  meta?: {
-    page?: number;
-    limit?: number;
-    total?: number;
-  };
+  details?: FieldError[];
 }
 
-// 错误响应类型
-export interface ApiError {
-  status: number;
+export interface FieldError {
+  field: string;
   message: string;
-  details?: unknown;
-  name?: string;
+}
+
+export interface Meta {
+  total?: number;
+  page?: number;
+  pageSize?: number;
+  hasMore?: boolean;
+  traceId?: string;
+  timestamp?: string;
+  apiVersion?: string;
+  duration?: number;
 }
 
 export interface User {

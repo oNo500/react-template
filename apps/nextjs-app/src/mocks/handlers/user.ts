@@ -7,10 +7,20 @@ export const userHandlers = [
     const cookie = request.headers.get('cookie') || '';
     const isLoggedIn = cookie.includes('token=mock-jwt-token');
     if (!isLoggedIn) {
-      return new HttpResponse(JSON.stringify({ success: false, message: '未登录', data: null }), {
-        status: 401,
-        headers: { 'Content-Type': 'application/json' },
-      });
+      return new HttpResponse(
+        JSON.stringify({
+          success: false,
+          error: {
+            code: '401',
+            message: '未登录',
+          },
+          data: null,
+        }),
+        {
+          status: 401,
+          headers: { 'Content-Type': 'application/json' },
+        },
+      );
     }
     return HttpResponse.json({
       success: true,

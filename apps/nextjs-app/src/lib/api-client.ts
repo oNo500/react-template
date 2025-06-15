@@ -50,44 +50,38 @@ async function fetchAPI<T>(url: string, options: RequestOptions = {}): Promise<T
   }
 
   const fullURL = buildURLWithParams(`${env.API_URL}${url}`, params);
+  try {
+    const response = await fetch(fullURL, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        ...headers,
+        ...(cookieHeader ? { Cookie: cookieHeader } : {}),
+      },
+      body: body ? JSON.stringify(body) : undefined,
+      credentials: 'include',
+      cache,
+      next,
+    });
 
-  const response = await fetch(fullURL, {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      ...headers,
-      ...(cookieHeader ? { Cookie: cookieHeader } : {}),
-    },
-    body: body ? JSON.stringify(body) : undefined,
-    credentials: 'include',
-    cache,
-    next,
-  });
-
-  if (!response.ok) {
-    if (response.status === 404) {
+    if (!response.ok) {
       throw {
-        status: response.status,
+        code: response.status.toString(),
         message: response.statusText,
-        name: 'ApiError',
       } as ApiError;
     }
-    const contentType = response.headers.get('content-type');
-    let message = response.statusText;
-    if (contentType?.includes('application/json')) {
-      const json = await response.json();
-      message = json.message || response.statusText;
-    }
-    if (contentType?.includes('text/plain')) {
-      message = await response.text();
-    }
-    if (typeof window !== 'undefined') {
-      // add error toast
-    }
-  }
+    const responseData = await response.clone().json();
+    const { data, error } = responseData;
 
-  return response.json();
+    if (error) {
+      throw error as ApiError;
+    }
+
+    return data as T;
+  } catch (error) {
+    throw error;
+  }
 }
 
 export const apiClient = {

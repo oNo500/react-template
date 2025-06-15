@@ -2,7 +2,7 @@ import { HttpResponse, http } from 'msw';
 
 import { env } from '@/config/env';
 
-import type { APIResponse, LoginData } from '@/types/api';
+import type { ApiResponse, LoginData } from '@/types/api';
 
 export const authHandlers = [
   http.post(`${env.API_URL}/api/auth/register`, async ({ request }) => {
@@ -19,7 +19,7 @@ export const authHandlers = [
           token: 'mock-jwt-token',
           expiresIn: 1000,
         },
-      } as APIResponse<LoginData>,
+      } as ApiResponse<LoginData>,
       {
         headers: {
           'Set-Cookie': 'token=mock-jwt-token; Path=/; HttpOnly; SameSite=Strict',
@@ -41,7 +41,7 @@ export const authHandlers = [
           token: 'mock-jwt-token',
           expiresIn: 1000,
         },
-      } as APIResponse<LoginData>,
+      } as ApiResponse<LoginData>,
       {
         headers: {
           'Set-Cookie': 'token=mock-jwt-token; Path=/; HttpOnly; SameSite=Strict',

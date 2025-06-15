@@ -1,23 +1,19 @@
 // 错误响应类型
-export interface ApiError {
-  status: number;
-  message: string;
-  details?: unknown;
-  name?: string;
+
+export interface ApiResponse<T = unknown> {
+  data?: T;
+  error?: ApiError;
+  meta?: Meta;
 }
-export interface APIResponse<T = unknown> {
-  data: T;
-  success: boolean;
-  message?: string;
-  error?: {
-    code: string;
-    message: string;
-  };
-  meta?: {
-    page?: number;
-    limit?: number;
-    total?: number;
-  };
+export interface ApiError {
+  code: string;
+  message: string;
+  details?: FieldError[];
+}
+
+export interface FieldError {
+  field: string;
+  message: string;
 }
 
 export interface User {

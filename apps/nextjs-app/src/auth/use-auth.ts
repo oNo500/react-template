@@ -1,12 +1,11 @@
 import { toast } from '@repo/ui/components/sonner';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
 import { apiClient } from '@/lib/api-client';
 import { queryClient } from '@/lib/query-client';
 
-import type { APIResponse, ApiError, User } from '@/types/api';
+import type { ApiResponse, ApiError, User } from '@/types/api';
 
-// 类型定义
 export interface LoginRequest {
   email: string;
   password: string;
@@ -23,12 +22,11 @@ export interface AuthResponse {
   refreshToken: string;
 }
 
-// 登录
 export const useLogin = () => {
   return useMutation({
     mutationFn: async (data: LoginRequest): Promise<User> => {
-      const response = await apiClient.post<APIResponse<User>>('/api/auth/login', data);
-      return response.data;
+      const response = await apiClient.post<User>('/api/auth/login', data);
+      return response;
     },
     onSuccess: (data) => {
       toast.success(`Login success, welcome back ${data.name || data.email}!`);
@@ -39,11 +37,10 @@ export const useLogin = () => {
   });
 };
 
-// 注册
 export const useRegister = () => {
   return useMutation({
     mutationFn: async (data: RegisterRequest): Promise<User> => {
-      const response = await apiClient.post<APIResponse<User>>('/api/auth/register', data);
+      const response = await apiClient.post<ApiResponse<User>>('/api/auth/register', data);
       return response.data;
     },
     onSuccess: () => {
@@ -55,18 +52,6 @@ export const useRegister = () => {
   });
 };
 
-// 获取当前用户信息
-export const useCurrentUser = () => {
-  return useQuery({
-    queryKey: ['current-user'],
-    queryFn: async (): Promise<User> => {
-      const response = await apiClient.get<APIResponse<User>>('/api/auth/me');
-      return response.data;
-    },
-  });
-};
-
-// 登出
 export const useLogout = () => {
   return useMutation({
     mutationFn: async () => {
